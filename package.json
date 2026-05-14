@@ -1,5 +1,5 @@
 {
-  "name": "fcp-sfd-frontend-engine",
+  "name": "@defra/fcp-sfd-frontend-engine",
   "version": "0.1.0",
   "description": "Shared frontend engine used by both the internal and external frontend applications.",
   "main": "./dist/index.cjs",
