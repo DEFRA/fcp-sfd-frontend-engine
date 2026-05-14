@@ -1,0 +1,49 @@
+{
+  "name": "fcp-sfd-frontend-engine",
+  "version": "0.1.0",
+  "description": "Shared frontend engine used by both the internal and external frontend applications.",
+  "main": "./dist/index.cjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "build": "tsup",
+    "test": "npm run build && vitest run --coverage",
+    "test:watch": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEFRA/fcp-sfd-frontend-engine.git"
+  },
+  "keywords": [
+    "fcp-sfd-frontend",
+    "defra",
+    "fcp"
+  ],
+  "author": "Defra DDTS",
+  "contributors": [
+    "Rebecca Ransome <rebecca.ransome@defra.gov.uk>",
+    "Adam Kay <adam.kay@defra.gov.uk>"
+  ],
+  "license": "OGL-UK-3.0",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/DEFRA/fcp-sfd-frontend-engine/issues"
+  },
+  "homepage": "https://github.com/DEFRA/fcp-sfd-frontend-engine#readme",
+  "devDependencies": {
+    "@vitest/coverage-v8": "4.0.16",
+    "eslint": "9.39.2",
+    "neostandard": "0.12.2",
+    "tsup": "8.5.0",
+    "vitest": "4.0.16"
+  },
+  "dependencies": {
+    "joi": "17.13.3"
+  }
+}
