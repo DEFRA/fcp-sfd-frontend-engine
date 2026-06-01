@@ -1,6 +1,6 @@
 {
   "name": "@defra/fcp-sfd-frontend-engine",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Shared frontend engine used by both the internal and external frontend applications.",
   "main": "./dist/index.cjs",
   "exports": {
@@ -39,6 +39,7 @@
   "devDependencies": {
     "@vitest/coverage-v8": "4.0.16",
     "eslint": "9.39.2",
+    "graphql": "^16.14.0",
     "neostandard": "0.12.2",
     "tsup": "8.5.0",
     "vitest": "4.0.16"
