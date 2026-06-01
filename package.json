@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/DEFRA/fcp-sfd-frontend-engine#readme",
   "devDependencies": {
-    "@vitest/coverage-v8": "4.0.16",
+    "@vitest/coverage-v8": "4.1.8",
     "eslint": "9.39.2",
     "neostandard": "0.12.2",
     "tsup": "8.5.0",
