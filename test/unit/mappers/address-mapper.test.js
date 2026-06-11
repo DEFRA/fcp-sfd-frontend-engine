@@ -41,29 +41,27 @@ describe('mapAddress', () => {
         const result = mapAddress(dalData.business.info.address)
 
         expect(result).toEqual({
-          address: {
-            lookup: {
-              pafOrganisationName: 'Corp ltd',
-              flatName: 'THE COACH HOUSE',
-              buildingNumberRange: '7',
-              buildingName: 'STOCKWELL HALL',
-              dependentLocality: 'ELLICOMBE',
-              doubleDependentLocality: 'WOODTHORPE',
-              street: 'HAREWOOD AVENUE',
-              county: 'Dorset',
-              uprn: '12345'
-            },
-            manual: {
-              line1: null,
-              line2: null,
-              line3: null,
-              line4: null,
-              line5: null
-            },
-            city: 'DARLINGTON',
-            postcode: 'CO9 3LS',
-            country: 'United Kingdom'
-          }
+          lookup: {
+            pafOrganisationName: 'Corp ltd',
+            flatName: 'THE COACH HOUSE',
+            buildingNumberRange: '7',
+            buildingName: 'STOCKWELL HALL',
+            dependentLocality: 'ELLICOMBE',
+            doubleDependentLocality: 'WOODTHORPE',
+            street: 'HAREWOOD AVENUE',
+            county: 'Dorset',
+            uprn: '12345'
+          },
+          manual: {
+            line1: null,
+            line2: null,
+            line3: null,
+            line4: null,
+            line5: null
+          },
+          city: 'DARLINGTON',
+          postcode: 'CO9 3LS',
+          country: 'United Kingdom'
         })
       })
     })
@@ -74,29 +72,27 @@ describe('mapAddress', () => {
       const result = mapAddress()
 
       expect(result).toEqual({
-        address: {
-          lookup: {
-            pafOrganisationName: undefined,
-            flatName: undefined,
-            buildingNumberRange: undefined,
-            buildingName: undefined,
-            dependentLocality: undefined,
-            doubleDependentLocality: undefined,
-            street: undefined,
-            county: undefined,
-            uprn: undefined
-          },
-          manual: {
-            line1: undefined,
-            line2: undefined,
-            line3: undefined,
-            line4: undefined,
-            line5: undefined
-          },
-          city: undefined,
-          postcode: undefined,
-          country: undefined
-        }
+        lookup: {
+          pafOrganisationName: undefined,
+          flatName: undefined,
+          buildingNumberRange: undefined,
+          buildingName: undefined,
+          dependentLocality: undefined,
+          doubleDependentLocality: undefined,
+          street: undefined,
+          county: undefined,
+          uprn: undefined
+        },
+        manual: {
+          line1: undefined,
+          line2: undefined,
+          line3: undefined,
+          line4: undefined,
+          line5: undefined
+        },
+        city: undefined,
+        postcode: undefined,
+        country: undefined
       })
     })
   })

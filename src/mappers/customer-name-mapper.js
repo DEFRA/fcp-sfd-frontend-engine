@@ -8,11 +8,9 @@
 
 export const mapCustomerName = (name = {}) => {
   return {
-    customer: {
-      userName: [
-        name.first,
-        name.last
-      ].filter(Boolean).join(' ')
-    }
+    userName: [
+      name.first,
+      name.last
+    ].filter(Boolean).join(' ')
   }
 }
