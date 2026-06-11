@@ -6,14 +6,11 @@
  * @returns {Object} Formatted personal business details data
  */
 
+import { mappers } from './mappers'
+
 export const mapPersonalBusinessDetails = (value) => {
   return {
-    info: {
-      userName: [
-        value.customer.info.name.first,
-        value.customer.info.name.last
-      ].filter(Boolean).join(' ')
-    },
+    info: { ...mappers.customerName(value.customer.info.name) },
     business: {
       info: {
         organisationId: value.business.organisationId ?? null,
