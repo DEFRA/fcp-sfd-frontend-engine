@@ -1,6 +1,6 @@
 {
   "name": "@defra/fcp-sfd-frontend-engine",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Shared frontend engine used by both the internal and external frontend applications.",
   "main": "./dist/index.cjs",
   "exports": {
@@ -14,7 +14,8 @@
     "lint:fix": "eslint --fix",
     "build": "tsup",
     "test": "npm run build && vitest run --coverage",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "sonar": "node scripts/sonar-scan.js"
   },
   "repository": {
     "type": "git",
