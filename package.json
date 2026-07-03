@@ -49,6 +49,6 @@
     "joi": "18.2.1"
   },
   "peerDependencies": {
-    "moment": "^2.29.0"
+    "moment": "2.29.0"
   }
 }
