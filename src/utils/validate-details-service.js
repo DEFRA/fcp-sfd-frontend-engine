@@ -65,6 +65,7 @@ const mapErrorsToSections = (errorDetails) => {
     // Handle field-level errors
     if (error.path && error.path.length > 0) {
       const section = errorFieldToSectionMap[error.path[0]]
+
       if (section) {
         uniqueSections.add(section)
       }
@@ -73,9 +74,12 @@ const mapErrorsToSections = (errorDetails) => {
       // Map the first peer to its section
       const firstPeer = error.context.peers[0]
       const section = errorFieldToSectionMap[firstPeer]
+
       if (section) {
         uniqueSections.add(section)
       }
+    } else {
+    // Intentionally ignore other error types
     }
   }
 
