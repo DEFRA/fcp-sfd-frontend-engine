@@ -1,0 +1,17 @@
+export {
+  FIRST_NAME_MAX,
+  LAST_NAME_MAX,
+  MIDDLE_NAMES_MAX,
+  EMAIL_MAX,
+  PHONE_NUMBER_MIN,
+  PHONE_NUMBER_MAX,
+  MAX_AGE_YEARS,
+  ADDRESS_LINE_MAX,
+  TOWN_CITY_MAX,
+  COUNTY_MAX,
+  COUNTRY_MAX,
+  POSTCODE_MAX
+} from './validation-fields.js'
+
+export { PHONE_NUMBER_PATTERN } from './patterns.js'
+export { MONTH_MAP } from './month-map.js'

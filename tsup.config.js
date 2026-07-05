@@ -6,5 +6,6 @@ export default defineConfig({
   outDir: 'dist',
   clean: true,
   splitting: false,
-  sourcemap: false
+  sourcemap: false,
+  external: ['moment']
 })
