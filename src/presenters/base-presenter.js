@@ -99,6 +99,54 @@ export const formatDisplayAddress = (address) => {
 }
 
 /**
+ * Combines address parts into a single line, joining non-empty values with commas.
+ *
+ * @private
+ */
+const buildAddressLine = (parts) => {
+  return parts.filter(Boolean).join(', ') || null
+}
+
+/**
+ * Combines building range and street into a single line, joining with a space.
+ *
+ * @private
+ */
+const buildStreetLine = (buildingRange, street) => {
+  return [buildingRange, street].filter(Boolean).join(' ') || null
+}
+
+/**
+ * Formats a lookup address (from address API) into a consistent flat structure.
+ *
+ * @private
+ */
+const formatLookupAddress = (lookup, city, country, postcode) => ({
+  address1: buildAddressLine([lookup.pafOrganisationName, lookup.flatName, lookup.buildingName]),
+  address2: buildStreetLine(lookup.buildingNumberRange, lookup.street),
+  address3: buildAddressLine([lookup.doubleDependentLocality, lookup.dependentLocality]),
+  county: lookup.county ?? null,
+  city: city ?? null,
+  country: country ?? null,
+  postcode: postcode ?? null
+})
+
+/**
+ * Formats a manually entered address into a consistent flat structure.
+ *
+ * @private
+ */
+const formatManualAddress = (manual, city, country, postcode) => ({
+  address1: manual.line1 ?? null,
+  address2: manual.line2 ?? null,
+  address3: manual.line3 ?? null,
+  city: city ?? null,
+  county: manual.line4 ?? null,
+  country: country ?? null,
+  postcode: postcode ?? null
+})
+
+/**
  * Formats an original address fetched from the DAL into a flattened structure
  * suitable for display or form population on the `address-enter` pages.
  *
@@ -111,52 +159,16 @@ export const formatDisplayAddress = (address) => {
  */
 export const formatOriginalAddress = (originalAddress) => {
   const { lookup, manual, city, country, postcode } = originalAddress
-
-  if (lookup.uprn) {
-    const addressLine1 = [
-      lookup.pafOrganisationName,
-      lookup.flatName,
-      lookup.buildingName
-    ].filter(Boolean).join(', ')
-
-    const addressLine2 = [
-      lookup.buildingNumberRange,
-      lookup.street
-    ].filter(Boolean).join(' ')
-
-    const addressLine3 = [
-      lookup.doubleDependentLocality,
-      lookup.dependentLocality
-    ].filter(Boolean).join(', ')
-
-    return {
-      address1: addressLine1 || null,
-      address2: addressLine2 || null,
-      address3: addressLine3 || null,
-      county: lookup.county ?? null,
-      city: city ?? null,
-      country: country ?? null,
-      postcode: postcode ?? null
-    }
-  }
-
-  return {
-    address1: manual.line1 ?? null,
-    address2: manual.line2 ?? null,
-    address3: manual.line3 ?? null,
-    city: city ?? null,
-    county: manual.line4 ?? null,
-    country: country ?? null,
-    postcode: postcode ?? null
-  }
+  return lookup.uprn
+    ? formatLookupAddress(lookup, city, country, postcode)
+    : formatManualAddress(manual, city, country, postcode)
 }
 
 /**
  * Formats a changed address object into a consistent structure for form display.
  *
  * If the address includes a UPRN, it indicates the user selected it from an address lookup.
- * In that case, the lookup fields (`flatName`, `buildingName`, and `buildingNumberRange`)
- * are combined into `address1` and mapped into the manual address format used by the form.
+ * In that case, the lookup fields are combined and mapped into the manual address format used by the form.
  *
  * If the address does not include a UPRN, it is assumed to be manually entered and returned as-is.
  *
@@ -166,50 +178,34 @@ export const formatOriginalAddress = (originalAddress) => {
  * `city`, `county`, `country`, and `postcode`.
  */
 export const formatChangedAddress = (changeBusinessAddress) => {
-  if (changeBusinessAddress.uprn) {
-    const {
-      pafOrganisationName,
-      flatName,
-      buildingName,
-      buildingNumberRange,
-      street,
-      doubleDependentLocality,
-      dependentLocality,
-      city,
-      county,
-      country,
-      postcode
-    } = changeBusinessAddress
-
-    const addressLine1 = [
-      pafOrganisationName,
-      flatName,
-      buildingName
-    ].filter(Boolean).join(', ')
-
-    const addressLine2 = [
-      buildingNumberRange,
-      street
-    ].filter(Boolean).join(' ')
-
-    const addressLine3 = [
-      doubleDependentLocality,
-      dependentLocality
-    ].filter(Boolean).join(', ')
-
-    return {
-      address1: addressLine1 || null,
-      address2: addressLine2 || null,
-      address3: addressLine3 || null,
-      city: city ?? null,
-      county: county ?? null,
-      country: country ?? null,
-      postcode: postcode ?? null
-    }
+  if (!changeBusinessAddress.uprn) {
+    // manual address (no lookup used)
+    return changeBusinessAddress
   }
 
-  // manual address (no lookup used)
-  return changeBusinessAddress
+  const {
+    pafOrganisationName,
+    flatName,
+    buildingName,
+    buildingNumberRange,
+    street,
+    doubleDependentLocality,
+    dependentLocality,
+    city,
+    county,
+    country,
+    postcode
+  } = changeBusinessAddress
+
+  return {
+    address1: buildAddressLine([pafOrganisationName, flatName, buildingName]),
+    address2: buildStreetLine(buildingNumberRange, street),
+    address3: buildAddressLine([doubleDependentLocality, dependentLocality]),
+    city: city ?? null,
+    county: county ?? null,
+    country: country ?? null,
+    postcode: postcode ?? null
+  }
 }
 
 /**
