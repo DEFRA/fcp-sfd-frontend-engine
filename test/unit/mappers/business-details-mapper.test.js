@@ -96,4 +96,39 @@ describe('mapBusinessDetails', () => {
       expect(result.info.countyParishHoldingNumbers).toEqual([])
     })
   })
+
+  describe('when value is null or an empty object', () => {
+    test('it should not throw when value is null', () => {
+      expect(() => mapBusinessDetails(null)).not.toThrow()
+    })
+
+    test('it should not throw when value is an empty object', () => {
+      expect(() => mapBusinessDetails({})).not.toThrow()
+    })
+
+    test('it should return null for all nullable info fields', () => {
+      const result = mapBusinessDetails(null)
+
+      expect(result.info.businessName).toBeNull()
+      expect(result.info.vat).toBeNull()
+      expect(result.info.traderNumber).toBeNull()
+      expect(result.info.vendorNumber).toBeNull()
+      expect(result.info.legalStatus).toBeNull()
+      expect(result.info.type).toBeNull()
+    })
+
+    test('it should return an empty array for countyParishHoldingNumbers', () => {
+      const result = mapBusinessDetails(null)
+
+      expect(result.info.countyParishHoldingNumbers).toEqual([])
+    })
+
+    test('it should return null for all contact fields', () => {
+      const result = mapBusinessDetails(null)
+
+      expect(result.contact.email).toBeNull()
+      expect(result.contact.landline).toBeNull()
+      expect(result.contact.mobile).toBeNull()
+    })
+  })
 })

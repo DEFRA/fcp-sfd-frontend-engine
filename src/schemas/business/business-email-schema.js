@@ -8,8 +8,7 @@ export const businessEmailSchema = Joi.object({
     .email({
       minDomainSegments: 2,
       tlds: {
-        allow: true,
-        min: 2
+        allow: true
       }
     })
     .messages({

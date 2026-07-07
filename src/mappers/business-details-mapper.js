@@ -37,7 +37,7 @@ const mapBusinessContact = (businessInfo) => {
 }
 
 export const mapBusinessDetails = (value) => {
-  const business = value.business
+  const business = value?.business ?? {}
   const businessInfo = business.info ?? {}
 
   return {

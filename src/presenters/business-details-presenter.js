@@ -45,7 +45,7 @@ export const formatCph = (countyParishHoldings) => {
  * @returns {string}
  */
 export const formatCphText = (count) => {
-  return `County Parish Holding (CPH) number${count > 1 ? 's' : ''}`
+  return `County Parish Holding (CPH) number${count !== 1 ? 's' : ''}`
 }
 
 /**

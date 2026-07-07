@@ -79,6 +79,12 @@ describe('businessDetailsPresenter helpers', () => {
         expect(formatCphText(10)).toBe('County Parish Holding (CPH) numbers')
       })
     })
+
+    describe('when the count is 0', () => {
+      test('it should return the plural form', () => {
+        expect(formatCphText(0)).toBe('County Parish Holding (CPH) numbers')
+      })
+    })
   })
 
   describe('#formatBusinessAddress', () => {
