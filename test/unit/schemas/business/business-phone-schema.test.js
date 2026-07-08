@@ -57,4 +57,24 @@ describe('businessPhoneSchema', () => {
       expect(error.details[0].message).toBe('Business telephone number must be 10 characters or more')
     })
   })
+
+  describe('when the telephone number contains no digits (spaces only)', () => {
+    test('it should fail with the pattern message', () => {
+      const { error } = businessPhoneSchema.validate({ businessTelephone: '          ' })
+
+      expect(error.details[0].message).toBe(
+        'Business telephone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +'
+      )
+    })
+  })
+
+  describe('when the telephone number contains no digits (brackets only)', () => {
+    test('it should fail with the pattern message', () => {
+      const { error } = businessPhoneSchema.validate({ businessTelephone: '((()))    ' })
+
+      expect(error.details[0].message).toBe(
+        'Business telephone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +'
+      )
+    })
+  })
 })

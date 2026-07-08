@@ -178,6 +178,38 @@ describe('personal phone schema', () => {
       })
     })
 
+    describe('because "personalTelephone" contains no digits (spaces only)', () => {
+      beforeEach(() => {
+        payload.personalTelephone = '          '
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Personal telephone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +',
+          path: ['personalTelephone'],
+          type: 'string.pattern.base'
+        }))
+      })
+    })
+
+    describe('because "personalTelephone" contains no digits (brackets only)', () => {
+      beforeEach(() => {
+        payload.personalTelephone = '((()))    '
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Personal telephone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +',
+          path: ['personalTelephone'],
+          type: 'string.pattern.base'
+        }))
+      })
+    })
+
     describe('because "personalMobile" is too short', () => {
       beforeEach(() => {
         payload.personalMobile = '123456789'
@@ -226,6 +258,38 @@ describe('personal phone schema', () => {
           type: 'string.pattern.base'
         }))
         expect(value).toEqual(payload)
+      })
+    })
+
+    describe('because "personalMobile" contains no digits (spaces only)', () => {
+      beforeEach(() => {
+        payload.personalMobile = '          '
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Personal mobile phone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +',
+          path: ['personalMobile'],
+          type: 'string.pattern.base'
+        }))
+      })
+    })
+
+    describe('because "personalMobile" contains no digits (brackets only)', () => {
+      beforeEach(() => {
+        payload.personalMobile = '((()))    '
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Personal mobile phone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +',
+          path: ['personalMobile'],
+          type: 'string.pattern.base'
+        }))
       })
     })
   })
