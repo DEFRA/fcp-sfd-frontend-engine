@@ -8,6 +8,7 @@ import { mappers } from '../../../src/mappers/mappers.js'
 import { mapPersonalBusinessDetails } from '../../../src/mappers/personal-business-details-mapper.js'
 import { mapAddress } from '../../../src/mappers/address-mapper.js'
 import { mapCustomerName } from '../../../src/mappers/customer-name-mapper.js'
+import { mapBusinessDetails } from '../../../src/mappers/business-details-mapper.js'
 
 describe('mappers exports', () => {
   test('exports mapPersonalBusinessDetails', () => {
@@ -20,5 +21,9 @@ describe('mappers exports', () => {
 
   test('exports mapCustomerName', () => {
     expect(mappers.customerName).toBe(mapCustomerName)
+  })
+
+  test('exports mapBusinessDetails', () => {
+    expect(mappers.businessDetails).toBe(mapBusinessDetails)
   })
 })
