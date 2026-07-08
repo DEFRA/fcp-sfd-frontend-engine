@@ -1,9 +1,6 @@
 import Joi from 'joi'
-import {
-  PHONE_NUMBER_MIN,
-  PHONE_NUMBER_MAX,
-  PHONE_NUMBER_PATTERN
-} from '../../constants/validation-fields-export.js'
+import { PHONE_NUMBER_MIN, PHONE_NUMBER_MAX } from '../../constants/validation-fields.js'
+import { PHONE_NUMBER_PATTERN } from '../../constants/patterns.js'
 
 export const personalPhoneSchema = Joi.object({
   personalTelephone: Joi.string()

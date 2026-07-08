@@ -1,5 +1,5 @@
 import { businessSbiSchema } from './business-sbi-schema.js'
-import { addressSchema } from '../address-schema.js'
+import { addressSchema } from '../shared/address-schema.js'
 import { businessNameSchema } from './business-name-schema.js'
 import { businessEmailSchema } from './business-email-schema.js'
 import { businessPhoneSchema } from './business-phone-schema.js'

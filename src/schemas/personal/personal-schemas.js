@@ -1,6 +1,6 @@
 import { personalNameSchema } from './personal-name-schema.js'
 import { personalDobSchema } from './personal-dob-schema.js'
-import { addressSchema } from '../address-schema.js'
+import { addressSchema } from '../shared/address-schema.js'
 import { personalEmailSchema } from './personal-email-schema.js'
 import { personalPhoneSchema } from './personal-phone-schema.js'
 
