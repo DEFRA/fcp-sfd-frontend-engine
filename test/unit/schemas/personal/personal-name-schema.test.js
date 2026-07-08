@@ -38,6 +38,16 @@ describe('personal name schema', () => {
         expect(value.middle).toBeUndefined()
       })
     })
+
+    describe('when "first" has leading and trailing whitespace', () => {
+      test('it trims the whitespace and confirms the data is valid', () => {
+        payload.first = '  John  '
+        const { error, value } = schema.validate(payload, { abortEarly: false })
+
+        expect(error).toBeUndefined()
+        expect(value.first).toBe('John')
+      })
+    })
   })
 
   describe('when invalid data is provided', () => {
@@ -157,6 +167,22 @@ describe('personal name schema', () => {
           type: 'string.max'
         }))
         expect(value).toEqual(payload)
+      })
+    })
+
+    describe('because "first" contains control characters', () => {
+      beforeEach(() => {
+        payload.first = 'John\x00Doe'
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'First name must not contain invalid characters',
+          path: ['first'],
+          type: 'string.pattern.base'
+        }))
       })
     })
   })
