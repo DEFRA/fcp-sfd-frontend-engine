@@ -8,11 +8,8 @@ import { businessVatSchema } from './business-vat-schema.js'
 export const businessSchemas = {
   sbi: businessSbiSchema,
   address: addressSchema,
-  details: {
-    name: businessNameSchema,
-    address: addressSchema,
-    phone: businessPhoneSchema,
-    email: businessEmailSchema,
-    vat: businessVatSchema
-  }
+  name: businessNameSchema,
+  phone: businessPhoneSchema,
+  email: businessEmailSchema,
+  vat: businessVatSchema
 }

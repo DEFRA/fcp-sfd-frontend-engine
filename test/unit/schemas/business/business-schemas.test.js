@@ -16,25 +16,23 @@ describe('businessSchemas exports', () => {
     expect(businessSchemas.sbi).toBe(businessSbiSchema)
   })
 
-  describe('details', () => {
-    test('exports the name schema', () => {
-      expect(businessSchemas.details.name).toBe(businessNameSchema)
-    })
+  test('exports the name schema', () => {
+    expect(businessSchemas.name).toBe(businessNameSchema)
+  })
 
-    test('exports the email schema', () => {
-      expect(businessSchemas.details.email).toBe(businessEmailSchema)
-    })
+  test('exports the email schema', () => {
+    expect(businessSchemas.email).toBe(businessEmailSchema)
+  })
 
-    test('exports the phone schema', () => {
-      expect(businessSchemas.details.phone).toBe(businessPhoneSchema)
-    })
+  test('exports the phone schema', () => {
+    expect(businessSchemas.phone).toBe(businessPhoneSchema)
+  })
 
-    test('exports the vat schema', () => {
-      expect(businessSchemas.details.vat).toBe(businessVatSchema)
-    })
+  test('exports the vat schema', () => {
+    expect(businessSchemas.vat).toBe(businessVatSchema)
+  })
 
-    test('exports the address schema', () => {
-      expect(businessSchemas.details.address).toBeDefined()
-    })
+  test('exports the address schema', () => {
+    expect(businessSchemas.address).toBeDefined()
   })
 })
