@@ -1,4 +1,4 @@
-import Joi from 'joi'
+import { Joi } from '../../utils/joi.js'
 import { PHONE_NUMBER_MIN, PHONE_NUMBER_MAX } from '../../constants/validation-fields.js'
 import { PHONE_NUMBER_PATTERN } from '../../constants/patterns.js'
 

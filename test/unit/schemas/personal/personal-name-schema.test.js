@@ -181,7 +181,7 @@ describe('personal name schema', () => {
         expect(error.details[0]).toEqual(expect.objectContaining({
           message: 'First name must not contain invalid characters',
           path: ['first'],
-          type: 'string.pattern.base'
+          type: 'string.noControlChars'
         }))
       })
     })

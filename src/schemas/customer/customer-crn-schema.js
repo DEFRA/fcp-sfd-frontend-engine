@@ -1,4 +1,4 @@
-import Joi from 'joi'
+import { Joi } from '../../utils/joi.js'
 
 export const customerCrnSchema = Joi.object({
   crn: Joi.string()

@@ -1,4 +1,4 @@
-import Joi from 'joi'
+import { Joi } from '../../utils/joi.js'
 
 export const businessVatSchema = Joi.object({
   vatNumber: Joi.string()

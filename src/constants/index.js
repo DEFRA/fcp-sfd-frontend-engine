@@ -13,5 +13,5 @@ export {
   POSTCODE_MAX
 } from './validation-fields.js'
 
-export { PHONE_NUMBER_PATTERN, NO_CONTROL_CHARS_PATTERN } from './patterns.js'
+export { PHONE_NUMBER_PATTERN } from './patterns.js'
 export { MONTH_MAP } from './month-map.js'

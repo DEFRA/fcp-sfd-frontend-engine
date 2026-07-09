@@ -1,4 +1,4 @@
-import Joi from 'joi'
+import { Joi } from '../../utils/joi.js'
 import { EMAIL_MAX } from '../../constants/validation-fields.js'
 
 export const personalEmailSchema = Joi.object({

@@ -1,4 +1,4 @@
-import Joi from 'joi'
+import { Joi } from '../../utils/joi.js'
 import { MAX_AGE_YEARS } from '../../constants/validation-fields.js'
 import { MONTH_MAP } from '../../constants/month-map.js'
 

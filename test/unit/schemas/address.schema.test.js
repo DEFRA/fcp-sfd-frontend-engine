@@ -287,7 +287,7 @@ describe('address schema', () => {
         expect(error.details[0]).toEqual(expect.objectContaining({
           message: 'Address line 1 must not contain invalid characters',
           path: ['address1'],
-          type: 'string.pattern.base'
+          type: 'string.noControlChars'
         }))
       })
     })
