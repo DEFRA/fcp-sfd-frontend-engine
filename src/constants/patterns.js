@@ -1,5 +1,6 @@
-// Allows digits, spaces, brackets, and an optional leading +, but requires at least one digit
-export const PHONE_NUMBER_PATTERN = /^\+?[0-9 ()]*[0-9][0-9 ()]*$/
+// Allows digits, spaces, brackets, and an optional leading +, but requires at least one digit.
+// The (?=...) part checks a digit exists first for efficiency and time complexity.
+export const PHONE_NUMBER_PATTERN = /^\+?(?=[0-9 ()]*[0-9])[0-9 ()]*$/
 
 // Rejects ASCII control characters (0x00–0x1f and 0x7f) which have no valid use in text input fields
 export const NO_CONTROL_CHARS_PATTERN = /^[^\x00-\x1f\x7f]*$/
