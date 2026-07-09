@@ -4,6 +4,7 @@ import { PHONE_NUMBER_PATTERN } from '../../constants/patterns.js'
 
 export const personalPhoneSchema = Joi.object({
   personalTelephone: Joi.string()
+    .trim()
     .empty('')
     .min(PHONE_NUMBER_MIN)
     .max(PHONE_NUMBER_MAX)
@@ -14,6 +15,7 @@ export const personalPhoneSchema = Joi.object({
       'string.pattern.base': 'Personal telephone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +'
     }),
   personalMobile: Joi.string()
+    .trim()
     .empty('')
     .min(PHONE_NUMBER_MIN)
     .max(PHONE_NUMBER_MAX)

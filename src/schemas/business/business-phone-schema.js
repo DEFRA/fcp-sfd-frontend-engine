@@ -7,6 +7,7 @@ import { PHONE_NUMBER_PATTERN } from '../../constants/patterns.js'
 
 export const businessPhoneSchema = Joi.object({
   businessTelephone: Joi.string()
+    .trim()
     .empty('')
     .min(PHONE_NUMBER_MIN)
     .max(PHONE_NUMBER_MAX)
@@ -17,6 +18,7 @@ export const businessPhoneSchema = Joi.object({
       'string.pattern.base': 'Business telephone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +'
     }),
   businessMobile: Joi.string()
+    .trim()
     .empty('')
     .min(PHONE_NUMBER_MIN)
     .max(PHONE_NUMBER_MAX)

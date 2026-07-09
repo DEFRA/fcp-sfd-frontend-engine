@@ -58,9 +58,9 @@ describe('businessPhoneSchema', () => {
     })
   })
 
-  describe('when the telephone number contains no digits (spaces only)', () => {
+  describe('when the telephone number contains no digits', () => {
     test('it should fail with the pattern message', () => {
-      const { error } = businessPhoneSchema.validate({ businessTelephone: '          ' })
+      const { error } = businessPhoneSchema.validate({ businessTelephone: '((((()))))' })
 
       expect(error.details[0].message).toBe(
         'Business telephone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +'
@@ -68,13 +68,20 @@ describe('businessPhoneSchema', () => {
     })
   })
 
-  describe('when the telephone number contains no digits (brackets only)', () => {
-    test('it should fail with the pattern message', () => {
-      const { error } = businessPhoneSchema.validate({ businessTelephone: '((()))    ' })
+  describe('when the telephone number has leading and trailing whitespace', () => {
+    test('it trims the whitespace and passes validation', () => {
+      const { error, value } = businessPhoneSchema.validate({ businessTelephone: '  01234 567890  ' })
 
-      expect(error.details[0].message).toBe(
-        'Business telephone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +'
-      )
+      expect(error).toBeUndefined()
+      expect(value.businessTelephone).toBe('01234 567890')
+    })
+  })
+
+  describe('when the telephone number contains only whitespace', () => {
+    test('it is treated as empty and fails with "Enter at least one phone number"', () => {
+      const { error } = businessPhoneSchema.validate({ businessTelephone: '          ' }, { abortEarly: false })
+
+      expect(error.details[0].message).toBe('Enter at least one phone number')
     })
   })
 })

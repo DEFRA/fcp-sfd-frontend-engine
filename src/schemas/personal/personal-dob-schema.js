@@ -123,7 +123,6 @@ const getFullDate = (day, monthValue, year, helpers) => {
  * If a valid mapping is found, the mapped number is returned.
  * If no mapping exists, an error is returned via `makeError`, as the input is likely invalid.
  * If the month is already numeric, it is parsed and validated to be within the range 1–12.
- *
  */
 const getMonthNumber = (month, helpers) => {
   if (Number.isNaN(Number(month))) {
