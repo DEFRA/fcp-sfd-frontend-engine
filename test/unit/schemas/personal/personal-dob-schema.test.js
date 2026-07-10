@@ -26,6 +26,23 @@ describe('personal date of birth schema', () => {
       expect(error).toBeUndefined()
       expect(value).toEqual(payload)
     })
+
+    describe('when the date is yesterday', () => {
+      beforeEach(() => {
+        const yesterday = new Date()
+        yesterday.setUTCDate(yesterday.getUTCDate() - 1)
+        payload.day = String(yesterday.getUTCDate())
+        payload.month = String(yesterday.getUTCMonth() + 1)
+        payload.year = String(yesterday.getUTCFullYear())
+      })
+
+      test('it confirms the data is valid', () => {
+        const { error, value } = schema.validate(payload, { abortEarly: false })
+
+        expect(error).toBeUndefined()
+        expect(value).toEqual(payload)
+      })
+    })
   })
 
   describe('when a date field contains a control character', () => {
