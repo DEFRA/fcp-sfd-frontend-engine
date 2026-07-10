@@ -37,4 +37,12 @@ describe('businessEmailSchema', () => {
       expect(error.details[0].message).toBe('Business email address must be 254 characters or less')
     })
   })
+
+  describe('when the email contains a control character', () => {
+    test('it should fail with the invalid characters message', () => {
+      const { error } = businessEmailSchema.validate({ businessEmail: 'farm\x00@example.com' })
+
+      expect(error.details[0].message).toBe('Business email address must not contain invalid characters')
+    })
+  })
 })

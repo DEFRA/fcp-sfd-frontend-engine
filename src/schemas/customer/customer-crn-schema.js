@@ -6,6 +6,7 @@ export const customerCrnSchema = Joi.object({
     .allow('')
     .optional()
     .messages({
-      'string.pattern.base': 'Enter the full CRN'
+      'string.pattern.base': 'Enter the full CRN',
+      'string.noControlChars': 'CRN must not contain invalid characters'
     })
 })

@@ -84,4 +84,12 @@ describe('businessPhoneSchema', () => {
       expect(error.details[0].message).toBe('Enter at least one phone number')
     })
   })
+
+  describe('when the telephone number contains a control character', () => {
+    test('it should fail with the invalid characters message', () => {
+      const { error } = businessPhoneSchema.validate({ businessTelephone: '01234\x0056789' })
+
+      expect(error.details[0].message).toBe('Business telephone number must not contain invalid characters')
+    })
+  })
 })

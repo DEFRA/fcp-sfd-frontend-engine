@@ -28,6 +28,22 @@ describe('personal date of birth schema', () => {
     })
   })
 
+  describe('when a date field contains a control character', () => {
+    beforeEach(() => {
+      payload.day = '1\x002'
+    })
+
+    test('it fails validation', () => {
+      const { error } = schema.validate(payload, { abortEarly: false })
+
+      expect(error.details[0]).toEqual(expect.objectContaining({
+        message: 'Date of birth must not contain invalid characters',
+        path: ['day'],
+        type: 'string.noControlChars'
+      }))
+    })
+  })
+
   describe('when the month has been entered as a string', () => {
     beforeEach(() => {
       payload = {

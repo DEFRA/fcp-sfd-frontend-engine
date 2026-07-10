@@ -6,6 +6,7 @@ export const businessSbiSchema = Joi.object({
     .allow('')
     .optional()
     .messages({
-      'string.pattern.base': 'Enter the full SBI'
+      'string.pattern.base': 'Enter the full SBI',
+      'string.noControlChars': 'SBI must not contain invalid characters'
     })
 })

@@ -214,6 +214,22 @@ describe('personal phone schema', () => {
       })
     })
 
+    describe('because "personalTelephone" contains a control character', () => {
+      beforeEach(() => {
+        payload.personalTelephone = '01234\x0056789'
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Personal telephone number must not contain invalid characters',
+          path: ['personalTelephone'],
+          type: 'string.noControlChars'
+        }))
+      })
+    })
+
     describe('because "personalMobile" is too short', () => {
       beforeEach(() => {
         payload.personalMobile = '123456789'

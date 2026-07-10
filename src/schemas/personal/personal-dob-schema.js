@@ -57,7 +57,8 @@ export const personalDobSchema = Joi.object({
   'dob.yearLength': 'Enter a year with 4 numbers, like 1975',
   'dob.invalid': 'Date of birth must be a real date',
   'dob.future': 'Date of birth must be in the past',
-  'dob.tooOld': 'Date of birth must be on or after {{#oldest}}'
+  'dob.tooOld': 'Date of birth must be on or after {{#oldest}}',
+  'string.noControlChars': 'Date of birth must not contain invalid characters'
 })
 
 const checkNotTooOld = (fullDate, helpers) => {

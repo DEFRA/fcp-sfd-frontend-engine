@@ -14,6 +14,7 @@ export const businessEmailSchema = Joi.object({
     .messages({
       'string.max': `Business email address must be ${EMAIL_MAX} characters or less`,
       'string.empty': 'Enter business email address',
-      'string.email': 'Enter an email address, like name@example.com'
+      'string.email': 'Enter an email address, like name@example.com',
+      'string.noControlChars': 'Business email address must not contain invalid characters'
     })
 })
