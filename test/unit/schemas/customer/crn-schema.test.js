@@ -40,4 +40,10 @@ describe('customerCrnSchema', () => {
 
     expect(result.error).toBeUndefined()
   })
+
+  test('rejects CRN values containing a control character', () => {
+    const result = customerCrnSchema.validate({ crn: '123456\x00890' })
+
+    expect(result.error?.details[0].message).toBe('CRN must not contain invalid characters')
+  })
 })

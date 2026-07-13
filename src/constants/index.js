@@ -12,6 +12,7 @@ import {
   TOWN_CITY_MAX,
   COUNTY_MAX,
   COUNTRY_MAX,
+<<<<<<< HEAD
   POSTCODE_MAX,
 } from './validation-fields.js'
 
@@ -64,3 +65,10 @@ export const constants = {
   },
   monthMap: MONTH_MAP
 }
+=======
+  POSTCODE_MAX
+} from './validation-fields.js'
+
+export { PHONE_NUMBER_PATTERN } from './patterns.js'
+export { MONTH_MAP } from './month-map.js'
+>>>>>>> origin/main

@@ -2,7 +2,7 @@
 import { describe, test, expect, beforeEach } from 'vitest'
 
 // Thing under test
-import { addressSchema } from '../../../src/schemas/address-schema.js'
+import { addressSchema } from '../../../src/schemas/shared/address-schema.js'
 
 describe('address schema', () => {
   let payload
@@ -29,6 +29,16 @@ describe('address schema', () => {
       expect(error).toBeUndefined()
       expect(value).toEqual(payload)
     })
+
+    describe('when "address1" has leading and trailing whitespace', () => {
+      test('it trims the whitespace and confirms the data is valid', () => {
+        payload.address1 = '  10  '
+        const { error, value } = schema.validate(payload, { abortEarly: false })
+
+        expect(error).toBeUndefined()
+        expect(value.address1).toBe('10')
+      })
+    })
   })
 
   describe('when invalid data is provided', () => {
@@ -46,6 +56,22 @@ describe('address schema', () => {
           type: 'any.required'
         }))
         expect(value).toEqual(payload)
+      })
+    })
+
+    describe('because "address1" is an empty string', () => {
+      beforeEach(() => {
+        payload.address1 = ''
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Enter address line 1, typically the building and street',
+          path: ['address1'],
+          type: 'string.empty'
+        }))
       })
     })
 
@@ -117,6 +143,22 @@ describe('address schema', () => {
       })
     })
 
+    describe('because "city" is an empty string', () => {
+      beforeEach(() => {
+        payload.city = ''
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Enter town or city',
+          path: ['city'],
+          type: 'string.empty'
+        }))
+      })
+    })
+
     describe('because "city" is longer than 60 characters', () => {
       beforeEach(() => {
         payload.city = 'The quick brown fox jumps over the lazy dog while wondering if it forgot to bring its umbrella today.'
@@ -168,6 +210,22 @@ describe('address schema', () => {
       })
     })
 
+    describe('because "postcode" is an empty string', () => {
+      beforeEach(() => {
+        payload.postcode = ''
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Enter a postal code or zip code',
+          path: ['postcode'],
+          type: 'string.empty'
+        }))
+      })
+    })
+
     describe('because "country" is missing', () => {
       beforeEach(() => {
         delete payload.country
@@ -185,6 +243,22 @@ describe('address schema', () => {
       })
     })
 
+    describe('because "country" is an empty string', () => {
+      beforeEach(() => {
+        payload.country = ''
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Enter a country',
+          path: ['country'],
+          type: 'string.empty'
+        }))
+      })
+    })
+
     describe('because "country" is longer than 60 characters', () => {
       beforeEach(() => {
         payload.country = 'This is definitely much more than fifty-nine but not by much..'
@@ -199,6 +273,22 @@ describe('address schema', () => {
           type: 'string.max'
         }))
         expect(value).toEqual(payload)
+      })
+    })
+
+    describe('because "address1" contains control characters', () => {
+      beforeEach(() => {
+        payload.address1 = '10\x1fSomething'
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Address line 1 must not contain invalid characters',
+          path: ['address1'],
+          type: 'string.noControlChars'
+        }))
       })
     })
   })

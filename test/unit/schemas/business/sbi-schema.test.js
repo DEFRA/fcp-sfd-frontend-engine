@@ -40,4 +40,10 @@ describe('businessSbiSchema', () => {
 
     expect(result.error).toBeUndefined()
   })
+
+  test('rejects SBI values containing a control character', () => {
+    const result = businessSbiSchema.validate({ sbi: '12345\x0089' })
+
+    expect(result.error?.details[0].message).toBe('SBI must not contain invalid characters')
+  })
 })

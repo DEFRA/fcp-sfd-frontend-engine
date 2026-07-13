@@ -76,6 +76,26 @@ describe('personal phone schema', () => {
         expect(error).toBeUndefined()
       })
     })
+
+    describe('when "personalTelephone" has leading and trailing whitespace', () => {
+      test('it trims the whitespace and confirms the data is valid', () => {
+        payload.personalTelephone = '  01234567890  '
+        const { error, value } = schema.validate(payload, { abortEarly: false })
+
+        expect(error).toBeUndefined()
+        expect(value.personalTelephone).toBe('01234567890')
+      })
+    })
+
+    describe('when "personalTelephone" contains only whitespace', () => {
+      test('it is treated as empty and validates using "personalMobile"', () => {
+        payload.personalTelephone = '          '
+        const { error, value } = schema.validate(payload, { abortEarly: false })
+
+        expect(error).toBeUndefined()
+        expect(value.personalTelephone).toBeUndefined()
+      })
+    })
   })
 
   describe('when invalid data is provided', () => {
@@ -178,6 +198,38 @@ describe('personal phone schema', () => {
       })
     })
 
+    describe('because "personalTelephone" contains no digits', () => {
+      beforeEach(() => {
+        payload.personalTelephone = '((((()))))'
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Personal telephone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +',
+          path: ['personalTelephone'],
+          type: 'string.pattern.base'
+        }))
+      })
+    })
+
+    describe('because "personalTelephone" contains a control character', () => {
+      beforeEach(() => {
+        payload.personalTelephone = '01234\x0056789'
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Personal telephone number must not contain invalid characters',
+          path: ['personalTelephone'],
+          type: 'string.noControlChars'
+        }))
+      })
+    })
+
     describe('because "personalMobile" is too short', () => {
       beforeEach(() => {
         payload.personalMobile = '123456789'
@@ -226,6 +278,22 @@ describe('personal phone schema', () => {
           type: 'string.pattern.base'
         }))
         expect(value).toEqual(payload)
+      })
+    })
+
+    describe('because "personalMobile" contains no digits', () => {
+      beforeEach(() => {
+        payload.personalMobile = '((((()))))'
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Personal mobile phone number must only include numbers 0 to 9 and special characters such as spaces, brackets and +',
+          path: ['personalMobile'],
+          type: 'string.pattern.base'
+        }))
       })
     })
   })

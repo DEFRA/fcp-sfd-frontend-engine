@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import Joi from 'joi'
+=======
+import { Joi } from '../../utils/joi.js'
+>>>>>>> origin/main
 import { MAX_AGE_YEARS } from '../../constants/validation-fields.js'
 import { MONTH_MAP } from '../../constants/month-map.js'
 
@@ -33,7 +37,9 @@ export const personalDobSchema = Joi.object({
   }
 
   // Date must be in the past
-  if (fullDate > new Date()) {
+  const today = new Date()
+  today.setUTCHours(0, 0, 0, 0)
+  if (fullDate >= today) {
     return makeError(helpers, 'dob.future', ['day', 'month', 'year'])
   }
 
@@ -55,7 +61,8 @@ export const personalDobSchema = Joi.object({
   'dob.yearLength': 'Enter a year with 4 numbers, like 1975',
   'dob.invalid': 'Date of birth must be a real date',
   'dob.future': 'Date of birth must be in the past',
-  'dob.tooOld': 'Date of birth must be on or after {{#oldest}}'
+  'dob.tooOld': 'Date of birth must be on or after {{#oldest}}',
+  'string.noControlChars': 'Date of birth must not contain invalid characters'
 })
 
 const checkNotTooOld = (fullDate, helpers) => {
@@ -120,7 +127,7 @@ const getFullDate = (day, monthValue, year, helpers) => {
  *
  * If a valid mapping is found, the mapped number is returned.
  * If no mapping exists, an error is returned via `makeError`, as the input is likely invalid.
- * If the month is already numeric, it is simply parsed and returned as a number.
+ * If the month is already numeric, it is parsed and validated to be within the range 1–12.
  */
 const getMonthNumber = (month, helpers) => {
   if (Number.isNaN(Number(month))) {
@@ -134,7 +141,13 @@ const getMonthNumber = (month, helpers) => {
     return mapped
   }
 
-  return Number.parseInt(month, 10)
+  const parsedMonth = Number.parseInt(month, 10)
+
+  if (parsedMonth < 1 || parsedMonth > 12) {
+    return makeError(helpers, 'dob.invalid', ['month'])
+  }
+
+  return parsedMonth
 }
 
 /**

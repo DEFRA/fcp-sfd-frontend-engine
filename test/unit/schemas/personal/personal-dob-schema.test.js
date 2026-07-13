@@ -3,6 +3,7 @@ import { describe, test, expect, beforeEach } from 'vitest'
 
 // Thing under test
 import { personalDobSchema } from '../../../../src/schemas/personal/personal-dob-schema.js'
+import { MAX_AGE_YEARS } from '../../../../src/constants/validation-fields.js'
 
 describe('personal date of birth schema', () => {
   let payload
@@ -24,6 +25,39 @@ describe('personal date of birth schema', () => {
 
       expect(error).toBeUndefined()
       expect(value).toEqual(payload)
+    })
+
+    describe('when the date is yesterday', () => {
+      beforeEach(() => {
+        const yesterday = new Date()
+        yesterday.setUTCDate(yesterday.getUTCDate() - 1)
+        payload.day = String(yesterday.getUTCDate())
+        payload.month = String(yesterday.getUTCMonth() + 1)
+        payload.year = String(yesterday.getUTCFullYear())
+      })
+
+      test('it confirms the data is valid', () => {
+        const { error, value } = schema.validate(payload, { abortEarly: false })
+
+        expect(error).toBeUndefined()
+        expect(value).toEqual(payload)
+      })
+    })
+  })
+
+  describe('when a date field contains a control character', () => {
+    beforeEach(() => {
+      payload.day = '1\x002'
+    })
+
+    test('it fails validation', () => {
+      const { error } = schema.validate(payload, { abortEarly: false })
+
+      expect(error.details[0]).toEqual(expect.objectContaining({
+        message: 'Date of birth must not contain invalid characters',
+        path: ['day'],
+        type: 'string.noControlChars'
+      }))
     })
   })
 
@@ -160,12 +194,67 @@ describe('personal date of birth schema', () => {
       })
     })
 
+    describe('because the month is 0 (out of range)', () => {
+      beforeEach(() => {
+        payload.day = '1'
+        payload.month = '0'
+        payload.year = '2000'
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Date of birth must be a real date',
+          path: ['month'],
+          type: 'dob.invalid'
+        }))
+      })
+    })
+
+    describe('because the month is 13 (out of range)', () => {
+      beforeEach(() => {
+        payload.day = '1'
+        payload.month = '13'
+        payload.year = '2000'
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Date of birth must be a real date',
+          path: ['month'],
+          type: 'dob.invalid'
+        }))
+      })
+    })
+
     describe('because the date is in the future', () => {
       beforeEach(() => {
         const nextYear = new Date().getFullYear() + 1
         payload.day = '1'
         payload.month = '1'
         payload.year = String(nextYear)
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Date of birth must be in the past',
+          path: ['day', 'month', 'year'],
+          type: 'dob.future'
+        }))
+      })
+    })
+
+    describe("because the date is today's date", () => {
+      beforeEach(() => {
+        const now = new Date()
+        payload.day = String(now.getUTCDate())
+        payload.month = String(now.getUTCMonth() + 1)
+        payload.year = String(now.getUTCFullYear())
       })
 
       test('it fails validation', () => {
@@ -229,7 +318,7 @@ describe('personal date of birth schema', () => {
 
     describe('because the date is more than 120 years in the past', () => {
       beforeEach(() => {
-        payload = { day: '01', month: '5', year: '1900' }
+        payload = { day: '01', month: '5', year: String(new Date().getUTCFullYear() - MAX_AGE_YEARS - 1) }
       })
 
       test('it fails validation', () => {
@@ -245,7 +334,7 @@ describe('personal date of birth schema', () => {
 
     describe('because the month entered is not in the correct format', () => {
       beforeEach(() => {
-        payload = { day: '01', month: 'Ju', year: '1900' }
+        payload = { day: '01', month: 'Ju', year: String(new Date().getUTCFullYear() - 30) }
       })
 
       test('it fails validation', () => {
