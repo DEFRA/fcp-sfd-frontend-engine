@@ -23,6 +23,7 @@ import {
   NOT_FOUND,
   OK,
   NO_CONTENT,
+  FOUND,
   INTERNAL_SERVER_ERROR,
   SERVICE_UNAVAILABLE
 } from './status-codes.js'
@@ -39,6 +40,7 @@ export const constants = {
     NOT_FOUND,
     OK,
     NO_CONTENT,
+    FOUND,
     INTERNAL_SERVER_ERROR,
     SERVICE_UNAVAILABLE
   },

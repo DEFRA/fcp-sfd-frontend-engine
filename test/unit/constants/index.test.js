@@ -13,7 +13,8 @@ import {
   OK,
   NO_CONTENT,
   INTERNAL_SERVER_ERROR,
-  SERVICE_UNAVAILABLE
+  SERVICE_UNAVAILABLE,
+  FOUND
 } from '../../../src/constants/status-codes.js'
 
 import {
@@ -46,6 +47,7 @@ describe('constants exports', () => {
       expect(constants.statusCodes.NO_CONTENT).toBe(NO_CONTENT)
       expect(constants.statusCodes.INTERNAL_SERVER_ERROR).toBe(INTERNAL_SERVER_ERROR)
       expect(constants.statusCodes.SERVICE_UNAVAILABLE).toBe(SERVICE_UNAVAILABLE)
+      expect(constants.statusCodes.FOUND).toBe(FOUND)
     })
   })
 

@@ -9,6 +9,7 @@ import {
   FORBIDDEN,
   NOT_FOUND,
   NO_CONTENT,
+  FOUND,
   INTERNAL_SERVER_ERROR,
   SERVICE_UNAVAILABLE
 } from '../../../src/constants/status-codes.js'
@@ -44,5 +45,9 @@ describe('HTTP Status Codes', () => {
 
   test('exports SERVICE_UNAVAILABLE (503)', () => {
     expect(SERVICE_UNAVAILABLE).toBe(503)
+  })
+
+  test('exports FOUND (302)', () => {
+    expect(FOUND).toBe(302)
   })
 })
