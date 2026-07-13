@@ -8,6 +8,13 @@ import {
   sortErrorsBySectionOrder
 } from './base-presenter.js'
 
+import {
+  getActionText,
+  formatCph,
+  formatCphText,
+  formatBusinessAddress
+} from './business-details-presenter.js'
+
 export const presenters = {
   formatBackLink,
   formatNumber,
@@ -15,5 +22,9 @@ export const presenters = {
   formatOriginalAddress,
   formatChangedAddress,
   formatDisplayAddresses,
-  sortErrorsBySectionOrder
+  sortErrorsBySectionOrder,
+  getActionText,
+  formatCph,
+  formatCphText,
+  formatBusinessAddress
 }
