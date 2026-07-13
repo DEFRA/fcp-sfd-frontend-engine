@@ -1,6 +1,6 @@
 {
   "name": "@defra/fcp-sfd-frontend-engine",
-  "version": "0.2.12",
+  "version": "0.8.6",
   "description": "Shared frontend engine used by both the internal and external frontend applications.",
   "main": "./dist/index.cjs",
   "exports": {
@@ -38,13 +38,13 @@
   },
   "homepage": "https://github.com/DEFRA/fcp-sfd-frontend-engine#readme",
   "devDependencies": {
-    "@vitest/coverage-v8": "4.1.8",
+    "@vitest/coverage-v8": "4.1.10",
     "eslint": "9.39.2",
     "neostandard": "0.13.0",
     "tsup": "8.5.1",
-    "vitest": "4.1.8"
+    "vitest": "4.1.10"
   },
   "dependencies": {
-    "joi": "18.2.1"
+    "joi": "18.2.3"
   }
 }
