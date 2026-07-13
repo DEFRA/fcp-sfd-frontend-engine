@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-import Joi from 'joi'
-import {
-  PHONE_NUMBER_MIN,
-  PHONE_NUMBER_MAX,
-} from '../../constants/validation-fields.js'
-=======
 import { Joi } from '../../utils/joi.js'
 import { PHONE_NUMBER_MIN, PHONE_NUMBER_MAX } from '../../constants/validation-fields.js'
->>>>>>> origin/main
 import { PHONE_NUMBER_PATTERN } from '../../constants/patterns.js'
 
 export const personalPhoneSchema = Joi.object({
