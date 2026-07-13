@@ -74,5 +74,21 @@ describe('personal email schema', () => {
         expect(value).toEqual(payload)
       })
     })
+
+    describe('because "personalEmail" contains a control character', () => {
+      beforeEach(() => {
+        payload.personalEmail = 'example\x00@email.com'
+      })
+
+      test('it fails validation', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0]).toEqual(expect.objectContaining({
+          message: 'Personal email address must not contain invalid characters',
+          path: ['personalEmail'],
+          type: 'string.noControlChars'
+        }))
+      })
+    })
   })
 })

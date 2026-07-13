@@ -44,4 +44,21 @@ describe('businessNameSchema', () => {
       expect(error).toBeUndefined()
     })
   })
+
+  describe('when the business name has leading and trailing whitespace', () => {
+    test('it trims the whitespace and confirms the data is valid', () => {
+      const { error, value } = businessNameSchema.validate({ businessName: '  Acme Farms Ltd  ' })
+
+      expect(error).toBeUndefined()
+      expect(value.businessName).toBe('Acme Farms Ltd')
+    })
+  })
+
+  describe('when the business name contains control characters', () => {
+    test('it should fail with the pattern message', () => {
+      const { error } = businessNameSchema.validate({ businessName: 'Acme\x07Farms' })
+
+      expect(error.details[0].message).toBe('Business name must not contain invalid characters')
+    })
+  })
 })

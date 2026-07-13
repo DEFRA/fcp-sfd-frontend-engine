@@ -44,4 +44,12 @@ describe('businessVatSchema', () => {
       expect(error.details[0].message).toBe('Enter a VAT registration number, like 123456789')
     })
   })
+
+  describe('when the VAT number contains a control character', () => {
+    test('it should fail with the invalid characters message', () => {
+      const { error } = businessVatSchema.validate({ vatNumber: '12345\x0089' })
+
+      expect(error.details[0].message).toBe('VAT registration number must not contain invalid characters')
+    })
+  })
 })

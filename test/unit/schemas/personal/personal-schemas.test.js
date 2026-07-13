@@ -9,7 +9,7 @@ import { personalDobSchema } from '../../../../src/schemas/personal/personal-dob
 import { personalNameSchema } from '../../../../src/schemas/personal/personal-name-schema.js'
 import { personalPhoneSchema } from '../../../../src/schemas/personal/personal-phone-schema.js'
 import { personalEmailSchema } from '../../../../src/schemas/personal/personal-email-schema.js'
-import { addressSchema } from '../../../../src/schemas/address-schema.js'
+import { addressSchema } from '../../../../src/schemas/shared/address-schema.js'
 
 describe('personal schemas', () => {
   test('exposes all personal detail schemas', () => {

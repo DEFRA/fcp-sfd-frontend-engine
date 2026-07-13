@@ -10,7 +10,8 @@ export {
   TOWN_CITY_MAX,
   COUNTY_MAX,
   COUNTRY_MAX,
-  POSTCODE_MAX,
-  PHONE_NUMBER_PATTERN,
-  MONTH_MAP
-} from './validation-fields-export.js'
+  POSTCODE_MAX
+} from './validation-fields.js'
+
+export { PHONE_NUMBER_PATTERN } from './patterns.js'
+export { MONTH_MAP } from './month-map.js'
