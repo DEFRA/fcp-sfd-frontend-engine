@@ -1,5 +1,6 @@
 import Joi from 'joi'
-import { MONTH_MAP, MAX_AGE_YEARS } from '../../constants/validation-fields-export.js'
+import { MAX_AGE_YEARS } from '../../constants/validation-fields.js'
+import { MONTH_MAP } from '../../constants/month-map.js'
 
 export const personalDobSchema = Joi.object({
   day: Joi.string().allow(''),
