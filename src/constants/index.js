@@ -12,7 +12,7 @@ import {
   TOWN_CITY_MAX,
   COUNTY_MAX,
   COUNTRY_MAX,
-  POSTCODE_MAX,
+  POSTCODE_MAX
 } from './validation-fields.js'
 
 // HTTP status codes
@@ -29,7 +29,7 @@ import {
 } from './status-codes.js'
 
 // Format patterns and mappings
-import { PHONE_NUMBER_PATTERN } from './patterns.js'
+import { PHONE_NUMBER_PATTERN, NO_CONTROL_CHARS_PATTERN } from './patterns.js'
 import { MONTH_MAP } from './month-map.js'
 
 export const constants = {
@@ -60,7 +60,8 @@ export const constants = {
     POSTCODE_MAX
   },
   patterns: {
-    PHONE_NUMBER_PATTERN
+    PHONE_NUMBER_PATTERN,
+    NO_CONTROL_CHARS_PATTERN
   },
   monthMap: MONTH_MAP
 }
