@@ -1,9 +1,11 @@
 import { businessSchemas } from './business/business-schemas.js'
 import { customerSchemas } from './customer/customer-schemas.js'
 import { personalSchemas } from './personal/personal-schemas.js'
+import { osPlacesSchemas } from './os-places/os-places-schemas.js'
 
 export const schemas = {
   business: businessSchemas,
   customer: customerSchemas,
-  personal: personalSchemas
+  personal: personalSchemas,
+  osPlaces: osPlacesSchemas
 }
