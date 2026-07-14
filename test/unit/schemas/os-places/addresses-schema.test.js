@@ -4,7 +4,7 @@ import { describe, test, expect, beforeEach } from 'vitest'
 // Thing under test
 import { addressesSchema } from '../../../../src/schemas/os-places/addresses-schema.js'
 
-describe('business addresses schema', () => {
+describe('addresses schema', () => {
   let payload
   let schema
 

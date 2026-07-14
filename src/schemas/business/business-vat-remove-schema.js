@@ -1,4 +1,4 @@
-import Joi from 'joi'
+import { Joi } from '../../utils/joi.js'
 
 export const businessVatRemoveSchema = Joi.object({
   confirmRemove: Joi.string()

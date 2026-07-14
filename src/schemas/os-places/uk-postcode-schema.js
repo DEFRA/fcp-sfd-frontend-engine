@@ -1,8 +1,9 @@
-import Joi from 'joi'
+import { Joi } from '../../utils/joi.js'
 import { POSTCODE_MAX } from '../../constants/validation-fields.js'
 
 export const ukPostcodeSchema = Joi.object({
   postcode: Joi.string()
+    .trim()
     .required()
     .uppercase()
     .max(POSTCODE_MAX)

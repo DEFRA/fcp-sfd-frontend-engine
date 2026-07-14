@@ -1,4 +1,4 @@
-import Joi from 'joi'
+import { Joi } from '../../utils/joi.js'
 
 const CHOOSE_ADDRESS_ERROR = 'Choose an address'
 

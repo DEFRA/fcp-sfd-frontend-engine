@@ -107,5 +107,18 @@ describe('uk postcode schema', () => {
         expect(value.postcode).toBe('BA1 3TF')
       })
     })
+
+    describe('because "postcode" has trailing whitespace', () => {
+      beforeEach(() => {
+        payload.postcode = 'BA1 3TF  '
+      })
+
+      test('it trims the whitespace', () => {
+        const { error, value } = schema.validate(payload, { abortEarly: false })
+
+        expect(error).toBeUndefined()
+        expect(value.postcode).toBe('BA1 3TF')
+      })
+    })
   })
 })
