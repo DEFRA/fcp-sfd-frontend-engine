@@ -4,6 +4,7 @@ import { businessNameSchema } from './business-name-schema.js'
 import { businessEmailSchema } from './business-email-schema.js'
 import { businessPhoneSchema } from './business-phone-schema.js'
 import { businessVatSchema } from './business-vat-schema.js'
+import { businessVatRemoveSchema } from './business-vat-remove-schema.js'
 
 /**
  * The businessSchema object has a nested property of `details`.
@@ -19,5 +20,6 @@ export const businessSchemas = {
     phone: businessPhoneSchema,
     email: businessEmailSchema,
     vat: businessVatSchema
-  }
+  },
+  vatRemove: businessVatRemoveSchema
 }
