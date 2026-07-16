@@ -10,6 +10,8 @@ import { businessNameSchema } from '../../../../src/schemas/business/business-na
 import { businessEmailSchema } from '../../../../src/schemas/business/business-email-schema.js'
 import { businessPhoneSchema } from '../../../../src/schemas/business/business-phone-schema.js'
 import { businessVatSchema } from '../../../../src/schemas/business/business-vat-schema.js'
+import { businessVatChangeSchema } from '../../../../src/schemas/business/business-vat-change-schema.js'
+import { businessVatRemoveSchema } from '../../../../src/schemas/business/business-vat-remove-schema.js'
 
 describe('businessSchemas exports', () => {
   test('exports the SBI schema', () => {
@@ -35,6 +37,16 @@ describe('businessSchemas exports', () => {
 
     test('exports the address schema', () => {
       expect(businessSchemas.details.address).toBeDefined()
+    })
+  })
+
+  describe('vat', () => {
+    test('exports the vat change schema', () => {
+      expect(businessSchemas.vat.change).toBe(businessVatChangeSchema)
+    })
+
+    test('exports the vat remove schema', () => {
+      expect(businessSchemas.vat.remove).toBe(businessVatRemoveSchema)
     })
   })
 })

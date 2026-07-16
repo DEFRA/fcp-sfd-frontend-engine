@@ -1,0 +1,13 @@
+import { Joi } from '../../utils/joi.js'
+
+export const businessVatChangeSchema = Joi.object({
+  vatNumber: Joi.string()
+    .pattern(/^\d{9}$/)
+    .required()
+    .messages({
+      'string.pattern.base': 'Enter a VAT registration number, like 123456789',
+      'string.empty': 'Enter a VAT registration number',
+      'any.required': 'Enter a VAT registration number',
+      'string.noControlChars': 'VAT registration number must not contain invalid characters'
+    })
+})
