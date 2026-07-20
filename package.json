@@ -40,6 +40,7 @@
   "devDependencies": {
     "@vitest/coverage-v8": "4.1.10",
     "eslint": "9.39.2",
+    "graphql": "16.13.2",
     "neostandard": "0.13.0",
     "tsup": "8.5.1",
     "vitest": "4.1.10"
