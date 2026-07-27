@@ -15,9 +15,6 @@ import {
   formatBusinessAddress
 } from './business-details-presenter.js'
 
-import { businessEmailChangePresenter } from './business-email-change-presenter.js'
-import { businessEmailCheckPresenter } from './business-email-check-presenter.js'
-
 export const presenters = {
   formatBackLink,
   formatNumber,
@@ -29,7 +26,5 @@ export const presenters = {
   getActionText,
   formatCph,
   formatCphText,
-  formatBusinessAddress,
-  businessEmailChange: businessEmailChangePresenter,
-  businessEmailCheck: businessEmailCheckPresenter
+  formatBusinessAddress
 }
