@@ -32,6 +32,9 @@ import {
 import { PHONE_NUMBER_PATTERN, NO_CONTROL_CHARS_PATTERN } from './patterns.js'
 import { MONTH_MAP } from './month-map.js'
 
+// Success messages
+import { BUSINESS_EMAIL_ADDRESS } from './success-messages.js'
+
 export const constants = {
   statusCodes: {
     BAD_REQUEST,
@@ -63,5 +66,8 @@ export const constants = {
     PHONE_NUMBER_PATTERN,
     NO_CONTROL_CHARS_PATTERN
   },
-  monthMap: MONTH_MAP
+  monthMap: MONTH_MAP,
+  successMessages: {
+    BUSINESS_EMAIL_ADDRESS
+  }
 }
