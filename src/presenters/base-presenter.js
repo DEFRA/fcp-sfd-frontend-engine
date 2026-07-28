@@ -49,6 +49,8 @@ export const formatNumber = (payloadNumber, changedNumber, originalNumber) => {
  *
  * Null values are handled to avoid showing 'null' in the UI.
  */
+const formatDatePart = (changed, original) => changed ?? original?.toString() ?? ''
+
 export const formatDateInputValues = (payloadDob, changedDob, originalDob) => {
   if (payloadDob) {
     return {
@@ -59,9 +61,9 @@ export const formatDateInputValues = (payloadDob, changedDob, originalDob) => {
   }
 
   return {
-    day: changedDob?.day ?? originalDob?.day?.toString() ?? '',
-    month: changedDob?.month ?? originalDob?.month?.toString() ?? '',
-    year: changedDob?.year ?? originalDob?.year?.toString() ?? ''
+    day: formatDatePart(changedDob?.day, originalDob?.day),
+    month: formatDatePart(changedDob?.month, originalDob?.month),
+    year: formatDatePart(changedDob?.year, originalDob?.year)
   }
 }
 
