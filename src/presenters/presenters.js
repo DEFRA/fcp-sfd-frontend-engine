@@ -1,10 +1,6 @@
 import {
   formatBackLink,
   formatNumber,
-  formatDisplayAddress,
-  formatOriginalAddress,
-  formatChangedAddress,
-  formatDisplayAddresses,
   sortErrorsBySectionOrder
 } from './base-presenter.js'
 
@@ -14,6 +10,15 @@ import {
   formatCphText,
   formatBusinessAddress
 } from './business-details-presenter.js'
+
+import {
+  addressBackLink,
+  addressChangeLink,
+  formatDisplayAddress,
+  formatOriginalAddress,
+  formatChangedAddress,
+  formatDisplayAddresses
+} from './address-presenter.js'
 
 export const presenters = {
   formatBackLink,
@@ -26,5 +31,7 @@ export const presenters = {
   getActionText,
   formatCph,
   formatCphText,
-  formatBusinessAddress
+  formatBusinessAddress,
+  addressBackLink,
+  addressChangeLink
 }
