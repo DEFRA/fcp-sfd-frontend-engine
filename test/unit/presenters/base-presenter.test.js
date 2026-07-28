@@ -92,7 +92,7 @@ describe('basePresenter', () => {
     beforeEach(() => {
       payloadDob = undefined
       changedDob = undefined
-      originalDob = { day: '1', month: '5', year: '1990' }
+      originalDob = { day: 1, month: 5, year: 1990 }
     })
 
     describe('when provided with a payload', () => {
