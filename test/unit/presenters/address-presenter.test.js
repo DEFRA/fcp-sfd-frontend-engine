@@ -13,37 +13,77 @@ import {
 
 describe('addressPresenter', () => {
   describe('#addressChangeLink', () => {
-    describe('when postcodeLookup is true', () => {
-      test('it should return the address change route', () => {
-        const result = addressChangeLink(true)
+    describe('when context is business', () => {
+      describe('and postcodeLookup is true', () => {
+        test('it should return the business address change route', () => {
+          const result = addressChangeLink(true, 'business')
 
-        expect(result).toEqual('/account-address-change')
+          expect(result).toEqual('/business-address-change')
+        })
+      })
+
+      describe('and postcodeLookup is false', () => {
+        test('it should return the business manual address entry route', () => {
+          const result = addressChangeLink(false, 'business')
+
+          expect(result).toEqual('/business-address-enter')
+        })
       })
     })
 
-    describe('when postcodeLookup is false', () => {
-      test('it should return the manual address entry route', () => {
-        const result = addressChangeLink(false)
+    describe('when context is personal', () => {
+      describe('and postcodeLookup is true', () => {
+        test('it should return the personal address change route', () => {
+          const result = addressChangeLink(true, 'personal')
 
-        expect(result).toEqual('/account-address-enter')
+          expect(result).toEqual('/account-address-change')
+        })
+      })
+
+      describe('and postcodeLookup is false', () => {
+        test('it should return the personal manual address entry route', () => {
+          const result = addressChangeLink(false, 'personal')
+
+          expect(result).toEqual('/account-address-enter')
+        })
       })
     })
   })
 
   describe('#addressBackLink', () => {
-    describe('when postcodeLookup is true', () => {
-      test('it should return an object pointing to the address selection page', () => {
-        const result = addressBackLink(true)
+    describe('when context is business', () => {
+      describe('and postcodeLookup is true', () => {
+        test('it should return an object pointing to the business address selection page', () => {
+          const result = addressBackLink(true, 'business')
 
-        expect(result).toEqual({ href: '/account-address-select' })
+          expect(result).toEqual({ href: '/business-address-select' })
+        })
+      })
+
+      describe('and postcodeLookup is false', () => {
+        test('it should return an object pointing to the business manual address entry page', () => {
+          const result = addressBackLink(false, 'business')
+
+          expect(result).toEqual({ href: '/business-address-enter' })
+        })
       })
     })
 
-    describe('when postcodeLookup is false', () => {
-      test('it should return an object pointing to the manual address entry page', () => {
-        const result = addressBackLink(false)
+    describe('when context is personal', () => {
+      describe('and postcodeLookup is true', () => {
+        test('it should return an object pointing to the personal address selection page', () => {
+          const result = addressBackLink(true, 'personal')
 
-        expect(result).toEqual({ href: '/account-address-enter' })
+          expect(result).toEqual({ href: '/account-address-select' })
+        })
+      })
+
+      describe('and postcodeLookup is false', () => {
+        test('it should return an object pointing to the personal manual address entry page', () => {
+          const result = addressBackLink(false, 'personal')
+
+          expect(result).toEqual({ href: '/account-address-enter' })
+        })
       })
     })
   })
