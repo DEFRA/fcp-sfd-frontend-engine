@@ -14,7 +14,7 @@ describe('updateBusinessNameMutation', () => {
   test('it contains the Mutation operation and the correct variable', () => {
     const ast = parse(updateBusinessNameMutation)
     const operation = ast.definitions[0]
-    expect(operation.name.value).toBe('Mutation')
+    expect(operation.name.value).toBe('UpdateBusinessName')
 
     const variable = operation.variableDefinitions[0]
     expect(variable.variable.name.value).toBe('input')
