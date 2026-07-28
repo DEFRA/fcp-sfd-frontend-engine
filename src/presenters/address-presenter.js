@@ -2,7 +2,7 @@
  * Determines the correct link for changing an address.
  *
  * If the user previously selected an address from a postcode lookup, they will
- * navigate to the address select page to choose a different address.
+ * navigate to the address change page to choose a different address.
  * Otherwise, they navigate to the manual address entry page.
  *
  * @param {boolean} postcodeLookup - Whether the user used a postcode lookup to find their address
