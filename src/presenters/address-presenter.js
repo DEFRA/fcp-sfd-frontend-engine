@@ -13,16 +13,16 @@ export const addressChangeLink = (postcodeLookup, context) => {
   if (context === 'business') {
     if (postcodeLookup) {
       return '/business-address-change'
-    } else {
-      return '/business-address-enter'
     }
-  } else if (context === 'personal') {
+    return '/business-address-enter'
+  }
+  if (context === 'personal') {
     if (postcodeLookup) {
       return '/account-address-change'
-    } else {
-      return '/account-address-enter'
     }
+    return '/account-address-enter'
   }
+  return null
 }
 
 /**
@@ -39,16 +39,16 @@ export const addressBackLink = (postcodeLookup, context) => {
   if (context === 'business') {
     if (postcodeLookup) {
       return { href: '/business-address-select' }
-    } else {
-      return { href: '/business-address-enter' }
     }
-  } else if (context === 'personal') {
+    return { href: '/business-address-enter' }
+  }
+  if (context === 'personal') {
     if (postcodeLookup) {
       return { href: '/account-address-select' }
-    } else {
-      return { href: '/account-address-enter' }
     }
+    return { href: '/account-address-enter' }
   }
+  return null
 }
 
 /**

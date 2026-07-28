@@ -48,6 +48,14 @@ describe('addressPresenter', () => {
         })
       })
     })
+
+    describe('when context is invalid', () => {
+      test('it should return null', () => {
+        const result = addressChangeLink(true, 'invalid')
+
+        expect(result).toEqual(null)
+      })
+    })
   })
 
   describe('#addressBackLink', () => {
@@ -84,6 +92,14 @@ describe('addressPresenter', () => {
 
           expect(result).toEqual({ href: '/account-address-enter' })
         })
+      })
+    })
+
+    describe('when context is invalid', () => {
+      test('it should return null', () => {
+        const result = addressBackLink(true, 'invalid')
+
+        expect(result).toEqual(null)
       })
     })
   })
