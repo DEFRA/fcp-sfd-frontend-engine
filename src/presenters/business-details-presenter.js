@@ -5,7 +5,7 @@
  * applications and are provided here to avoid duplication.
  */
 
-import { formatDisplayAddress } from './base-presenter.js'
+import { formatDisplayAddress } from './address-presenter.js'
 
 /**
  * Returns the action text for a summary-list row.
