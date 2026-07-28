@@ -49,7 +49,9 @@ export const formatNumber = (payloadNumber, changedNumber, originalNumber) => {
  *
  * Null values are handled to avoid showing 'null' in the UI.
  */
-const formatDatePart = (changed, original) => changed ?? original?.toString() ?? ''
+const formatDatePart = (changed, original) => {
+  return changed ?? original?.toString() ?? ''
+}
 
 export const formatDateInputValues = (payloadDob, changedDob, originalDob) => {
   if (payloadDob) {
