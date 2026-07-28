@@ -6,14 +6,23 @@
  * Otherwise, they navigate to the manual address entry page.
  *
  * @param {boolean} postcodeLookup - Whether the user used a postcode lookup to find their address
+ * @param {string} context - The context for the address change ('business' or 'personal')
  * @returns {string} The URL path for the address change page
  */
-export const addressChangeLink = (postcodeLookup) => {
-  if (postcodeLookup) {
-    return '/account-address-change'
-  } else {
+export const addressChangeLink = (postcodeLookup, context) => {
+  if (context === 'business') {
+    if (postcodeLookup) {
+      return '/business-address-change'
+    }
+    return '/business-address-enter'
+  }
+  if (context === 'personal') {
+    if (postcodeLookup) {
+      return '/account-address-change'
+    }
     return '/account-address-enter'
   }
+  return null
 }
 
 /**
@@ -23,14 +32,23 @@ export const addressChangeLink = (postcodeLookup) => {
  * If they manually entered the address, the back link returns to the manual entry page.
  *
  * @param {boolean} postcodeLookup - Whether the user used a postcode lookup to find their address
+ * @param {string} context - The context for the address change ('business' or 'personal')
  * @returns {Object} An object with an `href` property containing the back link URL
  */
-export const addressBackLink = (postcodeLookup) => {
-  if (postcodeLookup) {
-    return { href: '/account-address-select' }
-  } else {
+export const addressBackLink = (postcodeLookup, context) => {
+  if (context === 'business') {
+    if (postcodeLookup) {
+      return { href: '/business-address-select' }
+    }
+    return { href: '/business-address-enter' }
+  }
+  if (context === 'personal') {
+    if (postcodeLookup) {
+      return { href: '/account-address-select' }
+    }
     return { href: '/account-address-enter' }
   }
+  return null
 }
 
 /**
