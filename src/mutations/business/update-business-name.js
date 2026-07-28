@@ -1,5 +1,5 @@
 export const updateBusinessNameMutation = `
-  mutation Mutation($input: UpdateBusinessNameInput!) {
+  mutation UpdateBusinessName($input: UpdateBusinessNameInput!) {
     updateBusinessName(input: $input) {
       business {
         info {
