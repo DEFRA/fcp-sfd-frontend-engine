@@ -31,22 +31,10 @@ describe('mockPostcode', () => {
     expect(result.features).toEqual(expectedMatches)
   })
 
-  test('returns empty array when postcode does not exist', () => {
-    const result = mockPostcode('ZZ9 9ZZ')
-
-    expect(result.features).toEqual([])
-  })
-
-  test('returns empty array for undefined input', () => {
-    const result = mockPostcode(undefined)
-
-    expect(result.features).toEqual([])
-  })
-
-  test('returns empty array for empty string input', () => {
-    const result = mockPostcode('')
-
-    expect(result.features).toEqual([])
+  test('returns empty array for non-existent, undefined, or empty postcodes', () => {
+    expect(mockPostcode('ZZ9 9ZZ').features).toEqual([])
+    expect(mockPostcode(undefined).features).toEqual([])
+    expect(mockPostcode('').features).toEqual([])
   })
 
   test('returns only BS14 8XX addresses when given that postcode', () => {
