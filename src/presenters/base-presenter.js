@@ -38,6 +38,38 @@ export const formatNumber = (payloadNumber, changedNumber, originalNumber) => {
 }
 
 /**
+ * Builds date of birth values for the form inputs.
+ *
+ * Values coming from `payloadDob` are always strings (they come from the form).
+ * `changedDob` is saved payload data, so these values are also strings.
+ *
+ * The original date of birth value comes from the DAL and isn’t a string.
+ * When falling back to those values we explicitly convert them to strings
+ * so all sources are normalised and safe to use in inputs.
+ *
+ * Null values are handled to avoid showing 'null' in the UI.
+ */
+const formatDatePart = (changed, original) => {
+  return changed ?? original?.toString() ?? ''
+}
+
+export const formatDateInputValues = (payloadDob, changedDob, originalDob) => {
+  if (payloadDob) {
+    return {
+      day: payloadDob.day ?? '',
+      month: payloadDob.month ?? '',
+      year: payloadDob.year ?? ''
+    }
+  }
+
+  return {
+    day: formatDatePart(changedDob?.day, originalDob?.day),
+    month: formatDatePart(changedDob?.month, originalDob?.month),
+    year: formatDatePart(changedDob?.year, originalDob?.year)
+  }
+}
+
+/**
  * Shared helper used by base presenters to sort validation errors so they
  * appear in the same order as the sections and fields shown on a Fix List page.
  *

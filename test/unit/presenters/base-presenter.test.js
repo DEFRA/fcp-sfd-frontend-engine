@@ -5,6 +5,7 @@ import { describe, test, expect, beforeEach } from 'vitest'
 import {
   formatBackLink,
   formatNumber,
+  formatDateInputValues,
   sortErrorsBySectionOrder
 } from '../../../src/presenters/base-presenter.js'
 
@@ -79,6 +80,74 @@ describe('basePresenter', () => {
         const result = formatNumber(payload, changedNumber, originalNumber)
 
         expect(result).toBe('02222 222222')
+      })
+    })
+  })
+
+  describe('#formatDateInputValues', () => {
+    let payloadDob
+    let changedDob
+    let originalDob
+
+    beforeEach(() => {
+      payloadDob = undefined
+      changedDob = undefined
+      originalDob = { day: 1, month: 5, year: 1990 }
+    })
+
+    describe('when provided with a payload', () => {
+      beforeEach(() => {
+        payloadDob = { day: '20', month: '10', year: '1997' }
+      })
+
+      test('it should return the day, month and year from the payload', () => {
+        const result = formatDateInputValues(payloadDob, changedDob, originalDob)
+
+        expect(result).toEqual({ day: '20', month: '10', year: '1997' })
+      })
+    })
+
+    describe('when provided with an empty payload', () => {
+      beforeEach(() => {
+        payloadDob = {}
+      })
+
+      test('it should return empty strings for the day, month and year', () => {
+        const result = formatDateInputValues(payloadDob, changedDob, originalDob)
+
+        expect(result).toEqual({ day: '', month: '', year: '' })
+      })
+    })
+
+    describe('when provided with a changed date of birth', () => {
+      beforeEach(() => {
+        changedDob = { day: '15', month: '11', year: '2000' }
+      })
+
+      test('it should return the day, month and year from the changed date of birth', () => {
+        const result = formatDateInputValues(payloadDob, changedDob, originalDob)
+
+        expect(result).toEqual({ day: '15', month: '11', year: '2000' })
+      })
+    })
+
+    describe('when provided only with an original date of birth', () => {
+      test('it should return the day, month and year from the original date of birth as strings', () => {
+        const result = formatDateInputValues(payloadDob, changedDob, originalDob)
+
+        expect(result).toEqual({ day: '1', month: '5', year: '1990' })
+      })
+    })
+
+    describe('when the original date of birth values are null', () => {
+      beforeEach(() => {
+        originalDob = { day: null, month: null, year: null }
+      })
+
+      test('it should return empty strings for the day, month and year', () => {
+        const result = formatDateInputValues(payloadDob, changedDob, originalDob)
+
+        expect(result).toEqual({ day: '', month: '', year: '' })
       })
     })
   })
