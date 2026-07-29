@@ -9,7 +9,6 @@
  */
 
 import { placesAPI } from 'osdatahub'
-import { constants } from '../../constants/index.js'
 import { addressLookupMapper } from '../../mappers/address-lookup-mapper.js'
 import { mockPostcode } from './os-places-stub.js'
 
@@ -26,7 +25,7 @@ const addressLookupService = async (postcode, osPlacesConfig) => {
   const addresses = await fetchAddressesFromPostcodeLookup(postcode, osPlacesConfig)
 
   // If the API call itself failed, return the error object
-  if (addresses.errors) {
+  if (addresses.error) {
     return addresses
   }
 
@@ -58,7 +57,7 @@ const addressLookupService = async (postcode, osPlacesConfig) => {
  * @private
  * @param {string} postcode - The UK postcode to search for
  * @param {object} osPlacesConfig - Configuration object containing clientId and osPlacesStub flag
- * @returns {Promise<Array|object>} Array of address features or error object with errors property
+ * @returns {Promise<Array|object>} Array of address features or error object with error property
  */
 const fetchAddressesFromPostcodeLookup = async (postcode, osPlacesConfig) => {
   try {
@@ -73,8 +72,12 @@ const fetchAddressesFromPostcodeLookup = async (postcode, osPlacesConfig) => {
   } catch (error) {
     // Return error in a standard format for the caller to handle
     return {
-      statusCode: constants.statusCodes.INTERNAL_SERVER_ERROR,
-      errors: [error]
+      error: [
+        {
+          message: error.message || 'Failed to fetch addresses',
+          path: ['postcode']
+        }
+      ]
     }
   }
 }

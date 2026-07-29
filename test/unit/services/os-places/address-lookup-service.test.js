@@ -88,8 +88,12 @@ describe('addressLookupService (engine)', () => {
         const result = await addressLookupService(postcode, osPlacesConfig)
 
         expect(result).toEqual({
-          statusCode: 500,
-          errors: [error]
+          error: [
+            {
+              message: 'Network error',
+              path: ['postcode']
+            }
+          ]
         })
         expect(mockAddressLookupMapper).not.toHaveBeenCalled()
       })

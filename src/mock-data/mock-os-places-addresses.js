@@ -10,7 +10,7 @@ export const mockAddresses = [
       POST_TOWN: 'LONDON',
       POSTCODE: 'SW1A 1AA',
       LOCAL_CUSTODIAN_CODE_DESCRIPTION: 'GREATER LONDON',
-      COUNTRY_CODE: 'GB'
+      COUNTRY_CODE: 'E'
     }
   },
   {
@@ -25,7 +25,7 @@ export const mockAddresses = [
       POST_TOWN: 'LONDON',
       POSTCODE: 'SW1A 1AA',
       LOCAL_CUSTODIAN_CODE_DESCRIPTION: 'GREATER LONDON',
-      COUNTRY_CODE: 'GB'
+      COUNTRY_CODE: 'E'
     }
   },
   {
@@ -40,7 +40,7 @@ export const mockAddresses = [
       POST_TOWN: 'LONDON',
       POSTCODE: 'SW1A 1AA',
       LOCAL_CUSTODIAN_CODE_DESCRIPTION: 'GREATER LONDON',
-      COUNTRY_CODE: 'GB'
+      COUNTRY_CODE: 'E'
     }
   },
   {
@@ -56,7 +56,7 @@ export const mockAddresses = [
       POST_TOWN: 'LONDON',
       POSTCODE: 'SW1A 1AA',
       LOCAL_CUSTODIAN_CODE_DESCRIPTION: 'GREATER LONDON',
-      COUNTRY_CODE: 'GB'
+      COUNTRY_CODE: 'E'
     }
   },
   {
@@ -71,7 +71,7 @@ export const mockAddresses = [
       POST_TOWN: 'LONDON',
       POSTCODE: 'SW1A 1AA',
       LOCAL_CUSTODIAN_CODE_DESCRIPTION: 'GREATER LONDON',
-      COUNTRY_CODE: 'GB'
+      COUNTRY_CODE: 'E'
     }
   },
   {
@@ -84,7 +84,7 @@ export const mockAddresses = [
       POST_TOWN: 'SHEPTON MALLET',
       POSTCODE: 'BS14 8XX',
       LOCAL_CUSTODIAN_CODE_DESCRIPTION: 'SOMERSET',
-      COUNTRY_CODE: 'GB'
+      COUNTRY_CODE: 'E'
     }
   },
   {
@@ -98,7 +98,7 @@ export const mockAddresses = [
       POST_TOWN: 'SHEPTON MALLET',
       POSTCODE: 'BS14 8XX',
       LOCAL_CUSTODIAN_CODE_DESCRIPTION: 'SOMERSET',
-      COUNTRY_CODE: 'GB'
+      COUNTRY_CODE: 'E'
     }
   },
   {
@@ -112,7 +112,7 @@ export const mockAddresses = [
       POST_TOWN: 'LONDON',
       POSTCODE: 'EC1A 1BB',
       LOCAL_CUSTODIAN_CODE_DESCRIPTION: 'CITY OF LONDON',
-      COUNTRY_CODE: 'GB'
+      COUNTRY_CODE: 'E'
     }
   },
   {
@@ -127,7 +127,7 @@ export const mockAddresses = [
       POST_TOWN: 'MANCHESTER',
       POSTCODE: 'M1 1AE',
       LOCAL_CUSTODIAN_CODE_DESCRIPTION: 'GREATER MANCHESTER',
-      COUNTRY_CODE: 'GB'
+      COUNTRY_CODE: 'E'
     }
   },
   {
@@ -140,7 +140,7 @@ export const mockAddresses = [
       POST_TOWN: 'LONDON',
       POSTCODE: 'W1A 0AX',
       LOCAL_CUSTODIAN_CODE_DESCRIPTION: 'WESTMINSTER',
-      COUNTRY_CODE: 'GB'
+      COUNTRY_CODE: 'E'
     }
   }
 ]
