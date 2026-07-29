@@ -66,7 +66,7 @@ const fetchAddressesFromPostcodeLookup = async (postcode, osPlacesConfig) => {
 
     // Use mock data for testing if enabled, otherwise call the real OS Places API
     const response = osPlacesStub
-      ? await mockPostcode(postcode)
+      ? mockPostcode(postcode)
       : await placesAPI.postcode(clientId, postcode, { limit: 150 })
 
     return response.features ?? []
