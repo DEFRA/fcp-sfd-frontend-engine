@@ -11,6 +11,7 @@
 import { placesAPI } from 'osdatahub'
 import { addressLookupMapper } from '../../mappers/address-lookup-mapper.js'
 import { mockPostcode } from './os-places-stub.js'
+import { INTERNAL_SERVER_ERROR } from '../../constants/status-codes.js'
 
 /**
  * Fetch and map addresses from OS Places API based on postcode.
@@ -73,10 +74,13 @@ const fetchAddressesFromPostcodeLookup = async (postcode, osPlacesConfig) => {
       const { clientId, osPlacesStub } = osPlacesConfig
 
       // Use mock data for testing if enabled, otherwise call the real OS Places API
-      const response = osPlacesStub
-        ? mockPostcode(postcode)
-        : await fetchFromPlacesAPI(clientId, postcode)
+      if (osPlacesStub) {
+        const response = mockPostcode(postcode)
 
+        return response.features ?? []
+      }
+
+      const response = await fetchFromPlacesAPI(clientId, postcode)
       return response.features ?? []
     } catch (error) {
       const shouldRetry = isRetryable(error) && (attemptNumber < MAX_RETRIES)
@@ -185,7 +189,7 @@ const isRetryable = (error) => {
   }
 
   // Server error (5xx status codes mean the API is temporarily unavailable)
-  if (error.status && error.status >= 500) {
+  if (error.status && error.status >= INTERNAL_SERVER_ERROR) {
     return true
   }
 
