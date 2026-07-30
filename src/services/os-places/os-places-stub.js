@@ -7,7 +7,7 @@
  * @module osPlacesStub
  */
 
-import { mockAddresses } from './../../mock-data/mock-os-places-addresses.js'
+import { mockAddresses } from '../../mock-data/mock-os-places-addresses.js'
 
 /**
  * Retrieves mock address data matching a given postcode.

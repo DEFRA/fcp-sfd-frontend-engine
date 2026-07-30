@@ -127,6 +127,38 @@ describe('addressLookupMapper', () => {
 
     expect(result[0].county).toBeNull()
   })
+
+  describe('defensive guard against invalid input', () => {
+    test('returns empty array when addresses is null', () => {
+      const result = addressLookupMapper(null)
+
+      expect(result).toEqual([])
+    })
+
+    test('returns empty array when addresses is undefined', () => {
+      const result = addressLookupMapper(undefined)
+
+      expect(result).toEqual([])
+    })
+
+    test('returns empty array when addresses is not an array', () => {
+      const result = addressLookupMapper({ features: [] })
+
+      expect(result).toEqual([])
+    })
+
+    test('returns empty array when addresses is a string', () => {
+      const result = addressLookupMapper('not an array')
+
+      expect(result).toEqual([])
+    })
+
+    test('returns empty array when addresses is a number', () => {
+      const result = addressLookupMapper(123)
+
+      expect(result).toEqual([])
+    })
+  })
 })
 
 const mockData = () => {

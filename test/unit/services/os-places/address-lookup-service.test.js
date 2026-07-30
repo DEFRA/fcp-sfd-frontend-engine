@@ -46,13 +46,11 @@ describe('addressLookupService (engine)', () => {
         mockPlacesAPIPostcode.mockResolvedValue(mockAddresses)
       })
 
-      describe('when called with a valid postcode', () => {
-        test('returns mapped addresses', async () => {
-          const result = await addressLookupService(postcode, osPlacesConfig)
+      test('returns mapped addresses', async () => {
+        const result = await addressLookupService(postcode, osPlacesConfig)
 
-          expect(result).toEqual(mappedMockAddresses)
-          expect(mockAddressLookupMapper).toHaveBeenCalledWith(mockAddresses.features)
-        })
+        expect(result).toEqual(mappedMockAddresses)
+        expect(mockAddressLookupMapper).toHaveBeenCalledWith(mockAddresses.features)
       })
     })
 
@@ -96,6 +94,125 @@ describe('addressLookupService (engine)', () => {
           ]
         })
         expect(mockAddressLookupMapper).not.toHaveBeenCalled()
+      })
+    })
+
+    describe('retry logic for transient errors', () => {
+      beforeEach(() => {
+        mockAddressLookupMapper.mockReturnValue(mappedMockAddresses)
+      })
+
+      describe('when retrying on ECONNRESET', () => {
+        beforeEach(() => {
+          const transientError = new Error('Connection reset')
+          transientError.code = 'ECONNRESET'
+          mockPlacesAPIPostcode
+            .mockRejectedValueOnce(transientError)
+            .mockRejectedValueOnce(transientError)
+            .mockResolvedValueOnce(mockData())
+        })
+
+        test('retries and eventually succeeds', async () => {
+          const result = await addressLookupService(postcode, osPlacesConfig)
+
+          expect(result).toEqual(mappedMockAddresses)
+          expect(mockPlacesAPIPostcode).toHaveBeenCalledTimes(3)
+        })
+      })
+
+      describe('when retrying on ECONNREFUSED', () => {
+        beforeEach(() => {
+          const transientError = new Error('Connection refused')
+          transientError.code = 'ECONNREFUSED'
+          mockPlacesAPIPostcode
+            .mockRejectedValueOnce(transientError)
+            .mockResolvedValueOnce(mockData())
+        })
+
+        test('retries and eventually succeeds', async () => {
+          const result = await addressLookupService(postcode, osPlacesConfig)
+
+          expect(result).toEqual(mappedMockAddresses)
+          expect(mockPlacesAPIPostcode).toHaveBeenCalledTimes(2)
+        })
+      })
+
+      describe('when retrying on ETIMEDOUT', () => {
+        beforeEach(() => {
+          const transientError = new Error('Connection timeout')
+          transientError.code = 'ETIMEDOUT'
+          mockPlacesAPIPostcode
+            .mockRejectedValueOnce(transientError)
+            .mockResolvedValueOnce(mockData())
+        })
+
+        test('retries and eventually succeeds', async () => {
+          const result = await addressLookupService(postcode, osPlacesConfig)
+
+          expect(result).toEqual(mappedMockAddresses)
+          expect(mockPlacesAPIPostcode).toHaveBeenCalledTimes(2)
+        })
+      })
+
+      describe('when retrying on 5xx server errors', () => {
+        beforeEach(() => {
+          const serverError = new Error('Service unavailable')
+          serverError.status = 503
+          mockPlacesAPIPostcode
+            .mockRejectedValueOnce(serverError)
+            .mockResolvedValueOnce(mockData())
+        })
+
+        test('retries and eventually succeeds', async () => {
+          const result = await addressLookupService(postcode, osPlacesConfig)
+
+          expect(result).toEqual(mappedMockAddresses)
+          expect(mockPlacesAPIPostcode).toHaveBeenCalledTimes(2)
+        })
+      })
+
+      describe('when given a permanent error (4xx)', () => {
+        beforeEach(() => {
+          const permanentError = new Error('Bad request')
+          permanentError.status = 400
+          mockPlacesAPIPostcode.mockRejectedValue(permanentError)
+        })
+
+        test('does not retry and returns error immediately', async () => {
+          const result = await addressLookupService(postcode, osPlacesConfig)
+
+          expect(result).toEqual({
+            error: [
+              {
+                message: 'Bad request',
+                path: ['postcode']
+              }
+            ]
+          })
+          expect(mockPlacesAPIPostcode).toHaveBeenCalledTimes(1)
+        })
+      })
+
+      describe('when max retries exhausted on transient errors', () => {
+        beforeEach(() => {
+          const transientError = new Error('Connection reset')
+          transientError.code = 'ECONNRESET'
+          mockPlacesAPIPostcode.mockRejectedValue(transientError)
+        })
+
+        test('returns error after 3 attempts', async () => {
+          const result = await addressLookupService(postcode, osPlacesConfig)
+
+          expect(result).toEqual({
+            error: [
+              {
+                message: 'Connection reset',
+                path: ['postcode']
+              }
+            ]
+          })
+          expect(mockPlacesAPIPostcode).toHaveBeenCalledTimes(3)
+        })
       })
     })
   })

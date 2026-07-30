@@ -10,6 +10,11 @@ import { schemas } from '../schemas/schemas.js'
 import { COUNTRY_NAMES } from '../constants/country-names.js'
 
 const addressLookupMapper = (addresses) => {
+  // Guard against undefined or null addresses (e.g. from upstream bugs)
+  if (!Array.isArray(addresses)) {
+    return []
+  }
+
   return addresses.map((address) => {
     const { error } = schemas.osPlaces.addressLookup.validate(address)
 
