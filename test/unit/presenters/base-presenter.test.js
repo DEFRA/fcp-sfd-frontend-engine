@@ -6,6 +6,7 @@ import {
   formatBackLink,
   formatNumber,
   formatDateInputValues,
+  formatLongDate,
   sortErrorsBySectionOrder
 } from '../../../src/presenters/base-presenter.js'
 
@@ -200,6 +201,58 @@ describe('basePresenter', () => {
       const result = sortErrorsBySectionOrder(errors, orderedSectionsToFix, SECTION_FIELD_ORDER)
 
       expect(result).toEqual([])
+    })
+  })
+
+  describe('#formatLongDate', () => {
+    let date
+
+    describe('when provided with a valid ISO date string', () => {
+      beforeEach(() => {
+        date = '1990-04-05'
+      })
+
+      test('it should return the formatted date without a leading zero on the day', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toEqual('5 April 1990')
+      })
+    })
+
+    describe('when provided with a valid Date object', () => {
+      beforeEach(() => {
+        date = new Date('2021-09-12')
+      })
+
+      test('it should return the formatted date', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toEqual('12 September 2021')
+      })
+    })
+
+    describe('when provided with null', () => {
+      beforeEach(() => {
+        date = null
+      })
+
+      test('it should return null', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toBeNull()
+      })
+    })
+
+    describe('when provided with undefined', () => {
+      beforeEach(() => {
+        date = undefined
+      })
+
+      test('it should return null', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toBeNull()
+      })
     })
   })
 })
