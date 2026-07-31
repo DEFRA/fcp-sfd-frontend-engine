@@ -88,7 +88,8 @@ export const formatLongDate = (date) => {
   return localDate.toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'long',
-    year: 'numeric'
+    year: 'numeric',
+    timeZone: 'UTC'
   })
 }
 
