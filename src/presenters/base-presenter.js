@@ -75,11 +75,15 @@ export const formatDateInputValues = (payloadDob, changedDob, originalDob) => {
  * Returns null if no date is provided.
  */
 export const formatLongDate = (date) => {
-  if (!date) {
+  if (date === null || date === undefined || date === '') {
     return null
   }
 
   const localDate = new Date(date)
+
+  if (Number.isNaN(localDate.getTime())) {
+    return null
+  }
 
   return localDate.toLocaleDateString('en-GB', {
     day: 'numeric',

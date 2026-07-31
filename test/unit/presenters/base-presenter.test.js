@@ -254,5 +254,29 @@ describe('basePresenter', () => {
         expect(result).toBeNull()
       })
     })
+
+    describe('when provided with an empty string', () => {
+      beforeEach(() => {
+        date = ''
+      })
+
+      test('it should return null', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toBeNull()
+      })
+    })
+
+    describe('when provided with an invalid date string', () => {
+      beforeEach(() => {
+        date = 'not-a-date'
+      })
+
+      test('it should return null', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toBeNull()
+      })
+    })
   })
 })
