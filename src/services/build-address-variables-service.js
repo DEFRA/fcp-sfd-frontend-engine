@@ -18,7 +18,6 @@
  *
  * @param {Object} change - The address change object containing UPRN and address fields
  * @returns {Object} Address object formatted for DAL/v1 with UPRN
- * @private
  */
 const buildUprnAddress = (change) => {
   return {
@@ -69,7 +68,6 @@ const buildUprnAddress = (change) => {
  *
  * @param {Object} change - The address change object containing manually entered address fields
  * @returns {Object} Address object formatted for DAL/v1 without UPRN
- * @private
  */
 const buildManualAddress = (change) => {
   return {
@@ -85,7 +83,7 @@ const buildManualAddress = (change) => {
     line1: change.address1, // required for DAL/v1
     line2: nullIfUndefined(change.address2),
     line3: nullIfUndefined(change.address3),
-    line4: nullIfUndefined(change.county), // manual city mapped for validation
+    line4: nullIfUndefined(change.county), // manual county mapped for validation
     line5: null,
     city: change.city, // required for DAL/v1
     postalCode: change.postcode, // required for DAL/v1
