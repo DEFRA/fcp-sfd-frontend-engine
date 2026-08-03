@@ -19,7 +19,7 @@ describe('updateBusinessPhoneNumbersMutation', () => {
 
     const variable = operation.variableDefinitions[0]
     expect(variable.variable.name.value).toBe('input')
-    expect(variable.type.type.name.value).toBe('UpdateBusinessPhoneNumbersInput')
+    expect(variable.type.type.name.value).toBe('UpdateBusinessPhoneInput')
   })
 
   test('it is exposed on the mutation barrel', () => {
