@@ -81,6 +81,7 @@ export const formatLongDate = (date) => {
 
   const localDate = new Date(date)
 
+  // new Date() on an unrecognisable value doesn't throw, it just produces NaN when you call getTime()
   if (Number.isNaN(localDate.getTime())) {
     return null
   }
