@@ -14,7 +14,7 @@ describe('When the updateCustomerAddressMutation is parsed', () => {
 
     const ast = parse(updateCustomerAddressMutation)
     const operation = ast.definitions[0]
-    expect(operation.name.value).toBe('Mutation')
+    expect(operation.name.value).toBe('UpdateCustomerAddress')
 
     const variable = operation.variableDefinitions[0]
     expect(variable.variable.name.value).toBe('input')
