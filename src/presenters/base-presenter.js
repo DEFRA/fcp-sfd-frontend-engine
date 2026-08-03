@@ -70,6 +70,31 @@ export const formatDateInputValues = (payloadDob, changedDob, originalDob) => {
 }
 
 /**
+ * Formats a date as a long-form UK date string, e.g. "5 April 1990".
+ * Accepts a Date object or any value that can be passed to new Date().
+ * Returns null if no date is provided.
+ */
+export const formatLongDate = (date) => {
+  if (date === null || date === undefined || date === '') {
+    return null
+  }
+
+  const localDate = new Date(date)
+
+  // new Date() on an unrecognisable value doesn't throw, it just produces NaN when you call getTime()
+  if (Number.isNaN(localDate.getTime())) {
+    return null
+  }
+
+  return localDate.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC'
+  })
+}
+
+/**
  * Shared helper used by base presenters to sort validation errors so they
  * appear in the same order as the sections and fields shown on a Fix List page.
  *
