@@ -1,5 +1,6 @@
 import { updateBusinessEmailMutation } from './business/update-business-email.js'
 import { updateBusinessNameMutation } from './business/update-business-name.js'
+import { updateBusinessPhoneNumbersMutation } from './business/update-business-phone-numbers.js'
 import { updateCustomerNameMutation } from './personal/update-customer-name.js'
 import { updateCustomerDobMutation } from './personal/update-customer-dob.js'
 import { updateCustomerPhoneMutation } from './personal/update-customer-phone.js'
@@ -10,10 +11,11 @@ import { updateBusinessAddressMutation } from './business/update-business-addres
 export const mutations = {
   updateBusinessEmail: updateBusinessEmailMutation,
   updateBusinessName: updateBusinessNameMutation,
+  updateBusinessPhoneNumbers: updateBusinessPhoneNumbersMutation,
+  updateBusinessAddress: updateBusinessAddressMutation,
   updateCustomerName: updateCustomerNameMutation,
   updateCustomerDob: updateCustomerDobMutation,
   updateCustomerPhone: updateCustomerPhoneMutation,
   updateCustomerEmail: updateCustomerEmailMutation,
-  updateCustomerAddress: updateCustomerAddressMutation,
-  updateBusinessAddress: updateBusinessAddressMutation,
+  updateCustomerAddress: updateCustomerAddressMutation
 }
