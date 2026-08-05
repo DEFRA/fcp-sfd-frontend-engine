@@ -1,5 +1,10 @@
 /**
- * Base presenter for formatting data for display
+ * Shared presenter formatting helpers used by both external and internal services.
+ *
+ * Keep helpers in this module pure and UI-focused so consuming presenters stay
+ * simple and readable.
+ *
+ * @module basePresenter
  */
 
 import { buildDateFromParts } from '../utils/build-date-from-parts.js'
@@ -72,9 +77,17 @@ export const formatDateInputValues = (payloadDob, changedDob, originalDob) => {
 }
 
 /**
- * Formats a date as a long-form UK date string, e.g. "5 April 1990".
- * Accepts a Date object or any value that can be passed to new Date().
- * Returns null if no date is provided.
+ * Formats a complete date value for display, e.g. "5 April 1990".
+ *
+ * Use this when the caller already has a single date value such as:
+ * - an ISO date string from DAL data (`YYYY-MM-DD`), or
+ * - a `Date` object.
+ *
+ * This helper is the final display step only. It does not build dates from
+ * separate day/month/year form fields.
+ *
+ * @param {string|Date|null|undefined} date - A complete date value.
+ * @returns {string|null} Long-form UK date string, or null when input is empty/invalid.
  */
 export const formatLongDate = (date) => {
   if (date === null || date === undefined || date === '') {
@@ -97,8 +110,16 @@ export const formatLongDate = (date) => {
 }
 
 /**
- * Formats a date object with day/month/year parts as a long-form UK date string.
- * Returns null when parts are missing or incomplete.
+ * Formats split date input fields as a long-form UK date string.
+ *
+ * Use this when the caller has GDS-style date parts (`day`, `month`, `year`),
+ * for example in DOB check presenters. The helper:
+ * 1. Validates all parts are present,
+ * 2. Normalises/pads parts via `buildDateFromParts`,
+ * 3. Delegates final display formatting to `formatLongDate`.
+ *
+ * @param {{day: string|number, month: string|number, year: string|number}|null|undefined} dateParts - Split date parts.
+ * @returns {string|null} Long-form UK date string, or null when parts are missing/invalid.
  */
 export const formatLongDateFromParts = (dateParts) => {
   if (!dateParts) {
