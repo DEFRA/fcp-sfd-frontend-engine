@@ -1,6 +1,5 @@
 /**
  * Base presenter for formatting data for display
- *
  * @module basePresenter
  */
 
