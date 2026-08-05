@@ -1,8 +1,5 @@
 /**
- * Shared presenter formatting helpers used by both external and internal services.
- *
- * Keep helpers in this module pure and UI-focused so consuming presenters stay
- * simple and readable.
+ * Base presenter for formatting data for display
  *
  * @module basePresenter
  */
