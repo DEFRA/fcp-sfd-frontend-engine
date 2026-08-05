@@ -95,6 +95,17 @@ export const formatLongDate = (date) => {
 }
 
 /**
+ * Formats separate day/month/year parts as a long-form UK date, e.g. "5 April 1990".
+ * Returns null when the parts don't form a real date.
+ */
+export const formatLongDateFromParts = ({ day, month, year }) => {
+  // new Date() needs YYYY-MM-DD with leading zeros e.g. '1990-04-05' not '1990-4-5'
+  const date = `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+
+  return formatLongDate(new Date(date))
+}
+
+/**
  * Shared helper used by base presenters to sort validation errors so they
  * appear in the same order as the sections and fields shown on a Fix List page.
  *

@@ -8,6 +8,7 @@ import { utils } from '../../../src/utils/utils.js'
 import { formatValidationErrors } from '../../../src/utils/format-validation-errors.js'
 import { formatFullName } from '../../../src/utils/format-full-name.js'
 import { buildUpdateBusinessEmailVariables } from '../../../src/utils/build-update-business-email-variables.js'
+import { buildUpdatePersonalDobVariables } from '../../../src/utils/build-update-personal-dob-variables.js'
 
 describe('utils exports', () => {
   test('exports formatValidationErrors', () => {
@@ -20,5 +21,9 @@ describe('utils exports', () => {
 
   test('exports buildUpdateBusinessEmailVariables', () => {
     expect(utils.buildUpdateBusinessEmailVariables).toBe(buildUpdateBusinessEmailVariables)
+  })
+
+  test('exports buildUpdatePersonalDobVariables', () => {
+    expect(utils.buildUpdatePersonalDobVariables).toBe(buildUpdatePersonalDobVariables)
   })
 })
