@@ -36,7 +36,8 @@ import { MONTH_MAP } from './month-map.js'
 import {
   BUSINESS_EMAIL_ADDRESS,
   BUSINESS_NAME,
-  BUSINESS_PHONE_NUMBERS
+  BUSINESS_PHONE_NUMBERS,
+  PERSONAL_DATE_OF_BIRTH
 } from './success-messages.js'
 
 export const constants = {
@@ -74,6 +75,7 @@ export const constants = {
   successMessages: {
     BUSINESS_EMAIL_ADDRESS,
     BUSINESS_NAME,
-    BUSINESS_PHONE_NUMBERS
+    BUSINESS_PHONE_NUMBERS,
+    PERSONAL_DATE_OF_BIRTH
   }
 }

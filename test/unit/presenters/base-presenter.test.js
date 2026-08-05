@@ -7,6 +7,7 @@ import {
   formatNumber,
   formatDateInputValues,
   formatLongDate,
+  formatLongDateFromParts,
   sortErrorsBySectionOrder
 } from '../../../src/presenters/base-presenter.js'
 
@@ -274,6 +275,40 @@ describe('basePresenter', () => {
 
       test('it should return null', () => {
         const result = formatLongDate(date)
+
+        expect(result).toBeNull()
+      })
+    })
+  })
+
+  describe('#formatLongDateFromParts', () => {
+    describe('when provided with complete date parts', () => {
+      test('it should return the formatted date', () => {
+        const result = formatLongDateFromParts({ day: '5', month: '4', year: '1990' })
+
+        expect(result).toEqual('5 April 1990')
+      })
+    })
+
+    describe('when provided with a year that is not 4 digits', () => {
+      test('it should not interpret the year as 20xx', () => {
+        const result = formatLongDateFromParts({ day: '25', month: '06', year: '33' })
+
+        expect(result).toEqual('25 June 33')
+      })
+    })
+
+    describe('when provided with incomplete date parts', () => {
+      test('it should return null', () => {
+        const result = formatLongDateFromParts({ day: null, month: '05', year: '1990' })
+
+        expect(result).toBeNull()
+      })
+    })
+
+    describe('when provided with undefined', () => {
+      test('it should return null', () => {
+        const result = formatLongDateFromParts(undefined)
 
         expect(result).toBeNull()
       })

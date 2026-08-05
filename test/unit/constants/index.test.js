@@ -35,7 +35,7 @@ import {
 
 import { PHONE_NUMBER_PATTERN } from '../../../src/constants/patterns.js'
 import { MONTH_MAP } from '../../../src/constants/month-map.js'
-import { BUSINESS_EMAIL_ADDRESS } from '../../../src/constants/success-messages.js'
+import { BUSINESS_EMAIL_ADDRESS, PERSONAL_DATE_OF_BIRTH } from '../../../src/constants/success-messages.js'
 
 describe('constants exports', () => {
   describe('statusCodes', () => {
@@ -85,6 +85,10 @@ describe('constants exports', () => {
   describe('successMessages', () => {
     test('exports business email success message', () => {
       expect(constants.successMessages.BUSINESS_EMAIL_ADDRESS).toBe(BUSINESS_EMAIL_ADDRESS)
+    })
+
+    test('exports personal date of birth success message', () => {
+      expect(constants.successMessages.PERSONAL_DATE_OF_BIRTH).toBe(PERSONAL_DATE_OF_BIRTH)
     })
   })
 })

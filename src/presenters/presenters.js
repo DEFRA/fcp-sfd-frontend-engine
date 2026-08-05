@@ -3,6 +3,7 @@ import {
   formatNumber,
   formatDateInputValues,
   formatLongDate,
+  formatLongDateFromParts,
   sortErrorsBySectionOrder
 } from './base-presenter.js'
 
@@ -27,6 +28,7 @@ export const presenters = {
   formatNumber,
   formatDateInputValues,
   formatLongDate,
+  formatLongDateFromParts,
   formatDisplayAddress,
   formatOriginalAddress,
   formatChangedAddress,

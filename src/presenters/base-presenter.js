@@ -1,6 +1,9 @@
 /**
  * Base presenter for formatting data for display
+ * @module basePresenter
  */
+
+import { buildDateFromParts } from '../utils/build-date-from-parts.js'
 
 /**
  * Formats the business name into back link text.
@@ -70,9 +73,17 @@ export const formatDateInputValues = (payloadDob, changedDob, originalDob) => {
 }
 
 /**
- * Formats a date as a long-form UK date string, e.g. "5 April 1990".
- * Accepts a Date object or any value that can be passed to new Date().
- * Returns null if no date is provided.
+ * Formats a complete date value for display, e.g. "5 April 1990".
+ *
+ * Use this when the caller already has a single date value such as:
+ * - an ISO date string from DAL data (`YYYY-MM-DD`), or
+ * - a `Date` object.
+ *
+ * This helper is the final display step only. It does not build dates from
+ * separate day/month/year form fields.
+ *
+ * @param {string|Date|null|undefined} date - A complete date value.
+ * @returns {string|null} Long-form UK date string, or null when input is empty/invalid.
  */
 export const formatLongDate = (date) => {
   if (date === null || date === undefined || date === '') {
@@ -92,6 +103,36 @@ export const formatLongDate = (date) => {
     year: 'numeric',
     timeZone: 'UTC'
   })
+}
+
+/**
+ * Formats split date input fields as a long-form UK date string.
+ *
+ * Use this when the caller has GDS-style date parts (`day`, `month`, `year`),
+ * for example in DOB check presenters. The helper:
+ * 1. Validates all parts are present,
+ * 2. Normalises/pads parts via `buildDateFromParts`,
+ * 3. Delegates final display formatting to `formatLongDate`.
+ *
+ * @param {{day: string|number, month: string|number, year: string|number}|null|undefined} dateParts - Split date parts.
+ * @returns {string|null} Long-form UK date string, or null when parts are missing/invalid.
+ */
+export const formatLongDateFromParts = (dateParts) => {
+  if (!dateParts) {
+    return null
+  }
+
+  const { day, month, year } = dateParts
+
+  if (
+    day === null || day === undefined || day === '' ||
+    month === null || month === undefined || month === '' ||
+    year === null || year === undefined || year === ''
+  ) {
+    return null
+  }
+
+  return formatLongDate(buildDateFromParts(dateParts))
 }
 
 /**
