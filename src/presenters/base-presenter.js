@@ -2,6 +2,8 @@
  * Base presenter for formatting data for display
  */
 
+import { buildDateFromParts } from '../utils/build-date-from-parts.js'
+
 /**
  * Formats the business name into back link text.
  * If the business name is greater than 50 characters, it will be truncated with an ellipsis.
@@ -95,14 +97,25 @@ export const formatLongDate = (date) => {
 }
 
 /**
- * Formats separate day/month/year parts as a long-form UK date, e.g. "5 April 1990".
- * Returns null when the parts don't form a real date.
+ * Formats a date object with day/month/year parts as a long-form UK date string.
+ * Returns null when parts are missing or incomplete.
  */
-export const formatLongDateFromParts = ({ day, month, year }) => {
-  // new Date() needs YYYY-MM-DD with leading zeros e.g. '1990-04-05' not '1990-4-5'
-  const date = `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+export const formatLongDateFromParts = (dateParts) => {
+  if (!dateParts) {
+    return null
+  }
 
-  return formatLongDate(new Date(date))
+  const { day, month, year } = dateParts
+
+  if (
+    day === null || day === undefined || day === '' ||
+    month === null || month === undefined || month === '' ||
+    year === null || year === undefined || year === ''
+  ) {
+    return null
+  }
+
+  return formatLongDate(buildDateFromParts(dateParts))
 }
 
 /**
