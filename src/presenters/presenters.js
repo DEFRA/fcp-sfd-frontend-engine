@@ -1,6 +1,8 @@
 import {
   formatBackLink,
   formatNumber,
+  formatDateInputValues,
+  formatLongDate,
   sortErrorsBySectionOrder
 } from './base-presenter.js'
 
@@ -23,6 +25,8 @@ import {
 export const presenters = {
   formatBackLink,
   formatNumber,
+  formatDateInputValues,
+  formatLongDate,
   formatDisplayAddress,
   formatOriginalAddress,
   formatChangedAddress,

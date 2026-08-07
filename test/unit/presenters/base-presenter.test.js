@@ -5,6 +5,8 @@ import { describe, test, expect, beforeEach } from 'vitest'
 import {
   formatBackLink,
   formatNumber,
+  formatDateInputValues,
+  formatLongDate,
   sortErrorsBySectionOrder
 } from '../../../src/presenters/base-presenter.js'
 
@@ -83,6 +85,74 @@ describe('basePresenter', () => {
     })
   })
 
+  describe('#formatDateInputValues', () => {
+    let payloadDob
+    let changedDob
+    let originalDob
+
+    beforeEach(() => {
+      payloadDob = undefined
+      changedDob = undefined
+      originalDob = { day: 1, month: 5, year: 1990 }
+    })
+
+    describe('when provided with a payload', () => {
+      beforeEach(() => {
+        payloadDob = { day: '20', month: '10', year: '1997' }
+      })
+
+      test('it should return the day, month and year from the payload', () => {
+        const result = formatDateInputValues(payloadDob, changedDob, originalDob)
+
+        expect(result).toEqual({ day: '20', month: '10', year: '1997' })
+      })
+    })
+
+    describe('when provided with an empty payload', () => {
+      beforeEach(() => {
+        payloadDob = {}
+      })
+
+      test('it should return empty strings for the day, month and year', () => {
+        const result = formatDateInputValues(payloadDob, changedDob, originalDob)
+
+        expect(result).toEqual({ day: '', month: '', year: '' })
+      })
+    })
+
+    describe('when provided with a changed date of birth', () => {
+      beforeEach(() => {
+        changedDob = { day: '15', month: '11', year: '2000' }
+      })
+
+      test('it should return the day, month and year from the changed date of birth', () => {
+        const result = formatDateInputValues(payloadDob, changedDob, originalDob)
+
+        expect(result).toEqual({ day: '15', month: '11', year: '2000' })
+      })
+    })
+
+    describe('when provided only with an original date of birth', () => {
+      test('it should return the day, month and year from the original date of birth as strings', () => {
+        const result = formatDateInputValues(payloadDob, changedDob, originalDob)
+
+        expect(result).toEqual({ day: '1', month: '5', year: '1990' })
+      })
+    })
+
+    describe('when the original date of birth values are null', () => {
+      beforeEach(() => {
+        originalDob = { day: null, month: null, year: null }
+      })
+
+      test('it should return empty strings for the day, month and year', () => {
+        const result = formatDateInputValues(payloadDob, changedDob, originalDob)
+
+        expect(result).toEqual({ day: '', month: '', year: '' })
+      })
+    })
+  })
+
   describe('#sortErrorsBySectionOrder', () => {
     let errors
     let orderedSectionsToFix
@@ -131,6 +201,82 @@ describe('basePresenter', () => {
       const result = sortErrorsBySectionOrder(errors, orderedSectionsToFix, SECTION_FIELD_ORDER)
 
       expect(result).toEqual([])
+    })
+  })
+
+  describe('#formatLongDate', () => {
+    let date
+
+    describe('when provided with a valid ISO date string', () => {
+      beforeEach(() => {
+        date = '1990-04-05'
+      })
+
+      test('it should return the formatted date without a leading zero on the day', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toEqual('5 April 1990')
+      })
+    })
+
+    describe('when provided with a valid Date object', () => {
+      beforeEach(() => {
+        date = new Date('2021-09-12')
+      })
+
+      test('it should return the formatted date', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toEqual('12 September 2021')
+      })
+    })
+
+    describe('when provided with null', () => {
+      beforeEach(() => {
+        date = null
+      })
+
+      test('it should return null', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toBeNull()
+      })
+    })
+
+    describe('when provided with undefined', () => {
+      beforeEach(() => {
+        date = undefined
+      })
+
+      test('it should return null', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toBeNull()
+      })
+    })
+
+    describe('when provided with an empty string', () => {
+      beforeEach(() => {
+        date = ''
+      })
+
+      test('it should return null', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toBeNull()
+      })
+    })
+
+    describe('when provided with an invalid date string', () => {
+      beforeEach(() => {
+        date = 'not-a-date'
+      })
+
+      test('it should return null', () => {
+        const result = formatLongDate(date)
+
+        expect(result).toBeNull()
+      })
     })
   })
 })

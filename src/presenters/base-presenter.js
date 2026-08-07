@@ -38,6 +38,63 @@ export const formatNumber = (payloadNumber, changedNumber, originalNumber) => {
 }
 
 /**
+ * Builds date of birth values for the form inputs.
+ *
+ * Values coming from `payloadDob` are always strings (they come from the form).
+ * `changedDob` is saved payload data, so these values are also strings.
+ *
+ * The original date of birth value comes from the DAL and isn’t a string.
+ * When falling back to those values we explicitly convert them to strings
+ * so all sources are normalised and safe to use in inputs.
+ *
+ * Null values are handled to avoid showing 'null' in the UI.
+ */
+const formatDatePart = (changed, original) => {
+  return changed ?? original?.toString() ?? ''
+}
+
+export const formatDateInputValues = (payloadDob, changedDob, originalDob) => {
+  if (payloadDob) {
+    return {
+      day: payloadDob.day ?? '',
+      month: payloadDob.month ?? '',
+      year: payloadDob.year ?? ''
+    }
+  }
+
+  return {
+    day: formatDatePart(changedDob?.day, originalDob?.day),
+    month: formatDatePart(changedDob?.month, originalDob?.month),
+    year: formatDatePart(changedDob?.year, originalDob?.year)
+  }
+}
+
+/**
+ * Formats a date as a long-form UK date string, e.g. "5 April 1990".
+ * Accepts a Date object or any value that can be passed to new Date().
+ * Returns null if no date is provided.
+ */
+export const formatLongDate = (date) => {
+  if (date === null || date === undefined || date === '') {
+    return null
+  }
+
+  const localDate = new Date(date)
+
+  // new Date() on an unrecognisable value doesn't throw, it just produces NaN when you call getTime()
+  if (Number.isNaN(localDate.getTime())) {
+    return null
+  }
+
+  return localDate.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC'
+  })
+}
+
+/**
  * Shared helper used by base presenters to sort validation errors so they
  * appear in the same order as the sections and fields shown on a Fix List page.
  *
