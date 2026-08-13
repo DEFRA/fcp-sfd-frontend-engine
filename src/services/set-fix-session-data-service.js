@@ -50,9 +50,8 @@ import {
  * 4. Presenters can easily iterate sections and their fields
  *
  * @param {Object} yar - Hapi session object with get/set methods
- * @param {Object} sessionData - Current session data object to be mutated
+ * @param {Object} sessionData - Current session data object to be mutated; expects sessionData.orderedSectionsToFix to exist
  * @param {Object} payload - Flat form submission data (e.g., { first: 'John', last: 'Doe', personalEmail: '...' })
- *                        Expects sessionData.orderedSectionsToFix to exist
  *                        Example: ['name', 'address', 'email'] - order matches the presentation order
  * @param {string} journeyKey - Session key that identifies the journey type
  *                              - 'personalDetailsValidation' for personal details
