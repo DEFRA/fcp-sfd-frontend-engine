@@ -52,7 +52,7 @@ import {
  * @param {Object} yar - Hapi session object with get/set methods
  * @param {Object} sessionData - Current session data object to be mutated
  * @param {Object} payload - Flat form submission data (e.g., { first: 'John', last: 'Doe', personalEmail: '...' })
- * @param {Array<string>} orderedSectionsToFix - Array of section names being fixed, in display order
+ *                        Expects sessionData.orderedSectionsToFix to exist
  *                        Example: ['name', 'address', 'email'] - order matches the presentation order
  * @param {string} journeyKey - Session key that identifies the journey type
  *                              - 'personalDetailsValidation' for personal details
@@ -70,7 +70,6 @@ import {
  *   yar,
  *   sessionData,
  *   { first: 'Jane', last: '', personalEmail: 'jane@example.com' },
- *   ['name', 'email'],
  *   'personalDetailsValidation',
  *   'personalFixUpdates'
  * )
@@ -83,10 +82,10 @@ const setFixSessionDataService = (
   yar,
   sessionData,
   payload,
-  orderedSectionsToFix,
   journeyKey,
   updateKey
 ) => {
+  const orderedSectionsToFix = sessionData.orderedSectionsToFix
   // Determine type from journey key
   // This allows the service to auto-select the correct field schema
   const type = journeyKey === 'businessDetailsValidation' ? 'business' : 'personal'

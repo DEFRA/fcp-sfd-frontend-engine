@@ -35,7 +35,6 @@ describe('setFixSessionDataService', () => {
         yar,
         sessionData,
         payload,
-        sessionData.orderedSectionsToFix,
         'personalDetailsValidation',
         'personalFixUpdates'
       )
@@ -61,7 +60,6 @@ describe('setFixSessionDataService', () => {
         yar,
         sessionData,
         payload,
-        sessionData.orderedSectionsToFix,
         'personalDetailsValidation',
         'personalFixUpdates'
       )
@@ -83,7 +81,6 @@ describe('setFixSessionDataService', () => {
         yar,
         sessionData,
         payload,
-        sessionData.orderedSectionsToFix,
         'personalDetailsValidation',
         'personalFixUpdates'
       )
@@ -112,7 +109,6 @@ describe('setFixSessionDataService', () => {
         yar,
         sessionData,
         payload,
-        sessionData.orderedSectionsToFix,
         'businessDetailsValidation',
         'businessFixUpdates'
       )
@@ -136,7 +132,6 @@ describe('setFixSessionDataService', () => {
         yar,
         sessionData,
         payload,
-        sessionData.orderedSectionsToFix,
         'businessDetailsValidation',
         'businessFixUpdates'
       )
@@ -156,7 +151,6 @@ describe('setFixSessionDataService', () => {
         yar,
         sessionData,
         payload,
-        sessionData.orderedSectionsToFix,
         'businessDetailsValidation',
         'businessFixUpdates'
       )
