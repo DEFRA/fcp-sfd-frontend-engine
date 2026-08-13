@@ -118,6 +118,12 @@ describe('initialiseFixJourneyService', () => {
       expect(result.orderedSectionsToFix).toEqual(['vat', 'name', 'address', 'phone', 'email'])
     })
 
+    test('ignores source when it is not a valid business section', () => {
+      const result = initialiseFixJourneyService(yar, 'notARealSection', 'business')
+
+      expect(result.orderedSectionsToFix).toEqual(['name', 'address', 'phone', 'email'])
+    })
+
     test('does not duplicate the source section', () => {
       const result = initialiseFixJourneyService(yar, 'phone', 'business')
 

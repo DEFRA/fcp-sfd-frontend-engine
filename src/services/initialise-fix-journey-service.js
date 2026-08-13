@@ -108,6 +108,12 @@ const orderSectionsToFix = (sectionsNeedingUpdate, source, SECTION_ORDER) => {
     return sections
   }
 
+  // Source comes from a URL query param, so only allow known section keys
+  // for this journey type to avoid injecting unexpected values into session state.
+  if (!SECTION_ORDER.includes(source)) {
+    return sections
+  }
+
   return [
     source,
     ...sections.filter(section => section !== source)
