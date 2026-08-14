@@ -2,9 +2,9 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 
 // Thing under test
-import { checkInterruptedJourneySessionService } from '../../../src/services/check-interrupter-journey-session-service.js'
+import { checkInterrupterJourneySessionService } from '../../../src/services/check-interrupter-journey-session-service.js'
 
-describe('checkInterruptedJourneySessionService', () => {
+describe('checkInterrupterJourneySessionService', () => {
   let yar
   const journeyKey = 'fixJourney'
 
@@ -21,7 +21,7 @@ describe('checkInterruptedJourneySessionService', () => {
       })
 
       test('returns false', () => {
-        const result = checkInterruptedJourneySessionService(yar, journeyKey)
+        const result = checkInterrupterJourneySessionService(yar, journeyKey)
 
         expect(result).toBe(false)
         expect(yar.get).toHaveBeenCalledWith(journeyKey)
@@ -34,7 +34,7 @@ describe('checkInterruptedJourneySessionService', () => {
       })
 
       test('returns false', () => {
-        const result = checkInterruptedJourneySessionService(yar, journeyKey)
+        const result = checkInterrupterJourneySessionService(yar, journeyKey)
 
         expect(result).toBe(false)
         expect(yar.get).toHaveBeenCalledWith(journeyKey)
@@ -51,7 +51,7 @@ describe('checkInterruptedJourneySessionService', () => {
       })
 
       test('returns true', () => {
-        const result = checkInterruptedJourneySessionService(yar, journeyKey)
+        const result = checkInterrupterJourneySessionService(yar, journeyKey)
 
         expect(result).toBe(true)
         expect(yar.get).toHaveBeenCalledWith(journeyKey)
