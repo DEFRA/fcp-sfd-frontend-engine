@@ -52,7 +52,7 @@ describe('validateFixDetailsService', () => {
           expect(result.error).toBeDefined()
         })
 
-        test('it returns a validation error for the nameam fields', () => {
+        test('it returns a validation error for the name fields', () => {
           const result = validateFixDetailsService(payload, orderedSectionsToFix, schemas)
 
           expect(result.error.details[0]).toEqual(
