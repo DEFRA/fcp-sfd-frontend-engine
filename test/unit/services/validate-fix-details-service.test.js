@@ -52,7 +52,7 @@ describe('validateFixDetailsService', () => {
           expect(result.error).toBeDefined()
         })
 
-        test('it returns a validation error for the name fields', () => {
+        test('it returns a validation error for the nameam fields', () => {
           const result = validateFixDetailsService(payload, orderedSectionsToFix, schemas)
 
           expect(result.error.details[0]).toEqual(
@@ -101,7 +101,7 @@ describe('validateFixDetailsService', () => {
           expect(result.error).toBeDefined()
         })
 
-        test('it returns a validation error for the name fields', () => {
+        test('it returns a validation error for the date of birth fields', () => {
           const result = validateFixDetailsService(payload, orderedSectionsToFix, schemas)
 
           expect(result.error.details[0]).toEqual(
@@ -152,7 +152,7 @@ describe('validateFixDetailsService', () => {
           expect(result.error).toBeDefined()
         })
 
-        test('it returns a validation error for the name fields', () => {
+        test('it returns a validation error for the postcode field', () => {
           const result = validateFixDetailsService(payload, orderedSectionsToFix, schemas)
 
           expect(result.error.details[0]).toEqual(
@@ -197,7 +197,7 @@ describe('validateFixDetailsService', () => {
           expect(result.error).toBeDefined()
         })
 
-        test('it returns a validation error for the name fields', () => {
+        test('it returns a validation error for the email field', () => {
           const result = validateFixDetailsService(payload, orderedSectionsToFix, schemas)
 
           expect(result.error.details[0]).toEqual(
@@ -244,7 +244,7 @@ describe('validateFixDetailsService', () => {
           expect(result.error).toBeDefined()
         })
 
-        test('it returns a validation error for the name fields', () => {
+        test('it returns a validation error for the phone fields', () => {
           const result = validateFixDetailsService(payload, orderedSectionsToFix, schemas)
 
           expect(result.error.details[0]).toEqual(
@@ -386,7 +386,7 @@ describe('validateFixDetailsService', () => {
           expect(result.error).toBeDefined()
         })
 
-        test('it returns a validation error for the name fields', () => {
+        test('it returns a validation error for the email field', () => {
           const result = validateFixDetailsService(payload, orderedSectionsToFix, schemas)
 
           expect(result.error.details[0]).toEqual(
@@ -437,7 +437,7 @@ describe('validateFixDetailsService', () => {
           expect(result.error).toBeDefined()
         })
 
-        test('it returns a validation error for the name fields', () => {
+        test('it returns a validation error for the postcode field', () => {
           const result = validateFixDetailsService(payload, orderedSectionsToFix, schemas)
 
           expect(result.error.details[0]).toEqual(
@@ -482,7 +482,7 @@ describe('validateFixDetailsService', () => {
           expect(result.error).toBeDefined()
         })
 
-        test('it returns a validation error for the name fields', () => {
+        test('it returns a validation error for the email field', () => {
           const result = validateFixDetailsService(payload, orderedSectionsToFix, schemas)
 
           expect(result.error.details[0]).toEqual(
@@ -529,7 +529,7 @@ describe('validateFixDetailsService', () => {
           expect(result.error).toBeDefined()
         })
 
-        test('it returns a validation error for the name fields', () => {
+        test('it returns a validation error for the phone fields', () => {
           const result = validateFixDetailsService(payload, orderedSectionsToFix, schemas)
 
           expect(result.error.details[0]).toEqual(

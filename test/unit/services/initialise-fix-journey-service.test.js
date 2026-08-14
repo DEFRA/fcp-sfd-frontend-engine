@@ -92,7 +92,7 @@ describe('initialiseFixJourneyService', () => {
     beforeEach(() => {
       sessionData = {
         sectionsNeedingUpdate: ['email', 'name', 'phone', 'address'],
-        personalFixUpdates: {
+        businessFixUpdates: {
           name: {
             first: 'John',
             last: 'Doe'

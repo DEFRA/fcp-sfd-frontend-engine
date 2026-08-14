@@ -29,7 +29,7 @@ import {
  * @param {Object} yar - Hapi session object
  * @param {string} source - The section user clicked to fix (optional)
  * @param {string} journeyType - Either 'personal' or 'business'
- * @returns {Object|null} Updated session data or null if no sections need fixing
+ * @returns {Object|undefined} Updated session data, or undefined if session data does not exist
  */
 const initialiseFixJourneyService = (yar, source, journeyType) => {
   // Determined by journeyType
