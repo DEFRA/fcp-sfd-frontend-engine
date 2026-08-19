@@ -25,4 +25,8 @@ describe('success messages', () => {
   test('BUSINESS_VAT has the expected value', () => {
     expect(BUSINESS_VAT).toEqual('You have updated your VAT registration number')
   })
+
+  test('BUSINESS_VAT_REMOVE has the expected value', () => {
+    expect(BUSINESS_VAT).toEqual('You have removed your VAT registration number')
+  })
 })
