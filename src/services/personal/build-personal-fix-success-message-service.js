@@ -10,7 +10,7 @@
 const buildPersonalSuccessMessageService = (personalDetails) => {
   const { orderedSectionsToFix } = personalDetails
 
-  const changes = loopThroughSections(orderedSectionsToFix, personalDetails)
+  const changes = loopThroughSections(personalDetails, orderedSectionsToFix)
 
   if (changes.length === 1) {
     return {
@@ -32,7 +32,7 @@ const buildPersonalSuccessMessageService = (personalDetails) => {
   }
 }
 
-const loopThroughSections = (orderedSectionsToFix, personalDetails) => {
+const loopThroughSections = (personalDetails, orderedSectionsToFix) => {
   const changes = []
 
   for (const section of orderedSectionsToFix) {
