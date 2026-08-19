@@ -114,11 +114,10 @@ describe('buildBusinessSuccessMessageService', () => {
   })
 
   describe('when no business details have changed', () => {
-    test('returns an html message with an empty list', () => {
+    test('returns null', () => {
       const result = buildBusinessSuccessMessageService(businessDetails)
 
-      expect(result.type).toBe('html')
-      expect(result.value).toContain('<ul class="govuk-list govuk-list--bullet">')
+      expect(result).toBeNull()
     })
   })
 })

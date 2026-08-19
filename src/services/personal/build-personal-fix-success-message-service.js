@@ -12,6 +12,10 @@ const buildPersonalSuccessMessageService = (personalDetails) => {
 
   const changes = loopThroughSections(personalDetails, orderedSectionsToFix)
 
+  if (changes.length === 0) {
+    return null
+  }
+
   if (changes.length === 1) {
     return {
       type: 'text',

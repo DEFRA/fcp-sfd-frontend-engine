@@ -98,11 +98,10 @@ describe('buildPersonalSuccessMessageService', () => {
   })
 
   describe('when no personal details have changed', () => {
-    test('returns an html message with an empty list', () => {
+    test('returns null', () => {
       const result = buildPersonalSuccessMessageService(personalDetails)
 
-      expect(result.type).toBe('html')
-      expect(result.value).toContain('<ul class="govuk-list govuk-list--bullet">')
+      expect(result).toBeNull()
     })
   })
 })

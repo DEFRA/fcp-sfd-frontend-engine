@@ -12,6 +12,10 @@ const buildBusinessSuccessMessageService = (businessDetails) => {
 
   const changes = loopThroughSections(businessDetails, orderedSectionsToFix)
 
+  if (changes.length === 0) {
+    return null
+  }
+
   if (changes.length === 1) {
     return {
       type: 'text',
