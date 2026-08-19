@@ -35,25 +35,25 @@ const buildBusinessSuccessMessageService = (businessDetails) => {
 const loopThroughSections = (businessDetails, orderedSectionsToFix) => {
   const changes = []
 
+  const labelMap = {
+    name: 'business name',
+    email: 'business email address',
+    phone: 'business phone numbers',
+    vat: 'business vat number',
+    address: 'business address'
+  }
+
+  const propertyMap = {
+    name: 'changeBusinessName',
+    email: 'changeBusinessEmail',
+    phone: 'changeBusinessPhoneNumbers',
+    vat: 'changeBusinessVat',
+    address: 'changeBusinessAddress'
+  }
+
   for (const section of orderedSectionsToFix) {
-    if (section === 'name' && businessDetails.changeBusinessName) {
-      changes.push('business name')
-    }
-
-    if (section === 'email' && businessDetails.changeBusinessEmail) {
-      changes.push('business email address')
-    }
-
-    if (section === 'phone' && businessDetails.changeBusinessPhoneNumbers) {
-      changes.push('business phone numbers')
-    }
-
-    if (section === 'vat' && businessDetails.changeBusinessVat) {
-      changes.push('business vat number')
-    }
-
-    if (section === 'address' && businessDetails.changeBusinessAddress) {
-      changes.push('business address')
+    if (businessDetails[propertyMap[section]]) {
+      changes.push(labelMap[section])
     }
   }
 

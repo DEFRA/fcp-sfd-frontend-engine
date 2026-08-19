@@ -35,25 +35,25 @@ const buildPersonalSuccessMessageService = (personalDetails) => {
 const loopThroughSections = (personalDetails, orderedSectionsToFix) => {
   const changes = []
 
+  const labelMap = {
+    name: 'full name',
+    email: 'personal email address',
+    phone: 'personal phone numbers',
+    dob: 'date of birth',
+    address: 'personal address'
+  }
+
+  const propertyMap = {
+    name: 'changePersonalName',
+    email: 'changePersonalEmail',
+    phone: 'changePersonalPhoneNumbers',
+    dob: 'changePersonalDob',
+    address: 'changePersonalAddress'
+  }
+
   for (const section of orderedSectionsToFix) {
-    if (section === 'name' && personalDetails.changePersonalName) {
-      changes.push('full name')
-    }
-
-    if (section === 'email' && personalDetails.changePersonalEmail) {
-      changes.push('personal email address')
-    }
-
-    if (section === 'phone' && personalDetails.changePersonalPhoneNumbers) {
-      changes.push('personal phone numbers')
-    }
-
-    if (section === 'dob' && personalDetails.changePersonalDob) {
-      changes.push('date of birth')
-    }
-
-    if (section === 'address' && personalDetails.changePersonalAddress) {
-      changes.push('personal address')
+    if (personalDetails[propertyMap[section]]) {
+      changes.push(labelMap[section])
     }
   }
 
