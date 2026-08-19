@@ -1,6 +1,6 @@
 export const updateCustomerDetailsMutation = `
-  mutation Mutation($allFieldsInput: UpdateCustomerAllFieldsInput!) {
-    updateCustomerAllFields(input: $allFieldsInput) {
+  mutation UpdateCustomerAllFields($input: UpdateCustomerAllFieldsInput!) {
+    updateCustomerAllFields(input: $input) {
       success
       customer {
         info {
