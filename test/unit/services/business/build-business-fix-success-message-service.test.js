@@ -2,9 +2,9 @@
 import { describe, test, expect, beforeEach } from 'vitest'
 
 // Thing under test
-import { buildBusinessSuccessMessage } from '../../../../src/services/business/build-business-success-message-service.js'
+import { buildBusinessSuccessMessageService } from '../../../../src/services/business/build-business-fix-success-message-service.js'
 
-describe('buildBusinessSuccessMessage', () => {
+describe('buildBusinessSuccessMessageService', () => {
   let businessDetails
 
   beforeEach(() => {
@@ -18,7 +18,7 @@ describe('buildBusinessSuccessMessage', () => {
       businessDetails.orderedSectionsToFix = ['name']
       businessDetails.changeBusinessName = { businessName: 'Test Business Ltd' }
 
-      const result = buildBusinessSuccessMessage(businessDetails)
+      const result = buildBusinessSuccessMessageService(businessDetails)
 
       expect(result).toEqual({
         type: 'text',
@@ -30,7 +30,7 @@ describe('buildBusinessSuccessMessage', () => {
       businessDetails.orderedSectionsToFix = ['email']
       businessDetails.changeBusinessEmail = { businessEmail: 'info@test.com' }
 
-      const result = buildBusinessSuccessMessage(businessDetails)
+      const result = buildBusinessSuccessMessageService(businessDetails)
 
       expect(result).toEqual({
         type: 'text',
@@ -45,7 +45,7 @@ describe('buildBusinessSuccessMessage', () => {
         businessMobile: '07123456789'
       }
 
-      const result = buildBusinessSuccessMessage(businessDetails)
+      const result = buildBusinessSuccessMessageService(businessDetails)
 
       expect(result).toEqual({
         type: 'text',
@@ -57,7 +57,7 @@ describe('buildBusinessSuccessMessage', () => {
       businessDetails.orderedSectionsToFix = ['vat']
       businessDetails.changeBusinessVat = { vatNumber: 'GB123456789' }
 
-      const result = buildBusinessSuccessMessage(businessDetails)
+      const result = buildBusinessSuccessMessageService(businessDetails)
 
       expect(result).toEqual({
         type: 'text',
@@ -69,7 +69,7 @@ describe('buildBusinessSuccessMessage', () => {
       businessDetails.orderedSectionsToFix = ['address']
       businessDetails.changeBusinessAddress = { postcode: 'AB12 3CD' }
 
-      const result = buildBusinessSuccessMessage(businessDetails)
+      const result = buildBusinessSuccessMessageService(businessDetails)
 
       expect(result).toEqual({
         type: 'text',
@@ -88,13 +88,13 @@ describe('buildBusinessSuccessMessage', () => {
     })
 
     test('returns an html message', () => {
-      const result = buildBusinessSuccessMessage(businessDetails)
+      const result = buildBusinessSuccessMessageService(businessDetails)
 
       expect(result.type).toBe('html')
     })
 
     test('includes the notification banner heading', () => {
-      const result = buildBusinessSuccessMessage(businessDetails)
+      const result = buildBusinessSuccessMessageService(businessDetails)
 
       expect(result.value).toContain(
         '<h3 class="govuk-notification-banner__heading">'
@@ -103,7 +103,7 @@ describe('buildBusinessSuccessMessage', () => {
     })
 
     test('renders a bullet list with all changed fields in the ordered list', () => {
-      const result = buildBusinessSuccessMessage(businessDetails)
+      const result = buildBusinessSuccessMessageService(businessDetails)
 
       expect(result.value).toContain('<ul class="govuk-list govuk-list--bullet">')
       expect(result.value).toContain('<li>business email address</li>')
@@ -115,7 +115,7 @@ describe('buildBusinessSuccessMessage', () => {
 
   describe('when no business details have changed', () => {
     test('returns an html message with an empty list', () => {
-      const result = buildBusinessSuccessMessage(businessDetails)
+      const result = buildBusinessSuccessMessageService(businessDetails)
 
       expect(result.type).toBe('html')
       expect(result.value).toContain('<ul class="govuk-list govuk-list--bullet">')
