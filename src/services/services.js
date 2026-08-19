@@ -4,6 +4,8 @@ import { checkInterrupterJourneySessionService } from './check-interrupter-journ
 import { initialiseFixJourneyService } from './initialise-fix-journey-service.js'
 import { validateFixDetailsService } from './validate-fix-details-service.js'
 import { setFixSessionDataService } from './set-fix-session-data-service.js'
+import { buildFixSuccessMessageService } from './build-fix-success-message-service.js'
+import { buildCustomerFixUpdateVariablesService } from './personal/build-customer-fix-update-variables-service.js'
 
 export const services = {
   addressLookup: addressLookupService,
@@ -12,5 +14,7 @@ export const services = {
   checkInterrupterJourneySession: checkInterrupterJourneySessionService,
   initialiseFixJourney: initialiseFixJourneyService,
   validateFixDetails: validateFixDetailsService,
-  setFixSessionData: setFixSessionDataService
+  setFixSessionData: setFixSessionDataService,
+  buildFixSuccessMessage: buildFixSuccessMessageService,
+  buildCustomerFixUpdateVariables: buildCustomerFixUpdateVariablesService
 }
