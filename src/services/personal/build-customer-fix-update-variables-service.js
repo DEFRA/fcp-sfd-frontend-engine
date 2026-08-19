@@ -6,6 +6,8 @@
  * @module buildCustomerFixUpdateVariablesService
  */
 
+import { buildManualAddress } from '../build-address-variables-service.js'
+
 const buildCustomerFixUpdateVariablesService = (personalDetails) => {
   const { orderedSectionsToFix, crn } = personalDetails
 
@@ -29,13 +31,11 @@ const buildCustomerFixUpdateVariablesService = (personalDetails) => {
   }
 
   if (orderedSectionsToFix.includes('address') && personalDetails.changePersonalAddress) {
-    Object.assign(input, buildAddressInput(personalDetails.changePersonalAddress))
+    Object.assign(input, { address: buildManualAddress(personalDetails.changePersonalAddress) })
   }
 
   return { input }
 }
-
-const nullIfUndefined = (value) => value ?? null
 
 const buildPhoneInput = (change) => {
   return {
@@ -68,30 +68,6 @@ const buildDobInput = (change) => {
   return {
     // DAL expects dateOfBirth as YYYY-MM-DD e.g. '1990-04-05' not '1990-4-5'
     dateOfBirth: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-  }
-}
-
-const buildAddressInput = (change) => {
-  return {
-    address: {
-      pafOrganisationName: null,
-      buildingNumberRange: null,
-      buildingName: null,
-      flatName: null,
-      street: null,
-      dependentLocality: null,
-      doubleDependentLocality: null,
-      uprn: null,
-      county: null,
-      line1: change.address1,
-      line2: nullIfUndefined(change.address2),
-      line3: nullIfUndefined(change.address3),
-      line4: nullIfUndefined(change.county),
-      line5: null,
-      city: change.city,
-      postalCode: change.postcode,
-      country: change.country
-    }
   }
 }
 
