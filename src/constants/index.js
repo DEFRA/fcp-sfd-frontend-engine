@@ -36,7 +36,8 @@ import { MONTH_MAP } from './month-map.js'
 import {
   BUSINESS_EMAIL_ADDRESS,
   BUSINESS_NAME,
-  BUSINESS_PHONE_NUMBERS
+  BUSINESS_PHONE_NUMBERS,
+  BUSINESS_VAT
 } from './success-messages.js'
 
 // Interrupter journey constants
@@ -86,7 +87,8 @@ export const constants = {
   successMessages: {
     BUSINESS_EMAIL_ADDRESS,
     BUSINESS_NAME,
-    BUSINESS_PHONE_NUMBERS
+    BUSINESS_PHONE_NUMBERS,
+    BUSINESS_VAT
   },
   interrupterJourney: {
     PERSONAL_SECTION_FIELD_ORDER,

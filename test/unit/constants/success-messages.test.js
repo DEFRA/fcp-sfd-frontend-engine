@@ -5,7 +5,8 @@ import { describe, test, expect } from 'vitest'
 import {
   BUSINESS_EMAIL_ADDRESS,
   BUSINESS_NAME,
-  BUSINESS_PHONE_NUMBERS
+  BUSINESS_PHONE_NUMBERS,
+  BUSINESS_VAT
 } from '../../../src/constants/success-messages.js'
 
 describe('success messages', () => {
@@ -19,5 +20,9 @@ describe('success messages', () => {
 
   test('BUSINESS_PHONE_NUMBERS has the expected value', () => {
     expect(BUSINESS_PHONE_NUMBERS).toEqual('You have updated your business phone numbers')
+  })
+
+  test('BUSINESS_VAT has the expected value', () => {
+    expect(BUSINESS_VAT).toEqual('You have updated your VAT registration number')
   })
 })

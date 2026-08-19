@@ -7,6 +7,7 @@ import { updateCustomerPhoneMutation } from './personal/update-customer-phone.js
 import { updateCustomerEmailMutation } from './personal/update-customer-email.js'
 import { updateCustomerAddressMutation } from './personal/update-customer-address.js'
 import { updateBusinessAddressMutation } from './business/update-business-address.js'
+import { updateBusinessVatMutation } from './business/update-business-vat.js'
 
 export const mutations = {
   updateBusinessEmail: updateBusinessEmailMutation,
@@ -17,5 +18,6 @@ export const mutations = {
   updateCustomerDob: updateCustomerDobMutation,
   updateCustomerPhone: updateCustomerPhoneMutation,
   updateCustomerEmail: updateCustomerEmailMutation,
-  updateCustomerAddress: updateCustomerAddressMutation
+  updateCustomerAddress: updateCustomerAddressMutation,
+  updateBusinessVat: updateBusinessVatMutation
 }
