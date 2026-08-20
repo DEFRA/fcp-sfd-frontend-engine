@@ -2,3 +2,4 @@ export const BUSINESS_EMAIL_ADDRESS = 'You have updated your business email addr
 export const BUSINESS_NAME = 'You have updated your business name'
 export const BUSINESS_PHONE_NUMBERS = 'You have updated your business phone numbers'
 export const BUSINESS_VAT = 'You have updated your VAT registration number'
+export const BUSINESS_VAT_REMOVE = 'You have removed your VAT registration number'

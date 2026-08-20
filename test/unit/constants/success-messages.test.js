@@ -6,7 +6,8 @@ import {
   BUSINESS_EMAIL_ADDRESS,
   BUSINESS_NAME,
   BUSINESS_PHONE_NUMBERS,
-  BUSINESS_VAT
+  BUSINESS_VAT,
+  BUSINESS_VAT_REMOVE
 } from '../../../src/constants/success-messages.js'
 
 describe('success messages', () => {
@@ -24,5 +25,9 @@ describe('success messages', () => {
 
   test('BUSINESS_VAT has the expected value', () => {
     expect(BUSINESS_VAT).toEqual('You have updated your VAT registration number')
+  })
+
+  test('BUSINESS_VAT_REMOVE has the expected value', () => {
+    expect(BUSINESS_VAT_REMOVE).toEqual('You have removed your VAT registration number')
   })
 })

@@ -37,7 +37,8 @@ import {
   BUSINESS_EMAIL_ADDRESS,
   BUSINESS_NAME,
   BUSINESS_PHONE_NUMBERS,
-  BUSINESS_VAT
+  BUSINESS_VAT,
+  BUSINESS_VAT_REMOVE
 } from './success-messages.js'
 
 // Interrupter journey constants
@@ -88,7 +89,8 @@ export const constants = {
     BUSINESS_EMAIL_ADDRESS,
     BUSINESS_NAME,
     BUSINESS_PHONE_NUMBERS,
-    BUSINESS_VAT
+    BUSINESS_VAT,
+    BUSINESS_VAT_REMOVE
   },
   interrupterJourney: {
     PERSONAL_SECTION_FIELD_ORDER,
