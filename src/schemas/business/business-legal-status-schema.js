@@ -1,5 +1,5 @@
 import { Joi } from '../../utils/joi.js'
-import { BUSINESS_LEGAL_STATUS_CODES } from '../../constants/business-legal-status'
+import { BUSINESS_LEGAL_STATUS_CODES } from '../../constants/business-legal-status.js'
 
 const ERROR_MESSAGE = 'Select a legal status'
 
