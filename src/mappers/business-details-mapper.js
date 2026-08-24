@@ -15,6 +15,7 @@ const asNullable = (value) => value ?? null
 
 const mapBusinessInfo = (business) => {
   const info = business.info ?? {}
+  const registrationNumbers = info.registrationNumbers ?? {}
 
   return {
     sbi: business.sbi,
@@ -24,6 +25,10 @@ const mapBusinessInfo = (business) => {
     vendorNumber: asNullable(info.vendorNumber),
     legalStatus: asNullable(info.legalStatus?.type),
     legalStatusCode: asNullable(info.legalStatus?.code),
+    registrationNumbers: {
+      companiesHouse: asNullable(registrationNumbers.companiesHouse),
+      charityCommission: asNullable(registrationNumbers.charityCommission)
+    },
     type: asNullable(info.type?.type),
     countyParishHoldingNumbers: business.countyParishHoldings ?? []
   }

@@ -17,6 +17,10 @@ describe('mapBusinessDetails', () => {
           traderNumber: '123456',
           vendorNumber: '654321',
           legalStatus: { type: 'Sole Proprietorship', code: 'SP001' },
+          registrationNumbers: {
+            companiesHouse: 'AB123456',
+            charityCommission: '1234567'
+          },
           type: { type: 'Not Specified' },
           address: {
             buildingNumberRange: '7',
@@ -46,6 +50,10 @@ describe('mapBusinessDetails', () => {
       expect(result.info.vendorNumber).toBe('654321')
       expect(result.info.legalStatus).toBe('Sole Proprietorship')
       expect(result.info.legalStatusCode).toBe('SP001')
+      expect(result.info.registrationNumbers).toEqual({
+        companiesHouse: 'AB123456',
+        charityCommission: '1234567'
+      })
       expect(result.info.type).toBe('Not Specified')
       expect(result.info.countyParishHoldingNumbers).toEqual([{ cphNumber: '12/123/1234' }])
     })
@@ -74,6 +82,7 @@ describe('mapBusinessDetails', () => {
   describe('when optional DAL fields are absent', () => {
     beforeEach(() => {
       rawData.business.info.legalStatus = { type: null, code: null }
+      rawData.business.info.registrationNumbers = { companiesHouse: null, charityCommission: null }
       rawData.business.info.type = null
       rawData.business.info.vat = null
       rawData.business.info.traderNumber = null
@@ -86,6 +95,10 @@ describe('mapBusinessDetails', () => {
 
       expect(result.info.legalStatus).toBeNull()
       expect(result.info.legalStatusCode).toBeNull()
+      expect(result.info.registrationNumbers).toEqual({
+        companiesHouse: null,
+        charityCommission: null
+      })
       expect(result.info.type).toBeNull()
       expect(result.info.vat).toBeNull()
       expect(result.info.traderNumber).toBeNull()
@@ -117,6 +130,10 @@ describe('mapBusinessDetails', () => {
       expect(result.info.vendorNumber).toBeNull()
       expect(result.info.legalStatus).toBeNull()
       expect(result.info.legalStatusCode).toBeNull()
+      expect(result.info.registrationNumbers).toEqual({
+        companiesHouse: null,
+        charityCommission: null
+      })
       expect(result.info.type).toBeNull()
     })
 
