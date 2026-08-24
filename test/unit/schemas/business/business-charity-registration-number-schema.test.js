@@ -102,7 +102,7 @@ describe('business charity registration number schema', () => {
       test('it returns the expected error message', () => {
         const { error } = schema.validate(payload, { abortEarly: false })
 
-        expect(error.details[0].message).toBe('Charity commission registration number must only include letters and numbers')
+        expect(error.details[0].message).toBe('Charity commission registration number must only include numbers')
       })
     })
   })
