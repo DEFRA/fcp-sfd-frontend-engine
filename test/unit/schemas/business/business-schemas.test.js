@@ -12,6 +12,9 @@ import { businessPhoneSchema } from '../../../../src/schemas/business/business-p
 import { businessVatSchema } from '../../../../src/schemas/business/business-vat-schema.js'
 import { businessVatChangeSchema } from '../../../../src/schemas/business/business-vat-change-schema.js'
 import { businessVatRemoveSchema } from '../../../../src/schemas/business/business-vat-remove-schema.js'
+import { businessLegalStatusSchema } from '../../../../src/schemas/business/business-legal-status-schema.js'
+import { businessCharityRegistrationNumberSchema } from '../../../../src/schemas/business/business-charity-registration-number-schema.js'
+import { businessCompanyRegistrationNumberSchema } from '../../../../src/schemas/business/business-company-registration-number-schema.js'
 
 describe('businessSchemas exports', () => {
   test('exports the SBI schema', () => {
@@ -47,6 +50,20 @@ describe('businessSchemas exports', () => {
 
     test('exports the vat remove schema', () => {
       expect(businessSchemas.vat.remove).toBe(businessVatRemoveSchema)
+    })
+  })
+
+  test('exports the legal status schema', () => {
+    expect(businessSchemas.legalStatus).toBe(businessLegalStatusSchema)
+  })
+
+  describe('legalStatusRegistration', () => {
+    test('exports the charity registration number schema', () => {
+      expect(businessSchemas.legalStatusRegistration.charity).toBe(businessCharityRegistrationNumberSchema)
+    })
+
+    test('exports the company registration number schema', () => {
+      expect(businessSchemas.legalStatusRegistration.company).toBe(businessCompanyRegistrationNumberSchema)
     })
   })
 })
