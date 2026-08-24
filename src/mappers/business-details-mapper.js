@@ -23,6 +23,7 @@ const mapBusinessInfo = (business) => {
     traderNumber: asNullable(info.traderNumber),
     vendorNumber: asNullable(info.vendorNumber),
     legalStatus: asNullable(info.legalStatus?.type),
+    legalStatusCode: asNullable(info.legalStatus?.code),
     type: asNullable(info.type?.type),
     countyParishHoldingNumbers: business.countyParishHoldings ?? []
   }

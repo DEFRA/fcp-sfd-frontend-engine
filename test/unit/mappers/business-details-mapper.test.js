@@ -16,7 +16,7 @@ describe('mapBusinessDetails', () => {
           vat: 'GB123456789',
           traderNumber: '123456',
           vendorNumber: '654321',
-          legalStatus: { type: 'Sole Proprietorship' },
+          legalStatus: { type: 'Sole Proprietorship', code: 'SP001' },
           type: { type: 'Not Specified' },
           address: {
             buildingNumberRange: '7',
@@ -45,6 +45,7 @@ describe('mapBusinessDetails', () => {
       expect(result.info.traderNumber).toBe('123456')
       expect(result.info.vendorNumber).toBe('654321')
       expect(result.info.legalStatus).toBe('Sole Proprietorship')
+      expect(result.info.legalStatusCode).toBe('SP001')
       expect(result.info.type).toBe('Not Specified')
       expect(result.info.countyParishHoldingNumbers).toEqual([{ cphNumber: '12/123/1234' }])
     })
@@ -72,7 +73,7 @@ describe('mapBusinessDetails', () => {
 
   describe('when optional DAL fields are absent', () => {
     beforeEach(() => {
-      rawData.business.info.legalStatus = null
+      rawData.business.info.legalStatus = { type: null, code: null }
       rawData.business.info.type = null
       rawData.business.info.vat = null
       rawData.business.info.traderNumber = null
@@ -84,6 +85,7 @@ describe('mapBusinessDetails', () => {
       const result = mapBusinessDetails(rawData)
 
       expect(result.info.legalStatus).toBeNull()
+      expect(result.info.legalStatusCode).toBeNull()
       expect(result.info.type).toBeNull()
       expect(result.info.vat).toBeNull()
       expect(result.info.traderNumber).toBeNull()
@@ -114,6 +116,7 @@ describe('mapBusinessDetails', () => {
       expect(result.info.traderNumber).toBeNull()
       expect(result.info.vendorNumber).toBeNull()
       expect(result.info.legalStatus).toBeNull()
+      expect(result.info.legalStatusCode).toBeNull()
       expect(result.info.type).toBeNull()
     })
 
