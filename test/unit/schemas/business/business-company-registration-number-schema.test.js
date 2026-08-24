@@ -69,5 +69,29 @@ describe('business company registration number schema', () => {
         expect(error.details[0].message).toBe('Company registration number must be 8 numbers, or 2 letters followed by 6 numbers')
       })
     })
+
+    describe('because "companyRegistrationNumber" contains invalid characters', () => {
+      beforeEach(() => {
+        payload.companyRegistrationNumber = '1234-567'
+      })
+
+      test('it returns the expected error message', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0].message).toBe('Company registration number must be 8 numbers, or 2 letters followed by 6 numbers')
+      })
+    })
+
+    describe('because "companyRegistrationNumber" contains a control character', () => {
+      beforeEach(() => {
+        payload.companyRegistrationNumber = '1234567\x00'
+      })
+
+      test('it returns the expected error message', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0].message).toBe('Company registration number must only include letters and numbers')
+      })
+    })
   })
 })

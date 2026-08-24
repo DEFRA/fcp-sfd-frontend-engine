@@ -10,6 +10,6 @@ export const businessCompanyRegistrationNumberSchema = Joi.object({
       'string.empty': 'Enter the company registration number',
       'any.required': 'Enter the company registration number',
       'string.pattern.base': 'Company registration number must be 8 numbers, or 2 letters followed by 6 numbers',
-      'string.noControlChars': 'Company registration number must not contain invalid characters'
+      'string.noControlChars': 'Company registration number must only include letters and numbers'
     })
 })

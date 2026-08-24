@@ -81,5 +81,29 @@ describe('business charity registration number schema', () => {
         expect(error.details[0].message).toBe('Charity commission registration number must be 7 or 8 numbers')
       })
     })
+
+    describe('because "charityCommissionRegistrationNumber" contains invalid characters', () => {
+      beforeEach(() => {
+        payload.charityCommissionRegistrationNumber = '123-4567'
+      })
+
+      test('it returns the expected error message', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0].message).toBe('Charity commission registration number must be 7 or 8 numbers')
+      })
+    })
+
+    describe('because "charityCommissionRegistrationNumber" contains a control character', () => {
+      beforeEach(() => {
+        payload.charityCommissionRegistrationNumber = '1234567\x00'
+      })
+
+      test('it returns the expected error message', () => {
+        const { error } = schema.validate(payload, { abortEarly: false })
+
+        expect(error.details[0].message).toBe('Charity commission registration number must only include letters and numbers')
+      })
+    })
   })
 })
