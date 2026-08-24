@@ -6,6 +6,9 @@ import { businessPhoneSchema } from './business-phone-schema.js'
 import { businessVatSchema } from './business-vat-schema.js'
 import { businessVatChangeSchema } from './business-vat-change-schema.js'
 import { businessVatRemoveSchema } from './business-vat-remove-schema.js'
+import { businessLegalStatusSchema } from './business-legal-status-schema.js'
+import { businessCharityRegistrationNumberSchema } from './business-charity-registration-number-schema.js'
+import { businessCompanyRegistrationNumberSchema } from './business-company-registration-number-schema.js'
 
 /**
  * The businessSchema object has a nested property of `details`.
@@ -34,5 +37,10 @@ export const businessSchemas = {
   vat: {
     change: businessVatChangeSchema,
     remove: businessVatRemoveSchema
+  },
+  legalStatus: businessLegalStatusSchema,
+  legalStatusRegistration: {
+    charity: businessCharityRegistrationNumberSchema,
+    company: businessCompanyRegistrationNumberSchema
   }
 }
