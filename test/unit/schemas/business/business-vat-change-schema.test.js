@@ -25,6 +25,19 @@ describe('business VAT change schema', () => {
     })
   })
 
+  describe('when "vatNumber" has leading and trailing whitespace', () => {
+    beforeEach(() => {
+      payload.vatNumber = '  123456789  '
+    })
+
+    test('it trims the whitespace and confirms the data is valid', () => {
+      const { error, value } = schema.validate(payload, { abortEarly: false })
+
+      expect(error).toBeUndefined()
+      expect(value.vatNumber).toBe('123456789')
+    })
+  })
+
   describe('when invalid data is provided', () => {
     describe('because "vatNumber" is missing', () => {
       beforeEach(() => {
