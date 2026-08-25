@@ -2,6 +2,7 @@ import { Joi } from '../../utils/joi.js'
 
 export const businessVatChangeSchema = Joi.object({
   vatNumber: Joi.string()
+    .trim()
     .pattern(/^\d{9}$/)
     .required()
     .messages({

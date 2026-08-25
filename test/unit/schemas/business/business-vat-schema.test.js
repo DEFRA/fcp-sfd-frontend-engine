@@ -21,6 +21,15 @@ describe('businessVatSchema', () => {
     })
   })
 
+  describe('when the VAT number has leading and trailing whitespace', () => {
+    test('it trims the whitespace and passes validation', () => {
+      const { error, value } = businessVatSchema.validate({ vatNumber: '  123456789  ' })
+
+      expect(error).toBeUndefined()
+      expect(value.vatNumber).toBe('123456789')
+    })
+  })
+
   describe('when the VAT number is omitted', () => {
     test('it should pass validation (field is optional)', () => {
       const { error } = businessVatSchema.validate({})
