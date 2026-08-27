@@ -66,4 +66,12 @@ describe('customerCrnSchema', () => {
 
     expect(result.error?.details[0].message).toBe('Enter the full CRN')
   })
+
+  test('trims whitespace before applying the pattern validation', () => {
+    // whitespace-padded value would fail the 10-digit pattern if validated before trimming
+    const result = customerCrnSchema.validate({ crn: ' 1234567890 ' })
+
+    expect(result.error).toBeUndefined()
+    expect(result.value.crn).toBe('1234567890')
+  })
 })

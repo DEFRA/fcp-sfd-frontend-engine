@@ -66,4 +66,12 @@ describe('businessSbiSchema', () => {
 
     expect(result.error?.details[0].message).toBe('Enter the full SBI')
   })
+
+  test('trims whitespace before applying the pattern validation', () => {
+    // whitespace-padded value would fail the 9-digit pattern if validated before trimming
+    const result = businessSbiSchema.validate({ sbi: ' 123456789 ' })
+
+    expect(result.error).toBeUndefined()
+    expect(result.value.sbi).toBe('123456789')
+  })
 })
