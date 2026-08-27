@@ -46,4 +46,32 @@ describe('businessSbiSchema', () => {
 
     expect(result.error?.details[0].message).toBe('SBI must not contain invalid characters')
   })
+
+  test('trims leading and trailing whitespace from a valid SBI', () => {
+    const result = businessSbiSchema.validate({ sbi: '  123456789  ' })
+
+    expect(result.error).toBeUndefined()
+    expect(result.value.sbi).toBe('123456789')
+  })
+
+  test('accepts a whitespace-only SBI by trimming it to an empty value', () => {
+    const result = businessSbiSchema.validate({ sbi: '   ' })
+
+    expect(result.error).toBeUndefined()
+    expect(result.value.sbi).toBe('')
+  })
+
+  test('rejects a value that is still invalid after trimming', () => {
+    const result = businessSbiSchema.validate({ sbi: '  12345  ' })
+
+    expect(result.error?.details[0].message).toBe('Enter the full SBI')
+  })
+
+  test('trims whitespace before applying the pattern validation', () => {
+    // whitespace-padded value would fail the 9-digit pattern if validated before trimming
+    const result = businessSbiSchema.validate({ sbi: ' 123456789 ' })
+
+    expect(result.error).toBeUndefined()
+    expect(result.value.sbi).toBe('123456789')
+  })
 })
