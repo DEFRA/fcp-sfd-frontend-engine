@@ -46,4 +46,24 @@ describe('customerCrnSchema', () => {
 
     expect(result.error?.details[0].message).toBe('CRN must not contain invalid characters')
   })
+
+  test('trims leading and trailing whitespace from a valid CRN', () => {
+    const result = customerCrnSchema.validate({ crn: '  1234567890  ' })
+
+    expect(result.error).toBeUndefined()
+    expect(result.value.crn).toBe('1234567890')
+  })
+
+  test('accepts a whitespace-only CRN by trimming it to an empty value', () => {
+    const result = customerCrnSchema.validate({ crn: '   ' })
+
+    expect(result.error).toBeUndefined()
+    expect(result.value.crn).toBe('')
+  })
+
+  test('rejects a value that is still invalid after trimming', () => {
+    const result = customerCrnSchema.validate({ crn: '  123456  ' })
+
+    expect(result.error?.details[0].message).toBe('Enter the full CRN')
+  })
 })

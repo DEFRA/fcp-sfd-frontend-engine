@@ -3,6 +3,7 @@ import { Joi } from '../../utils/joi.js'
 export const businessSbiSchema = Joi.object({
   sbi: Joi.string()
     .pattern(/^\d{9}$/)
+    .trim()
     .allow('')
     .optional()
     .messages({

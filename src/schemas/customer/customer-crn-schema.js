@@ -3,6 +3,7 @@ import { Joi } from '../../utils/joi.js'
 export const customerCrnSchema = Joi.object({
   crn: Joi.string()
     .pattern(/^\d{10}$/)
+    .trim()
     .allow('')
     .optional()
     .messages({
