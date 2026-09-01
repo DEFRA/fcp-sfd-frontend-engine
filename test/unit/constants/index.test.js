@@ -35,7 +35,20 @@ import {
 
 import { PHONE_NUMBER_PATTERN } from '../../../src/constants/patterns.js'
 import { MONTH_MAP } from '../../../src/constants/month-map.js'
-import { BUSINESS_EMAIL_ADDRESS } from '../../../src/constants/success-messages.js'
+import {
+  BUSINESS_ADDRESS,
+  BUSINESS_EMAIL_ADDRESS,
+  BUSINESS_LEGAL_STATUS_MESSAGE,
+  BUSINESS_NAME,
+  BUSINESS_PHONE_NUMBERS,
+  BUSINESS_VAT,
+  BUSINESS_VAT_REMOVE,
+  PERSONAL_ADDRESS,
+  PERSONAL_DOB,
+  PERSONAL_EMAIL_ADDRESS,
+  PERSONAL_NAME,
+  PERSONAL_PHONE_NUMBERS,
+} from '../../../src/constants/success-messages.js'
 
 describe('constants exports', () => {
   describe('statusCodes', () => {
@@ -85,6 +98,50 @@ describe('constants exports', () => {
   describe('successMessages', () => {
     test('exports business email success message', () => {
       expect(constants.successMessages.BUSINESS_EMAIL_ADDRESS).toBe(BUSINESS_EMAIL_ADDRESS)
+    })
+
+    test('exports business name success message', () => {
+      expect(constants.successMessages.BUSINESS_NAME).toBe(BUSINESS_NAME)
+    })
+
+    test('exports business phone numbers success message', () => {
+      expect(constants.successMessages.BUSINESS_PHONE_NUMBERS).toBe(BUSINESS_PHONE_NUMBERS)
+    })
+
+    test('exports business VAT success message', () => {
+      expect(constants.successMessages.BUSINESS_VAT).toBe(BUSINESS_VAT)
+    })
+
+    test('exports business VAT remove success message', () => {
+      expect(constants.successMessages.BUSINESS_VAT_REMOVE).toBe(BUSINESS_VAT_REMOVE)
+    })
+
+    test('exports business address success message', () => {
+      expect(constants.successMessages.BUSINESS_ADDRESS).toBe(BUSINESS_ADDRESS)
+    })
+
+    test('exports business legal status success message', () => {
+      expect(constants.successMessages.BUSINESS_LEGAL_STATUS).toBe(BUSINESS_LEGAL_STATUS_MESSAGE)
+    })
+
+    test('exports personal name success message', () => {
+      expect(constants.successMessages.PERSONAL_NAME).toBe(PERSONAL_NAME)
+    })
+
+    test('exports personal email success message', () => {
+      expect(constants.successMessages.PERSONAL_EMAIL_ADDRESS).toBe(PERSONAL_EMAIL_ADDRESS)
+    })
+
+    test('exports personal phone numbers success message', () => {
+      expect(constants.successMessages.PERSONAL_PHONE_NUMBERS).toBe(PERSONAL_PHONE_NUMBERS)
+    })
+
+    test('exports personal date of birth success message', () => {
+      expect(constants.successMessages.PERSONAL_DOB).toBe(PERSONAL_DOB)
+    })
+
+    test('exports personal address success message', () => {
+      expect(constants.successMessages.PERSONAL_ADDRESS).toBe(PERSONAL_ADDRESS)
     })
   })
 })
