@@ -37,8 +37,10 @@ import { PHONE_NUMBER_PATTERN } from '../../../src/constants/patterns.js'
 import { MONTH_MAP } from '../../../src/constants/month-map.js'
 import {
   BUSINESS_ADDRESS,
+  BUSINESS_CHARITY_REGISTRATION_NUMBER,
+  BUSINESS_COMPANY_REGISTRATION_NUMBER,
   BUSINESS_EMAIL_ADDRESS,
-  BUSINESS_LEGAL_STATUS_MESSAGE,
+  BUSINESS_LEGAL_STATUS,
   BUSINESS_NAME,
   BUSINESS_PHONE_NUMBERS,
   BUSINESS_VAT,
@@ -47,7 +49,7 @@ import {
   PERSONAL_DOB,
   PERSONAL_EMAIL_ADDRESS,
   PERSONAL_NAME,
-  PERSONAL_PHONE_NUMBERS,
+  PERSONAL_PHONE_NUMBERS
 } from '../../../src/constants/success-messages.js'
 
 describe('constants exports', () => {
@@ -121,7 +123,15 @@ describe('constants exports', () => {
     })
 
     test('exports business legal status success message', () => {
-      expect(constants.successMessages.BUSINESS_LEGAL_STATUS).toBe(BUSINESS_LEGAL_STATUS_MESSAGE)
+      expect(constants.successMessages.BUSINESS_LEGAL_STATUS).toBe(BUSINESS_LEGAL_STATUS)
+    })
+
+    test('exports business charity registration number success message', () => {
+      expect(constants.successMessages.BUSINESS_CHARITY_REGISTRATION_NUMBER).toBe(BUSINESS_CHARITY_REGISTRATION_NUMBER)
+    })
+
+    test('exports business company registration number success message', () => {
+      expect(constants.successMessages.BUSINESS_COMPANY_REGISTRATION_NUMBER).toBe(BUSINESS_COMPANY_REGISTRATION_NUMBER)
     })
 
     test('exports personal name success message', () => {

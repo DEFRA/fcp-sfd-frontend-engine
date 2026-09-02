@@ -3,18 +3,20 @@ import { describe, test, expect } from 'vitest'
 
 // Thing under test
 import {
+  BUSINESS_ADDRESS,
+  BUSINESS_CHARITY_REGISTRATION_NUMBER,
+  BUSINESS_COMPANY_REGISTRATION_NUMBER,
   BUSINESS_EMAIL_ADDRESS,
+  BUSINESS_LEGAL_STATUS,
   BUSINESS_NAME,
   BUSINESS_PHONE_NUMBERS,
   BUSINESS_VAT,
   BUSINESS_VAT_REMOVE,
-  BUSINESS_ADDRESS,
-  BUSINESS_LEGAL_STATUS_MESSAGE,
-  PERSONAL_NAME,
-  PERSONAL_EMAIL_ADDRESS,
-  PERSONAL_PHONE_NUMBERS,
+  PERSONAL_ADDRESS,
   PERSONAL_DOB,
-  PERSONAL_ADDRESS
+  PERSONAL_EMAIL_ADDRESS,
+  PERSONAL_NAME,
+  PERSONAL_PHONE_NUMBERS
 } from '../../../src/constants/success-messages.js'
 
 describe('success messages', () => {
@@ -42,8 +44,16 @@ describe('success messages', () => {
     expect(BUSINESS_ADDRESS).toEqual('You have updated your business address')
   })
 
-  test('BUSINESS_LEGAL_STATUS_MESSAGE has the expected value', () => {
-    expect(BUSINESS_LEGAL_STATUS_MESSAGE).toEqual('You have updated your business legal status')
+  test('BUSINESS_CHARITY_REGISTRATION_NUMBER has the expected value', () => {
+    expect(BUSINESS_CHARITY_REGISTRATION_NUMBER).toEqual('You have updated your charity commission registration number')
+  })
+
+  test('BUSINESS_COMPANY_REGISTRATION_NUMBER has the expected value', () => {
+    expect(BUSINESS_COMPANY_REGISTRATION_NUMBER).toEqual('You have updated your company registration number')
+  })
+
+  test('BUSINESS_LEGAL_STATUS has the expected value', () => {
+    expect(BUSINESS_LEGAL_STATUS).toEqual('You have updated your business legal status')
   })
 
   test('PERSONAL_NAME has the expected value', () => {
