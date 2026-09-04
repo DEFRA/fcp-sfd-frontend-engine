@@ -9,7 +9,7 @@ export const businessCharityRegistrationNumberSchema = Joi.object({
     .messages({
       'string.empty': 'Enter the charity commission registration number',
       'any.required': 'Enter the charity commission registration number',
-      'string.pattern.base': 'Charity commission registration number must be 6 or 8 numbers',
+      'string.pattern.base': 'Charity commission registration number must be 6 to 8 numbers',
       'string.noControlChars': 'Charity commission registration number must only include numbers'
     })
 })
