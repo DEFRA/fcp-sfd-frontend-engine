@@ -74,7 +74,7 @@ describe('business charity registration number schema', () => {
       test('it returns the expected error message', () => {
         const { error } = schema.validate(payload, { abortEarly: false })
 
-        expect(error.details[0].message).toBe('Charity commission registration number must be 6 or 8 numbers')
+        expect(error.details[0].message).toBe('Charity commission registration number must be 6 to 8 numbers')
       })
     })
 
@@ -86,7 +86,7 @@ describe('business charity registration number schema', () => {
       test('it returns the expected error message', () => {
         const { error } = schema.validate(payload, { abortEarly: false })
 
-        expect(error.details[0].message).toBe('Charity commission registration number must be 6 or 8 numbers')
+        expect(error.details[0].message).toBe('Charity commission registration number must be 6 to 8 numbers')
       })
     })
 
@@ -98,7 +98,7 @@ describe('business charity registration number schema', () => {
       test('it returns the expected error message', () => {
         const { error } = schema.validate(payload, { abortEarly: false })
 
-        expect(error.details[0].message).toBe('Charity commission registration number must be 6 or 8 numbers')
+        expect(error.details[0].message).toBe('Charity commission registration number must be 6 to 8 numbers')
       })
     })
 
@@ -110,7 +110,7 @@ describe('business charity registration number schema', () => {
       test('it returns the expected error message', () => {
         const { error } = schema.validate(payload, { abortEarly: false })
 
-        expect(error.details[0].message).toBe('Charity commission registration number must be 6 or 8 numbers')
+        expect(error.details[0].message).toBe('Charity commission registration number must be 6 to 8 numbers')
       })
     })
 
