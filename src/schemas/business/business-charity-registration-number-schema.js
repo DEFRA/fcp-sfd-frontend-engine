@@ -1,6 +1,6 @@
 import { Joi } from '../../utils/joi.js'
 
-// Charity Commission registration numbers are 6 or 8 digits (England and Wales)
+// Charity Commission registration numbers are 6 to 8 digits (England and Wales)
 export const businessCharityRegistrationNumberSchema = Joi.object({
   charityCommissionRegistrationNumber: Joi.string()
     .trim()
