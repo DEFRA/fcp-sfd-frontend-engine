@@ -79,11 +79,21 @@ describe('initialiseFixJourneyService', () => {
     })
 
     test('returns early if session data is missing or invalid', () => {
-      yar.get.mockReturnValue(undefined)
+      yar.get.mockReturnValue(null)
 
       const result = initialiseFixJourneyService(yar, undefined, 'personal')
 
       expect(result).toBeUndefined()
+      expect(yar.set).not.toHaveBeenCalled()
+    })
+
+    test('returns the session data unchanged when it has no sectionsNeedingUpdate', () => {
+      const alreadyInitialised = { orderedSectionsToFix: ['name', 'email'], source: 'name' }
+      yar.get.mockReturnValue(alreadyInitialised)
+
+      const result = initialiseFixJourneyService(yar, undefined, 'personal')
+
+      expect(result).toBe(alreadyInitialised)
       expect(yar.set).not.toHaveBeenCalled()
     })
   })
@@ -161,11 +171,22 @@ describe('initialiseFixJourneyService', () => {
     })
 
     test('returns early if session data is missing or invalid', () => {
-      yar.get.mockReturnValue(undefined)
+      // yar.get() returns null (not undefined) for a missing key
+      yar.get.mockReturnValue(null)
 
       const result = initialiseFixJourneyService(yar, undefined, 'business')
 
       expect(result).toBeUndefined()
+      expect(yar.set).not.toHaveBeenCalled()
+    })
+
+    test('returns the session data unchanged when it has no sectionsNeedingUpdate', () => {
+      const alreadyInitialised = { orderedSectionsToFix: ['name', 'email'], source: 'name' }
+      yar.get.mockReturnValue(alreadyInitialised)
+
+      const result = initialiseFixJourneyService(yar, undefined, 'business')
+
+      expect(result).toBe(alreadyInitialised)
       expect(yar.set).not.toHaveBeenCalled()
     })
   })
