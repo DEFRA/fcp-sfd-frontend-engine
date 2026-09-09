@@ -15,28 +15,50 @@ const buildBusinessFixUpdateVariablesService = (businessDetails) => {
   const input = { sbi }
 
   // Conditionally merge each section into input if it's been updated by the user
-  if (orderedSectionsToFix.includes('name') && businessDetails.changeBusinessName) {
-    input.name = businessDetails.changeBusinessName.businessName
-  }
-
-  if (orderedSectionsToFix.includes('email') && businessDetails.changeBusinessEmail) {
-    Object.assign(input, buildEmailInput(businessDetails.changeBusinessEmail))
-  }
-
-  if (orderedSectionsToFix.includes('phone') && businessDetails.changeBusinessPhoneNumbers) {
-    Object.assign(input, buildPhoneInput(businessDetails.changeBusinessPhoneNumbers))
-  }
-
-  if (orderedSectionsToFix.includes('vat') && businessDetails.changeBusinessVat !== null) {
-    input.vat = businessDetails.changeBusinessVat.vatNumber ?? ''
-  }
-
-  if (orderedSectionsToFix.includes('address') && businessDetails.changeBusinessAddress) {
-    input.address = { withoutUprn: buildManualAddress(businessDetails.changeBusinessAddress) }
+  for (const applySection of sectionAppliers) {
+    applySection(input, businessDetails, orderedSectionsToFix)
   }
 
   return { input }
 }
+
+const applyNameSection = (input, businessDetails, orderedSectionsToFix) => {
+  if (orderedSectionsToFix.includes('name') && businessDetails.changeBusinessName) {
+    input.name = businessDetails.changeBusinessName.businessName
+  }
+}
+
+const applyEmailSection = (input, businessDetails, orderedSectionsToFix) => {
+  if (orderedSectionsToFix.includes('email') && businessDetails.changeBusinessEmail) {
+    Object.assign(input, buildEmailInput(businessDetails.changeBusinessEmail))
+  }
+}
+
+const applyPhoneSection = (input, businessDetails, orderedSectionsToFix) => {
+  if (orderedSectionsToFix.includes('phone') && businessDetails.changeBusinessPhoneNumbers) {
+    Object.assign(input, buildPhoneInput(businessDetails.changeBusinessPhoneNumbers))
+  }
+}
+
+const applyVatSection = (input, businessDetails, orderedSectionsToFix) => {
+  if (orderedSectionsToFix.includes('vat') && businessDetails.changeBusinessVat !== null) {
+    input.vat = businessDetails.changeBusinessVat.vatNumber ?? ''
+  }
+}
+
+const applyAddressSection = (input, businessDetails, orderedSectionsToFix) => {
+  if (orderedSectionsToFix.includes('address') && businessDetails.changeBusinessAddress) {
+    input.address = { withoutUprn: buildManualAddress(businessDetails.changeBusinessAddress) }
+  }
+}
+
+const sectionAppliers = [
+  applyNameSection,
+  applyEmailSection,
+  applyPhoneSection,
+  applyVatSection,
+  applyAddressSection
+]
 
 const buildPhoneInput = (change) => {
   return {
