@@ -118,6 +118,18 @@ describe('buildBusinessFixUpdateVariablesService', () => {
         phone: { landline: '0123456789', mobile: '07999999999' }
       })
     })
+
+    describe('and businessMobile is missing', () => {
+      beforeEach(() => {
+        businessDetails.changeBusinessPhoneNumbers = { businessTelephone: '0123456789' }
+      })
+
+      test('it defaults the mobile to null', () => {
+        const result = buildBusinessFixUpdateVariablesService(businessDetails)
+
+        expect(result.input.phone).toEqual({ landline: '0123456789', mobile: null })
+      })
+    })
   })
 
   describe('when there are changes to vat', () => {
