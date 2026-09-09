@@ -22,15 +22,21 @@ const buildBusinessFixUpdateVariablesService = (businessDetails) => {
   return { input }
 }
 
-const applyNameSection = (input, businessDetails, orderedSectionsToFix) => {
-  if (orderedSectionsToFix.includes('name') && businessDetails.changeBusinessName) {
-    input.name = businessDetails.changeBusinessName.businessName
+const applyAddressSection = (input, businessDetails, orderedSectionsToFix) => {
+  if (orderedSectionsToFix.includes('address') && businessDetails.changeBusinessAddress) {
+    input.address = { withoutUprn: buildManualAddress(businessDetails.changeBusinessAddress) }
   }
 }
 
 const applyEmailSection = (input, businessDetails, orderedSectionsToFix) => {
   if (orderedSectionsToFix.includes('email') && businessDetails.changeBusinessEmail) {
     Object.assign(input, buildEmailInput(businessDetails.changeBusinessEmail))
+  }
+}
+
+const applyNameSection = (input, businessDetails, orderedSectionsToFix) => {
+  if (orderedSectionsToFix.includes('name') && businessDetails.changeBusinessName) {
+    input.name = businessDetails.changeBusinessName.businessName
   }
 }
 
@@ -46,33 +52,27 @@ const applyVatSection = (input, businessDetails, orderedSectionsToFix) => {
   }
 }
 
-const applyAddressSection = (input, businessDetails, orderedSectionsToFix) => {
-  if (orderedSectionsToFix.includes('address') && businessDetails.changeBusinessAddress) {
-    input.address = { withoutUprn: buildManualAddress(businessDetails.changeBusinessAddress) }
+const sectionAppliers = [
+  applyAddressSection,
+  applyEmailSection,
+  applyNameSection,
+  applyPhoneSection,
+  applyVatSection
+]
+
+const buildEmailInput = (change) => {
+  return {
+    email: {
+      address: change.businessEmail
+    }
   }
 }
-
-const sectionAppliers = [
-  applyNameSection,
-  applyEmailSection,
-  applyPhoneSection,
-  applyVatSection,
-  applyAddressSection
-]
 
 const buildPhoneInput = (change) => {
   return {
     phone: {
       landline: change.businessTelephone ?? null,
       mobile: change.businessMobile ?? null
-    }
-  }
-}
-
-const buildEmailInput = (change) => {
-  return {
-    email: {
-      address: change.businessEmail
     }
   }
 }
