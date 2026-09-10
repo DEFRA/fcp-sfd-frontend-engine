@@ -23,7 +23,7 @@ describe('mapCustomerName', () => {
       test('it should map the values to the correct format', () => {
         const result = mapCustomerName(dalData.customer.name)
 
-        expect(result).toEqual({ userName: 'John Smith' })
+        expect(result).toEqual('John Smith')
       })
     })
   })
@@ -32,7 +32,7 @@ describe('mapCustomerName', () => {
     test('it should return an empty userName', () => {
       const result = mapCustomerName()
 
-      expect(result).toEqual({ userName: '' })
+      expect(result).toEqual('')
     })
   })
 })
