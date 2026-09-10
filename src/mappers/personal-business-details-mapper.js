@@ -10,13 +10,11 @@ import { mappers } from './mappers'
 
 export const mapPersonalBusinessDetails = (value) => {
   return {
-    info: { ...mappers.customerName(value.customer.info.name) },
+    userName: mappers.customerName(value.customer.info.name),
     business: {
-      info: {
-        organisationId: value.business.organisationId ?? null,
-        sbi: value.business.sbi ?? null,
-        name: value.business.info.name ?? null
-      }
+      organisationId: value.business.organisationId ?? null,
+      sbi: value.business.sbi ?? null,
+      name: value.business.info.name ?? null
     }
   }
 }
