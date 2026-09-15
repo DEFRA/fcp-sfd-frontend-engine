@@ -15,13 +15,11 @@ const asNullable = (value) => {
 }
 
 export const mapPersonalDetails = (value) => {
-  // Validate input before processing
   protectAgainstNull(value)
 
   const customerInfo = value.customer.info
   const customerName = customerInfo.name
 
-  // Safely split date of birth
   const [year, month, day] = customerInfo.dateOfBirth ? customerInfo.dateOfBirth.split('-') : []
 
   return {
