@@ -82,6 +82,15 @@ describe('personalDetailsMapper', () => {
       })
     })
 
+    describe('crn', () => {
+      test('it should map crn as null when not provided', () => {
+        dalData.customer.crn = null
+        const result = mapPersonalDetails(dalData)
+
+        expect(result.crn).toBeNull()
+      })
+    })
+
     describe('handling missing nested objects', () => {
       test('it should handle missing name object gracefully', () => {
         dalData.customer.info.name = null
