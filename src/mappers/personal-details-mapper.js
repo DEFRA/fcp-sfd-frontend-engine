@@ -8,8 +8,13 @@
 
 import { mapAddress } from './address-mapper.js'
 import { mapCustomerName } from './customer-name-mapper.js'
+import { utils } from '../utils/utils.js'
 
-const mapPersonalDetails = (value) => {
+const asNullable = (value) => {
+  return value ?? null
+}
+
+export const mapPersonalDetails = (value) => {
   // Validate input before processing
   protectAgainstNull(value)
 
@@ -23,25 +28,21 @@ const mapPersonalDetails = (value) => {
     crn: value.customer.crn ?? null,
     userName: customerName ? mapCustomerName(customerName) : null,
     fullName: {
-      first: customerName?.first ?? null,
-      last: customerName?.last ?? null,
-      middle: customerName?.middle ?? null
+      first: asNullable(customerName?.first),
+      last: asNullable(customerName?.last),
+      middle: asNullable(customerName?.middle)
     },
-    fullNameJoined: [
-      customerName?.first,
-      customerName?.middle,
-      customerName?.last
-    ].filter(Boolean).join(' '),
+    fullNameJoined: customerName ? utils.formatFullName(customerName) : '',
     dateOfBirth: {
-      full: customerInfo.dateOfBirth ?? null,
-      day: day ?? null,
-      month: month ?? null,
-      year: year ?? null
+      full: asNullable(customerInfo.dateOfBirth),
+      day: asNullable(day),
+      month: asNullable(month),
+      year: asNullable(year)
     },
     address: customerInfo.address ? mapAddress(customerInfo.address) : {},
-    email: customerInfo.email?.address ?? null,
-    telephone: customerInfo.phone?.landline ?? null,
-    mobile: customerInfo.phone?.mobile ?? null
+    email: asNullable(customerInfo.email?.address),
+    telephone: asNullable(customerInfo.phone?.landline),
+    mobile: asNullable(customerInfo.phone?.mobile)
   }
 }
 
@@ -52,10 +53,9 @@ const mapPersonalDetails = (value) => {
  * @throws {Error} If value is null, undefined, or missing required customer structure
  */
 const protectAgainstNull = (value) => {
-  if (!value) {
+  if (value === null || value === undefined) {
     throw new Error('Personal details value cannot be null or undefined')
   }
-
   if (!value.customer) {
     throw new Error('Personal details value must contain a customer object')
   }
@@ -63,8 +63,4 @@ const protectAgainstNull = (value) => {
   if (!value.customer.info) {
     throw new Error('Customer must contain an info object')
   }
-}
-
-export {
-  mapPersonalDetails
 }

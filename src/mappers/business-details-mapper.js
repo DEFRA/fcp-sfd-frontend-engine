@@ -11,7 +11,9 @@
 
 import { mapAddress } from './address-mapper.js'
 
-const asNullable = (value) => value ?? null
+const asNullable = (value) => {
+  return value ?? null
+}
 
 export const mapBusinessDetails = (value) => {
   const business = value?.business ?? {}
