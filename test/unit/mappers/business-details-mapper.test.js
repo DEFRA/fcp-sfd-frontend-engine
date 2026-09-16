@@ -43,27 +43,27 @@ describe('mapBusinessDetails', () => {
     test('it should map info fields correctly', () => {
       const result = mapBusinessDetails(rawData)
 
-      expect(result.info.sbi).toBe('106705779')
-      expect(result.info.businessName).toBe('Acme Farms Ltd')
-      expect(result.info.vat).toBe('GB123456789')
-      expect(result.info.traderNumber).toBe('123456')
-      expect(result.info.vendorNumber).toBe('654321')
-      expect(result.info.legalStatus).toBe('Sole Proprietorship')
-      expect(result.info.legalStatusCode).toBe('SP001')
-      expect(result.info.registrationNumbers).toEqual({
+      expect(result.sbi).toBe('106705779')
+      expect(result.businessName).toBe('Acme Farms Ltd')
+      expect(result.vat).toBe('GB123456789')
+      expect(result.traderNumber).toBe('123456')
+      expect(result.vendorNumber).toBe('654321')
+      expect(result.legalStatus).toBe('Sole Proprietorship')
+      expect(result.legalStatusCode).toBe('SP001')
+      expect(result.registrationNumbers).toEqual({
         companiesHouse: 'AB123456',
         charityCommission: '1234567'
       })
-      expect(result.info.type).toBe('Not Specified')
-      expect(result.info.countyParishHoldingNumbers).toEqual([{ cphNumber: '12/123/1234' }])
+      expect(result.type).toBe('Not Specified')
+      expect(result.countyParishHoldingNumbers).toEqual([{ cphNumber: '12/123/1234' }])
     })
 
     test('it should map contact fields correctly', () => {
       const result = mapBusinessDetails(rawData)
 
-      expect(result.contact.email).toBe('farm@example.com')
-      expect(result.contact.landline).toBe('01234 567890')
-      expect(result.contact.mobile).toBe('07700 900000')
+      expect(result.email).toBe('farm@example.com')
+      expect(result.landline).toBe('01234 567890')
+      expect(result.mobile).toBe('07700 900000')
     })
 
     test('it should map the address using the address mapper', () => {
@@ -93,22 +93,22 @@ describe('mapBusinessDetails', () => {
     test('it should return null for nullable info fields', () => {
       const result = mapBusinessDetails(rawData)
 
-      expect(result.info.legalStatus).toBeNull()
-      expect(result.info.legalStatusCode).toBeNull()
-      expect(result.info.registrationNumbers).toEqual({
+      expect(result.legalStatus).toBeNull()
+      expect(result.legalStatusCode).toBeNull()
+      expect(result.registrationNumbers).toEqual({
         companiesHouse: null,
         charityCommission: null
       })
-      expect(result.info.type).toBeNull()
-      expect(result.info.vat).toBeNull()
-      expect(result.info.traderNumber).toBeNull()
-      expect(result.info.vendorNumber).toBeNull()
+      expect(result.type).toBeNull()
+      expect(result.vat).toBeNull()
+      expect(result.traderNumber).toBeNull()
+      expect(result.vendorNumber).toBeNull()
     })
 
     test('it should return an empty array for countyParishHoldingNumbers', () => {
       const result = mapBusinessDetails(rawData)
 
-      expect(result.info.countyParishHoldingNumbers).toEqual([])
+      expect(result.countyParishHoldingNumbers).toEqual([])
     })
   })
 
@@ -124,31 +124,31 @@ describe('mapBusinessDetails', () => {
     test('it should return null for all nullable info fields', () => {
       const result = mapBusinessDetails(null)
 
-      expect(result.info.businessName).toBeNull()
-      expect(result.info.vat).toBeNull()
-      expect(result.info.traderNumber).toBeNull()
-      expect(result.info.vendorNumber).toBeNull()
-      expect(result.info.legalStatus).toBeNull()
-      expect(result.info.legalStatusCode).toBeNull()
-      expect(result.info.registrationNumbers).toEqual({
+      expect(result.businessName).toBeNull()
+      expect(result.vat).toBeNull()
+      expect(result.traderNumber).toBeNull()
+      expect(result.vendorNumber).toBeNull()
+      expect(result.legalStatus).toBeNull()
+      expect(result.legalStatusCode).toBeNull()
+      expect(result.registrationNumbers).toEqual({
         companiesHouse: null,
         charityCommission: null
       })
-      expect(result.info.type).toBeNull()
+      expect(result.type).toBeNull()
     })
 
     test('it should return an empty array for countyParishHoldingNumbers', () => {
       const result = mapBusinessDetails(null)
 
-      expect(result.info.countyParishHoldingNumbers).toEqual([])
+      expect(result.countyParishHoldingNumbers).toEqual([])
     })
 
     test('it should return null for all contact fields', () => {
       const result = mapBusinessDetails(null)
 
-      expect(result.contact.email).toBeNull()
-      expect(result.contact.landline).toBeNull()
-      expect(result.contact.mobile).toBeNull()
+      expect(result.email).toBeNull()
+      expect(result.landline).toBeNull()
+      expect(result.mobile).toBeNull()
     })
   })
 })

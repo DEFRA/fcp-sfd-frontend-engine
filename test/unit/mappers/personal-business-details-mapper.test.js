@@ -34,21 +34,17 @@ describe('personalBusinessDetailsMapper', () => {
         const result = mapPersonalBusinessDetails(dalData)
 
         expect(result).toEqual({
-          info: {
-            userName: 'John Doe'
-          },
+          userName: 'John Doe',
           business: {
-            info: {
-              name: 'Acme Farms Ltd',
-              organisationId: '5565448',
-              sbi: '123456789'
-            }
+            name: 'Acme Farms Ltd',
+            organisationId: '5565448',
+            sbi: '123456789'
           }
         })
       })
     })
 
-    describe('info.userName', () => {
+    describe('userName', () => {
       beforeEach(() => {
         dalData.customer.info.name.middle = null
         dalData.customer.info.name.first = 'Software'
@@ -58,7 +54,7 @@ describe('personalBusinessDetailsMapper', () => {
       test('it should build the userName correctly', () => {
         const result = mapPersonalBusinessDetails(dalData)
 
-        expect(result.info.userName).toEqual('Software Developer')
+        expect(result.userName).toEqual('Software Developer')
       })
     })
   })

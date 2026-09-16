@@ -3,14 +3,12 @@
  *
  * @param {Object} value - The data from the DAL
  *
- * @returns {Object} Formatted customer name data
+ * @returns {string} Formatted customer name
  */
 
 export const mapCustomerName = (name = {}) => {
-  return {
-    userName: [
-      name.first,
-      name.last
-    ].filter(Boolean).join(' ')
-  }
+  return [
+    name.first,
+    name.last
+  ].filter(Boolean).join(' ')
 }
