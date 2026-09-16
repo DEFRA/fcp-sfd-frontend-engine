@@ -202,7 +202,7 @@ describe('buildBusinessFixUpdateVariablesService', () => {
 
 const baseBusinessDetails = () => {
   return {
-    info: { sbi: '123456789' },
+    sbi: '123456789',
     orderedSectionsToFix: []
   }
 }

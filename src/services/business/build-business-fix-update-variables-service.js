@@ -9,8 +9,7 @@
 import { buildManualAddress } from '../build-address-variables-service.js'
 
 const buildBusinessFixUpdateVariablesService = (businessDetails) => {
-  const { orderedSectionsToFix, info } = businessDetails
-  const { sbi } = info
+  const { orderedSectionsToFix, sbi } = businessDetails
 
   const input = { sbi }
 
