@@ -52,6 +52,13 @@ import {
   PERSONAL_PHONE_NUMBERS
 } from '../../../src/constants/success-messages.js'
 
+import {
+  INTERNAL_BUSINESS_CHANGE_LINKS,
+  INTERNAL_PERSONAL_CHANGE_LINKS,
+  EXTERNAL_BUSINESS_CHANGE_LINKS,
+  EXTERNAL_PERSONAL_CHANGE_LINKS
+} from '../../../src/constants/change-links.js'
+
 describe('constants exports', () => {
   describe('statusCodes', () => {
     test('exports all HTTP status codes', () => {
@@ -94,6 +101,18 @@ describe('constants exports', () => {
   describe('monthMap', () => {
     test('exports month map', () => {
       expect(constants.monthMap).toBe(MONTH_MAP)
+    })
+  })
+
+  describe('changeLinks', () => {
+    test('exports the internal service change links', () => {
+      expect(constants.changeLinks.internal.BUSINESS).toBe(INTERNAL_BUSINESS_CHANGE_LINKS)
+      expect(constants.changeLinks.internal.PERSONAL).toBe(INTERNAL_PERSONAL_CHANGE_LINKS)
+    })
+
+    test('exports the external service change links', () => {
+      expect(constants.changeLinks.external.BUSINESS).toBe(EXTERNAL_BUSINESS_CHANGE_LINKS)
+      expect(constants.changeLinks.external.PERSONAL).toBe(EXTERNAL_PERSONAL_CHANGE_LINKS)
     })
   })
 
