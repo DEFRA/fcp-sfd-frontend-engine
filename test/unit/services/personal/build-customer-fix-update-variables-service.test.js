@@ -20,7 +20,7 @@ describe('buildCustomerFixUpdateVariablesService', () => {
     })
   })
 
-  describe('when multiple sections are partially missing', () => {
+  describe('when all sections need updating', () => {
     beforeEach(() => {
       personalDetails.orderedSectionsToFix = ['name', 'email', 'phone', 'dob', 'address']
       personalDetails.changePersonalName = { first: 'Alice', last: 'Jones' }
