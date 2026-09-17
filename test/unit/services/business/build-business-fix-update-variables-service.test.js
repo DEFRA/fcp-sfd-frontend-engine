@@ -20,7 +20,7 @@ describe('buildBusinessFixUpdateVariablesService', () => {
     })
   })
 
-  describe('when multiple sections are partially missing', () => {
+  describe('when all sections need updating', () => {
     beforeEach(() => {
       businessDetails.orderedSectionsToFix = ['name', 'email', 'phone', 'vat', 'address']
       businessDetails.changeBusinessName = { businessName: 'Acme Farms Ltd' }
