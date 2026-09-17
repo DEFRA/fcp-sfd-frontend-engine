@@ -23,6 +23,15 @@ describe('updateBusinessDetailsMutation', () => {
     expect(variable.type.type.name.value).toBe('UpdateBusinessAllFieldsInput')
   })
 
+  test('it only requests the success field from the mutation response', () => {
+    const ast = parse(updateBusinessDetailsMutation)
+    const operation = ast.definitions[0]
+    const responseFields = operation.selectionSet.selections[0].selectionSet.selections
+      .map((selection) => selection.name.value)
+
+    expect(responseFields).toEqual(['success'])
+  })
+
   test('it is exposed on the mutations barrel', () => {
     expect(mutations.updateBusinessDetails).toBe(updateBusinessDetailsMutation)
   })
