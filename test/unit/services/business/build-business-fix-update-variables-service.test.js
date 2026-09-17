@@ -3,8 +3,13 @@ import { describe, test, expect, beforeEach } from 'vitest'
 
 // Thing under test
 import { buildBusinessFixUpdateVariablesService } from '../../../../src/services/business/build-business-fix-update-variables-service.js'
+import { services } from '../../../../src/services/services.js'
 
 describe('buildBusinessFixUpdateVariablesService', () => {
+  test('it is exposed on the services barrel', () => {
+    expect(services.buildBusinessFixUpdateVariables).toBe(buildBusinessFixUpdateVariablesService)
+  })
+
   let businessDetails
 
   beforeEach(() => {
