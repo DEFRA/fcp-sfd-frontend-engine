@@ -35,7 +35,7 @@ describe('buildBusinessFixUpdateVariablesService', () => {
       }
     })
 
-    test('builds input with defaults for missing fields', () => {
+    test('builds input for every section', () => {
       const result = buildBusinessFixUpdateVariablesService(businessDetails)
 
       expect(result.input).toEqual({
