@@ -159,6 +159,14 @@ describe('buildBusinessFixUpdateVariablesService', () => {
 
       expect(result.input.vat).toBe('')
     })
+
+    test('omits vat when changeBusinessVat is not set', () => {
+      businessDetails.changeBusinessVat = undefined
+
+      const result = buildBusinessFixUpdateVariablesService(businessDetails)
+
+      expect(result.input).toEqual({ sbi: '123456789' })
+    })
   })
 
   describe('when there are changes to address', () => {

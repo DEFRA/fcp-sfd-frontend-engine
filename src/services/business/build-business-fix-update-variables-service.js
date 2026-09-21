@@ -46,7 +46,7 @@ const applyPhoneSection = (input, businessDetails, orderedSectionsToFix) => {
 }
 
 const applyVatSection = (input, businessDetails, orderedSectionsToFix) => {
-  if (orderedSectionsToFix.includes('vat') && businessDetails.changeBusinessVat !== null) {
+  if (orderedSectionsToFix.includes('vat') && businessDetails.changeBusinessVat) {
     input.vat = businessDetails.changeBusinessVat.vatNumber ?? ''
   }
 }
