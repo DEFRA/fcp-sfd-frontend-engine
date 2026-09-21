@@ -6,10 +6,6 @@ import { buildBusinessFixUpdateVariablesService } from '../../../../src/services
 import { services } from '../../../../src/services/services.js'
 
 describe('buildBusinessFixUpdateVariablesService', () => {
-  test('it is exposed on the services barrel', () => {
-    expect(services.buildBusinessFixUpdateVariables).toBe(buildBusinessFixUpdateVariablesService)
-  })
-
   let businessDetails
 
   beforeEach(() => {
@@ -264,6 +260,10 @@ describe('buildBusinessFixUpdateVariablesService', () => {
 
       expect(result).toEqual({ input: { sbi: '123456789', name: 'Acme Farms Ltd' } })
     })
+  })
+
+  test('it is exposed on the services barrel', () => {
+    expect(services.buildBusinessFixUpdateVariables).toBe(buildBusinessFixUpdateVariablesService)
   })
 })
 
