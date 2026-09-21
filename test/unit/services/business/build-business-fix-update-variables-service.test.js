@@ -88,6 +88,14 @@ describe('buildBusinessFixUpdateVariablesService', () => {
         name: 'Hadley Farms Ltd'
       })
     })
+
+    test('omits name when changeBusinessName is not set', () => {
+      businessDetails.changeBusinessName = undefined
+
+      const result = buildBusinessFixUpdateVariablesService(businessDetails)
+
+      expect(result.input).toEqual({ sbi: '123456789' })
+    })
   })
 
   describe('when there are changes to email', () => {
@@ -103,6 +111,14 @@ describe('buildBusinessFixUpdateVariablesService', () => {
         sbi: '123456789',
         email: { address: 'new.email@example.com' }
       })
+    })
+
+    test('omits email when changeBusinessEmail is not set', () => {
+      businessDetails.changeBusinessEmail = undefined
+
+      const result = buildBusinessFixUpdateVariablesService(businessDetails)
+
+      expect(result.input).toEqual({ sbi: '123456789' })
     })
   })
 
@@ -122,6 +138,14 @@ describe('buildBusinessFixUpdateVariablesService', () => {
         sbi: '123456789',
         phone: { landline: '0123456789', mobile: '07999999999' }
       })
+    })
+
+    test('omits phone when changeBusinessPhoneNumbers is not set', () => {
+      businessDetails.changeBusinessPhoneNumbers = undefined
+
+      const result = buildBusinessFixUpdateVariablesService(businessDetails)
+
+      expect(result.input).toEqual({ sbi: '123456789' })
     })
 
     describe('and businessMobile is missing', () => {
@@ -209,6 +233,36 @@ describe('buildBusinessFixUpdateVariablesService', () => {
           }
         }
       })
+    })
+
+    test('omits address when changeBusinessAddress is not set', () => {
+      businessDetails.changeBusinessAddress = undefined
+
+      const result = buildBusinessFixUpdateVariablesService(businessDetails)
+
+      expect(result.input).toEqual({ sbi: '123456789' })
+    })
+  })
+
+  describe('when change data exists for sections not listed to fix', () => {
+    beforeEach(() => {
+      businessDetails.orderedSectionsToFix = ['name']
+      businessDetails.changeBusinessName = { businessName: 'Acme Farms Ltd' }
+      businessDetails.changeBusinessEmail = { businessEmail: 'new.email@example.com' }
+      businessDetails.changeBusinessPhoneNumbers = { businessTelephone: null, businessMobile: '07123456789' }
+      businessDetails.changeBusinessVat = { vatNumber: '123456789' }
+      businessDetails.changeBusinessAddress = {
+        address1: '10 Downing St',
+        city: 'London',
+        postcode: 'SW1A 2AA',
+        country: 'UK'
+      }
+    })
+
+    test('only includes the listed section', () => {
+      const result = buildBusinessFixUpdateVariablesService(businessDetails)
+
+      expect(result).toEqual({ input: { sbi: '123456789', name: 'Acme Farms Ltd' } })
     })
   })
 })
