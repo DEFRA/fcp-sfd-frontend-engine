@@ -83,7 +83,7 @@ describe('initialiseFixJourneyService', () => {
 
       const result = initialiseFixJourneyService(yar, undefined, 'personal')
 
-      expect(result).toBeUndefined()
+      expect(result).toBeNull()
       expect(yar.set).not.toHaveBeenCalled()
     })
 
@@ -176,7 +176,7 @@ describe('initialiseFixJourneyService', () => {
 
       const result = initialiseFixJourneyService(yar, undefined, 'business')
 
-      expect(result).toBeUndefined()
+      expect(result).toBeNull()
       expect(yar.set).not.toHaveBeenCalled()
     })
 

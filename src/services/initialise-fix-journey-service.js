@@ -51,7 +51,7 @@ const initialiseFixJourneyService = (yar, source, journeyType) => {
   // yar.get() returns null for a missing key, e.g. after the journey has completed
   // and the caller navigates back to the entry route
   if (!sessionData?.sectionsNeedingUpdate) {
-    return sessionData ?? undefined
+    return sessionData
   }
 
   const orderedSectionsToFix = orderSectionsToFix(
