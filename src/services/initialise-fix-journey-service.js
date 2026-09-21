@@ -48,6 +48,7 @@ const initialiseFixJourneyService = (yar, source, journeyType) => {
 
   const sessionData = yar.get(sessionKey)
 
+  // yar.get() returns null for a missing/already-cleared key (e.g. journey already completed)
   if (!sessionData?.sectionsNeedingUpdate) {
     return sessionData
   }
