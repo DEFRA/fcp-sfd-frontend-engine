@@ -6,5 +6,12 @@
  * @returns {object} The mutation variables in the shape `{ input: { email: { address }, crn } }`
  */
 export const buildUpdateCustomerEmailVariables = (email, crn) => {
-  return { input: { email: { address: email }, crn } }
+  return {
+    input: {
+      email: {
+        address: email
+      },
+      crn
+    }
+  }
 }
