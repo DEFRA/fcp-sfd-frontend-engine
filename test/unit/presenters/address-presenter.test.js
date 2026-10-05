@@ -15,10 +15,10 @@ describe('addressPresenter', () => {
   describe('#addressChangeLink', () => {
     describe('when context is business', () => {
       describe('and postcodeLookup is true', () => {
-        test('it should return the business address change route', () => {
+        test('it should return the business address selection route', () => {
           const result = addressChangeLink(true, 'business')
 
-          expect(result).toEqual('/business-address-change')
+          expect(result).toEqual('/business-address-select')
         })
       })
 
@@ -33,10 +33,10 @@ describe('addressPresenter', () => {
 
     describe('when context is personal', () => {
       describe('and postcodeLookup is true', () => {
-        test('it should return the personal address change route', () => {
+        test('it should return the personal address selection route', () => {
           const result = addressChangeLink(true, 'personal')
 
-          expect(result).toEqual('/account-address-change')
+          expect(result).toEqual('/account-address-select')
         })
       })
 

@@ -2,8 +2,8 @@
  * Determines the correct link for changing an address.
  *
  * If the user previously selected an address from a postcode lookup, they will
- * navigate to the address change page to choose a different address.
- * Otherwise, they navigate to the manual address entry page.
+ * navigate to the address selection page to choose a different address from the
+ * same lookup results. Otherwise, they navigate to the manual address entry page.
  *
  * @param {boolean} postcodeLookup - Whether the user used a postcode lookup to find their address
  * @param {string} context - The context for the address change ('business' or 'personal')
@@ -12,13 +12,13 @@
 export const addressChangeLink = (postcodeLookup, context) => {
   if (context === 'business') {
     if (postcodeLookup) {
-      return '/business-address-change'
+      return '/business-address-select'
     }
     return '/business-address-enter'
   }
   if (context === 'personal') {
     if (postcodeLookup) {
-      return '/account-address-change'
+      return '/account-address-select'
     }
     return '/account-address-enter'
   }
