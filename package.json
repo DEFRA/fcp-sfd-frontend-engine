@@ -1,8 +1,11 @@
 {
   "name": "@defra/fcp-sfd-frontend-engine",
-  "version": "0.37.2",
+  "version": "0.38.0",
   "description": "Shared frontend engine used by both the internal and external frontend applications.",
   "main": "./dist/index.cjs",
+  "engines": {
+    "node": ">=24.22.1"
+  },
   "exports": {
     ".": {
       "import": "./dist/index.js",
