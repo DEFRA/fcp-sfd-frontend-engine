@@ -1,6 +1,6 @@
 {
   "name": "@defra/fcp-sfd-frontend-engine",
-  "version": "0.38.0",
+  "version": "0.38.1",
   "description": "Shared frontend engine used by both the internal and external frontend applications.",
   "main": "./dist/index.cjs",
   "engines": {
@@ -18,7 +18,9 @@
     "build": "tsup",
     "test": "npm run build && vitest run --coverage",
     "test:watch": "vitest",
-    "sonar": "node scripts/sonar-scan.js"
+    "sonar": "node scripts/sonar-scan.js",
+    "check:synthetic-ids": "sfd-id-check --staged",
+    "setup:husky": "node -e \"try { (await import('husky')).default() } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e }\" --input-type module"
   },
   "repository": {
     "type": "git",
@@ -43,7 +45,9 @@
   "devDependencies": {
     "@vitest/coverage-v8": "5.0.2",
     "eslint": "9.39.2",
+    "fcp-sfd-core": "github:DEFRA/fcp-sfd-core#95f58ade56b2d0dd0f15bdcba6a5f37a54bcc939",
     "graphql": "16.13.2",
+    "husky": "9.1.7",
     "neostandard": "0.13.0",
     "tsup": "8.5.1",
     "vitest": "5.0.2"
