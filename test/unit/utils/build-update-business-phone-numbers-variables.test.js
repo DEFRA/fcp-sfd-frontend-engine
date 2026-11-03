@@ -54,7 +54,6 @@ describe('buildUpdateBusinessPhoneNumbersVariables', () => {
       })
     })
 
-
     test('it defaults to null when both are null', () => {
       expect(buildUpdateBusinessPhoneNumbersVariables(null, null, '123456789')).toEqual({
         input: {
