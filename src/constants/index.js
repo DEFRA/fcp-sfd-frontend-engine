@@ -32,6 +32,9 @@ import {
 import { PHONE_NUMBER_PATTERN, NO_CONTROL_CHARS_PATTERN } from './patterns.js'
 import { MONTH_MAP } from './month-map.js'
 
+// Empty value display text
+import { NOT_ADDED_TEXT } from './not-added-text.js'
+
 // Success messages
 import {
   BUSINESS_ADDRESS,
@@ -109,6 +112,7 @@ export const constants = {
     NO_CONTROL_CHARS_PATTERN
   },
   monthMap: MONTH_MAP,
+  NOT_ADDED_TEXT,
   successMessages: {
     BUSINESS_ADDRESS,
     BUSINESS_CHARITY_REGISTRATION_NUMBER,

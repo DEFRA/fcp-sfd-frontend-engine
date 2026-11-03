@@ -35,6 +35,7 @@ import {
 
 import { PHONE_NUMBER_PATTERN } from '../../../src/constants/patterns.js'
 import { MONTH_MAP } from '../../../src/constants/month-map.js'
+import { NOT_ADDED_TEXT } from '../../../src/constants/not-added-text.js'
 import {
   BUSINESS_ADDRESS,
   BUSINESS_CHARITY_REGISTRATION_NUMBER,
@@ -101,6 +102,12 @@ describe('constants exports', () => {
   describe('monthMap', () => {
     test('exports month map', () => {
       expect(constants.monthMap).toBe(MONTH_MAP)
+    })
+  })
+
+  describe('NOT_ADDED_TEXT', () => {
+    test('exports the not added text', () => {
+      expect(constants.NOT_ADDED_TEXT).toBe(NOT_ADDED_TEXT)
     })
   })
 
