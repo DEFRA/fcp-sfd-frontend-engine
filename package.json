@@ -1,6 +1,6 @@
 {
   "name": "@defra/fcp-sfd-frontend-engine",
-  "version": "0.39.0",
+  "version": "0.39.1",
   "description": "Shared frontend engine used by both the internal and external frontend applications.",
   "main": "./dist/index.cjs",
   "engines": {
@@ -53,7 +53,7 @@
     "vitest": "5.0.2"
   },
   "dependencies": {
-    "joi": "18.2.9",
+    "joi": "18.3.1",
     "osdatahub": "0.2.2"
   }
 }
