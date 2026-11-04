@@ -79,8 +79,6 @@ describe('Change links', () => {
         businessVat: '/business-vat-registration-number-change',
         businessVatRemove: '/business-vat-registration-remove',
         businessLegalStatus: '/business-legal-status-change',
-        businessCompanyRegistrationNumber: '/business-company-registration-number-change',
-        businessCharityRegistrationNumber: '/business-charity-registration-number-change',
         businessType: '/business-type-change',
         businessFixNameNoPermission: '/business-fix-name-no-permission'
       })
