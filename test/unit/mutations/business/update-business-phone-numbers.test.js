@@ -5,7 +5,6 @@ import { describe, test, expect } from 'vitest'
 // Things under test
 import { updateBusinessPhoneNumbersMutation } from '../../../../src/mutations/business/update-business-phone-numbers.js'
 import { mutations } from '../../../../src/mutations/mutations.js'
-import { updateBusinessNameMutation } from '../../../../src/mutations/business/update-business-name.js'
 
 describe('updateBusinessPhoneNumbersMutation', () => {
   test('it is valid GraphQL syntax', () => {
