@@ -80,7 +80,9 @@ describe('Change links', () => {
         businessVatRemove: '/business-vat-registration-remove',
         businessLegalStatus: '/business-legal-status-change',
         businessType: '/business-type-change',
-        businessFixNameNoPermission: '/business-fix-name-no-permission'
+        businessFixNameNoPermission: '/business-fix-name-no-permission',
+        businessCompanyRegistrationNumber: '/business-company-registration-number-change',
+        businessCharityRegistrationNumber: '/business-charity-registration-number-change'
       })
     })
   })

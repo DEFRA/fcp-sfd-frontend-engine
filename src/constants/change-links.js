@@ -30,7 +30,9 @@ export const EXTERNAL_BUSINESS_CHANGE_LINKS = {
   businessVatRemove: '/business-vat-registration-remove',
   businessLegalStatus: '/business-legal-status-change',
   businessType: '/business-type-change',
-  businessFixNameNoPermission: '/business-fix-name-no-permission'
+  businessFixNameNoPermission: '/business-fix-name-no-permission',
+  businessCompanyRegistrationNumber: '/business-company-registration-number-change',
+  businessCharityRegistrationNumber: '/business-charity-registration-number-change'
 }
 
 export const EXTERNAL_PERSONAL_CHANGE_LINKS = {
