@@ -53,6 +53,8 @@ import {
   PERSONAL_PHONE_NUMBERS
 } from '../../../src/constants/success-messages.js'
 
+import { PERSONAL_EMAIL_ALREADY_REGISTERED } from '../../../src/constants/error-messages.js'
+
 import {
   INTERNAL_BUSINESS_CHANGE_LINKS,
   INTERNAL_PERSONAL_CHANGE_LINKS,
@@ -178,6 +180,12 @@ describe('constants exports', () => {
 
     test('exports personal address success message', () => {
       expect(constants.successMessages.PERSONAL_ADDRESS).toBe(PERSONAL_ADDRESS)
+    })
+  })
+
+  describe('errorMessages', () => {
+    test('exports personal email already registered error message', () => {
+      expect(constants.errorMessages.PERSONAL_EMAIL_ALREADY_REGISTERED).toBe(PERSONAL_EMAIL_ALREADY_REGISTERED)
     })
   })
 })

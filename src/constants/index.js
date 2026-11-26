@@ -53,6 +53,9 @@ import {
   PERSONAL_PHONE_NUMBERS
 } from './success-messages.js'
 
+// Error messages
+import { PERSONAL_EMAIL_ALREADY_REGISTERED } from './error-messages.js'
+
 // Interrupter journey constants
 import {
   PERSONAL_SECTION_FIELD_ORDER,
@@ -128,6 +131,9 @@ export const constants = {
     PERSONAL_EMAIL_ADDRESS,
     PERSONAL_NAME,
     PERSONAL_PHONE_NUMBERS
+  },
+  errorMessages: {
+    PERSONAL_EMAIL_ALREADY_REGISTERED
   },
   interrupterJourney: {
     PERSONAL_SECTION_FIELD_ORDER,
